@@ -5,7 +5,7 @@ import { setupPagination } from './setup/pagination'
 import { $offset, setupStyles } from './setup/styles'
 import { AllRequired, Config, RootConfig } from './types'
 
-export class Rollify {
+export class BlazeSlider {
   slider: HTMLElement
   config: AllRequired<Config>
   track: HTMLElement
@@ -22,7 +22,7 @@ export class Rollify {
   constructor (slider: HTMLElement, givenConfig?: RootConfig) {
     this.offset = 0
     this.slider = slider
-    const track = this.track = slider.querySelector('.rollify-track') as HTMLElement
+    const track = this.track = slider.querySelector('.blaze-track') as HTMLElement
 
     slider.tabIndex = 0
 
@@ -38,14 +38,14 @@ export class Rollify {
     this.config = createConfig(givenConfig)
 
     this.nav = {
-      prev: slider.querySelector('.rollify-prev') as HTMLButtonElement,
-      next: slider.querySelector('.rollify-next') as HTMLButtonElement
+      prev: slider.querySelector('.blaze-prev') as HTMLButtonElement,
+      next: slider.querySelector('.blaze-next') as HTMLButtonElement
     }
 
     setupStyles(this)
 
     if (this.slides.length <= this.config.slides.show) {
-      slider.classList.add('rollify-static')
+      slider.classList.add('blaze-static')
       return
     }
 
@@ -59,7 +59,7 @@ export class Rollify {
   }
 
   setSlideAmount (slideAmount: number) {
-    this.track.style.setProperty('--rollify-slide-amount', slideAmount + 'px')
+    this.track.style.setProperty('--blaze-slide-amount', slideAmount + 'px')
   }
 
   wrapToLeft (slidesToWraparound: number) {

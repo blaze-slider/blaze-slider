@@ -1,36 +1,35 @@
-.rollify,
-.rollify * {
+.blaze-slider,
+.blaze-slider * {
 	box-sizing: border-box;
 }
 
-.rollify {
-	--rollify-visible-gap: calc(var(--rollify-item-gap) * (var(--rollify-slides-to-show) - 1));
-	--rollify-item-width: calc((100% - var(--rollify-visible-gap)) / var(--rollify-slides-to-show));
+.blaze-slider {
+	--blaze-visible-gap: calc(var(--blaze-slide-gap) * (var(--blaze-slides-to-show) - 1));
+	--blaze-slide-width: calc((100% - var(--blaze-visible-gap)) / var(--blaze-slides-to-show));
 }
 
-.rollify-container {
+.blaze-container {
 	overflow-x: hidden;
 }
 
-.rollify-track {
-	/* width: 10000px; */
+.blaze-track {
 	touch-action: none;
 	will-change: auto;
 	display: flex;
-	gap: var(--rollify-item-gap);
+	gap: var(--blaze-slide-gap);
 	transition-property: transform;
-	transition-timing-function: var(--rollify-ttf, ease);
-	transition-duration: var(--rollify-td, 700ms);
+	transition-timing-function: var(--blaze-ttf, ease);
+	transition-duration: var(--blaze-td, 700ms);
 	cursor: grab;
 	transform: translateX(
 		calc(
-			(var(--rollify-item-width) + var(--rollify-item-gap)) * -1 * var(--rollify-offset) +
-				var(--rollify-slide-amount, 0px)
+			(var(--blaze-slide-width) + var(--blaze-slide-gap)) * -1 * var(--blaze-offset) +
+				var(--blaze-slide-amount, 0px)
 		)
 	);
 }
 
-.rollify-track > * {
+.blaze-track > * {
 	flex-shrink: 0;
-	width: var(--rollify-item-width);
+	width: var(--blaze-slide-width);
 }

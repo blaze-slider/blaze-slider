@@ -1,17 +1,17 @@
-import { Rollify } from '../index'
+import { BlazeSlider } from '../index'
 
-export function setupPagination (rollify: Rollify) {
-  const { slider, slides, config } = rollify
+export function setupPagination (blazeSlider: BlazeSlider) {
+  const { slider, slides, config } = blazeSlider
   const { show } = config.slides
 
   const pages = Math.ceil(slides.length / show)
-  const pagination = slider.querySelector('.rollify-pagination')!
+  const pagination = slider.querySelector('.blaze-pagination')!
   if (!pagination) return
 
   function handlePaginationButtonClick (this: HTMLButtonElement) {
     const targetShowIndex = show * Number(this.dataset.index)
     const targetOffset = targetShowIndex - Number(slides[0].dataset.index)
-    rollify.swipeTo(targetOffset)
+    blazeSlider.swipeTo(targetOffset)
   }
 
   for (let i = 0; i < pages; i++) {

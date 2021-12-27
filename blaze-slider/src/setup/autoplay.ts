@@ -1,16 +1,16 @@
-import { Rollify } from '..'
+import { BlazeSlider } from '../index'
 
-export function setupAutoplay (rollify: Rollify) {
+export function setupAutoplay (blazeSlider: BlazeSlider) {
   const {
     config, slider, swipeLeft, swipeRight
-  } = rollify
+  } = blazeSlider
   // autoplay
   let autoplayInterval: NodeJS.Timer
   let interactionDone = false
 
   function autoplayStart () {
     if (interactionDone) return
-    const fn = config.autoplay.toLeft ? swipeLeft.bind(rollify) : swipeRight.bind(rollify)
+    const fn = config.autoplay.toLeft ? swipeLeft.bind(blazeSlider) : swipeRight.bind(blazeSlider)
     autoplayInterval = setInterval(() => {
       requestAnimationFrame(fn)
     }, config.autoplay.interval)

@@ -1,8 +1,8 @@
 {
-  "name": "rollify",
+  "name": "blaze-slider",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/lib.umd.js",
+  "main": "dist/blaze-slider.cmd.js",
   "scripts": {
     "lint": "eslint src/** --fix",
     "test": "jest",

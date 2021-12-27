@@ -1,7 +1,7 @@
-import { Rollify } from '../index'
+import { BlazeSlider } from '../index'
 
-export function handleDrag (rollify: Rollify) {
-  const { track } = rollify
+export function handleDrag (blazeSlider: BlazeSlider) {
+  const { track } = blazeSlider
 
   let posInitial: number
   let posX1: number
@@ -12,13 +12,13 @@ export function handleDrag (rollify: Rollify) {
   function handlePointerUp () {
     track.style.cursor = 'grab'
     const posFinal = offsetLeft
-    track.style.setProperty('--rollify-slide-amount', 0 + 'px')
+    track.style.setProperty('--blaze-slide-amount', 0 + 'px')
 
-    rollify.enableTransition()
+    blazeSlider.enableTransition()
     if (posFinal - posInitial < -threshold) {
-      rollify.swipeRight()
+      blazeSlider.swipeRight()
     } else if (posFinal - posInitial > threshold) {
-      rollify.swipeLeft()
+      blazeSlider.swipeLeft()
     }
 
     offsetLeft = 0
@@ -30,14 +30,14 @@ export function handleDrag (rollify: Rollify) {
     const diff = posX1 - e.clientX
     // handle peeking
     // wrapping to prevent showing empty space
-    if (diff < 0 && rollify.offset === 0) {
-      rollify.wrapToLeft(1)
-    } else if (diff > 0 && rollify.offset === rollify.totalSlides - rollify.config.slides.show) {
-      rollify.wrapToRight(1)
+    if (diff < 0 && blazeSlider.offset === 0) {
+      blazeSlider.wrapToLeft(1)
+    } else if (diff > 0 && blazeSlider.offset === blazeSlider.totalSlides - blazeSlider.config.slides.show) {
+      blazeSlider.wrapToRight(1)
     }
     posX1 = e.clientX
     const slideAmount = (offsetLeft - diff)
-    track.style.setProperty('--rollify-slide-amount', slideAmount + 'px')
+    track.style.setProperty('--blaze-slide-amount', slideAmount + 'px')
     offsetLeft = slideAmount
   }
 
@@ -45,7 +45,7 @@ export function handleDrag (rollify: Rollify) {
     track.style.cursor = 'grabbing'
     // capture all events of this pointerId and consider it as it is meant for track only
     track.setPointerCapture(event.pointerId)
-    rollify.disableTransition()
+    blazeSlider.disableTransition()
     event.preventDefault()
     posInitial = offsetLeft
 

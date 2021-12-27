@@ -1,0 +1,30 @@
+#app {
+	font-family: Avenir, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	color: #2c3e50;
+	margin-top: 60px;
+	margin-bottom: 30px;
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+body {
+	background: #eee;
+}
+
+.blaze-track > * {
+	background: white;
+	min-height: 300px;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+	font-size: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.blaze-track {
+	margin-bottom: 20px;
+}

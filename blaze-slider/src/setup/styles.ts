@@ -1,23 +1,23 @@
-import { Rollify } from '../index'
+import { BlazeSlider } from '../index'
 
-const slidesCount = '--rollify-total-slides'
-const slidesToShow = '--rollify-slides-to-show'
-const slideGap = '--rollify-item-gap'
-const transitionTimingFunction = '--rollify-ttf'
-const transitionDuration = '--rollify-td'
-const slidesToScroll = '--rollify-slides-to-scroll'
-export const $offset = '--rollify-offset'
+const slidesCount = '--blaze-slide-count'
+const slidesToShow = '--blaze-slides-to-show'
+const slideGap = '--blaze-slide-gap'
+const transitionTimingFunction = '--blaze-ttf'
+const transitionDuration = '--blaze-td'
+const slidesToScroll = '--blaze-slides-to-scroll'
+export const $offset = '--blaze-offset'
 
-export function setupStyles (rollify: Rollify) {
-  const { show, gap, scroll } = rollify.config.slides
-  const { timingFunction, duration } = rollify.config.transition
+export function setupStyles (blazeSlider: BlazeSlider) {
+  const { show, gap, scroll } = blazeSlider.config.slides
+  const { timingFunction, duration } = blazeSlider.config.transition
 
   // set css variables
-  rollify.setOffset(0)
-  rollify.setCSSVar(slidesCount, rollify.totalSlides + '')
-  rollify.setCSSVar(slidesToShow, show + '')
-  rollify.setCSSVar(slideGap, gap)
-  rollify.setCSSVar(transitionTimingFunction, timingFunction)
-  rollify.setCSSVar(transitionDuration, duration)
-  rollify.setCSSVar(slidesToScroll, scroll + '')
+  blazeSlider.setOffset(0)
+  blazeSlider.setCSSVar(slidesCount, blazeSlider.totalSlides + '')
+  blazeSlider.setCSSVar(slidesToShow, show + '')
+  blazeSlider.setCSSVar(slideGap, gap)
+  blazeSlider.setCSSVar(transitionTimingFunction, timingFunction)
+  blazeSlider.setCSSVar(transitionDuration, duration)
+  blazeSlider.setCSSVar(slidesToScroll, scroll + '')
 }
