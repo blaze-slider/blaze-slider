@@ -1,0 +1,31 @@
+{
+  "name": "rollify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/lib.umd.js",
+  "scripts": {
+    "lint": "eslint src/** --fix",
+    "test": "jest",
+    "build": "npm run lint && rollup -c"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
+    "@typescript-eslint/parser": "^5.8.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "jest": "^27.4.5",
+    "rollup": "^2.62.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-ts": "^2.0.4",
+    "ts-jest": "^27.1.2",
+    "typescript": "^4.5.4"
+  }
+}
