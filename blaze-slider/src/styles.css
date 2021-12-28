@@ -17,9 +17,7 @@
 	will-change: auto;
 	display: flex;
 	gap: var(--blaze-slide-gap);
-	transition-property: transform;
-	transition-timing-function: var(--blaze-ttf, ease);
-	transition-duration: var(--blaze-td, 700ms);
+	transition: transform var(--blaze-td, 400ms) var(--blaze-ttf, ease);
 	cursor: grab;
 	transform: translateX(
 		calc(

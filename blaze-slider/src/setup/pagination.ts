@@ -1,24 +1,51 @@
 import { BlazeSlider } from '../index'
 
-export function setupPagination (blazeSlider: BlazeSlider) {
-  const { slider, slides, config } = blazeSlider
+export interface BlazePaginationButton extends HTMLButtonElement {
+  blazeSlider: BlazeSlider
+}
+
+const activeClass = 'active'
+
+function handlePaginationButtonClick (this: BlazePaginationButton) {
+  const { blazeSlider } = this
+  const { show } = blazeSlider.config.slides
+  const showPageIndex = Number(this.dataset.index)
+
+  let firstSlideIndex = 0
+  blazeSlider.slides.forEach((slide, i) => {
+    if (slide.dataset.index === '0') {
+      firstSlideIndex = Number(i)
+    }
+  })
+
+  blazeSlider.swipe(firstSlideIndex + showPageIndex * show - blazeSlider.offset)
+}
+
+export function handlePagination (blazeSlider: BlazeSlider) {
+  const { slider, config, totalSlides } = blazeSlider
   const { show } = config.slides
 
-  const pages = Math.ceil(slides.length / show)
+  const pages = Math.ceil(totalSlides / show)
   const pagination = slider.querySelector('.blaze-pagination')!
   if (!pagination) return
 
-  function handlePaginationButtonClick (this: HTMLButtonElement) {
-    const targetShowIndex = show * Number(this.dataset.index)
-    const targetOffset = targetShowIndex - Number(slides[0].dataset.index)
-    blazeSlider.swipeTo(targetOffset)
+  // @ts-ignore
+  blazeSlider.pagination = {
+    buttons: []
   }
 
   for (let i = 0; i < pages; i++) {
-    const button = document.createElement('button')
+    const button = document.createElement('button') as BlazePaginationButton
+    if (i === 0) {
+      button.classList.add(activeClass)
+      blazeSlider.pagination!.active = button
+    }
     button.textContent = `${i + 1}`
     pagination.append(button)
     button.dataset.index = `${i}`
+    button.blazeSlider = blazeSlider
     button.addEventListener('click', handlePaginationButtonClick)
+
+    blazeSlider.pagination!.buttons.push(button)
   }
 }

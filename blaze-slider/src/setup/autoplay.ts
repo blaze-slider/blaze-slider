@@ -1,10 +1,9 @@
 import { BlazeSlider } from '../index'
 
-export function setupAutoplay (blazeSlider: BlazeSlider) {
+export function handleAutoplay (blazeSlider: BlazeSlider) {
   const {
     config, slider, swipeLeft, swipeRight
   } = blazeSlider
-  // autoplay
   let autoplayInterval: NodeJS.Timer
   let interactionDone = false
 

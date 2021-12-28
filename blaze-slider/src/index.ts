@@ -12,20 +12,18 @@ export class BlazeSlider {
   track: HTMLElement
   slides: HTMLElement[]
   totalSlides: number
+
+  // offset is the firstSlideIndex of the slide in slides array
   offset: number
   pagination?: {
     buttons: BlazePaginationButton[],
     active: BlazePaginationButton
   }
 
-  firstVisibleSlideIndex: number
-
   constructor (slider: HTMLElement, givenConfig?: RootConfig) {
     this.config = createConfig(givenConfig)
 
     this.offset = 0
-    // @todo should be configurable
-    this.firstVisibleSlideIndex = 0
 
     // slider
     this.slider = slider
@@ -72,24 +70,25 @@ export class BlazeSlider {
     }
 
     this.disableTransition()
-    this.setOffset(this.offset + n)
+    this.offset += n
+    this.updateTrackOffset()
   }
 
-  wrapToRight (slidesToWrap: number) {
+  wrapToRight (n: number) {
     const { slides } = this
     // remove n slides from the start and add to end
-    for (let i = 0; i < slidesToWrap; i++) {
+    for (let i = 0; i < n; i++) {
       slides[slides.length - 1].after(slides[0])
       slides.push(slides.shift()!)
     }
 
     this.disableTransition()
-    this.setOffset(this.offset - slidesToWrap)
+    this.offset -= n
+    this.updateTrackOffset()
   }
 
-  setOffset (offset: number) {
-    this.offset = offset
-    this.setCSSVar($offset, offset + '')
+  updateTrackOffset () {
+    this.setCSSVar($offset, this.offset + '')
   }
 
   setCSSVar (name: string, value: string) {
@@ -105,52 +104,71 @@ export class BlazeSlider {
   }
 
   swipeLeft () {
-    this.swipeTo(this.offset - this.config.slides.scroll)
+    this.swipe(-1 * this.config.slides.scroll)
   }
 
   swipeRight () {
-    this.swipeTo(this.offset + this.config.slides.scroll)
+    this.swipe(this.config.slides.scroll)
   }
 
-  swipeTo (targetOffset: number) {
-    const offsetDiff = this.offset - targetOffset
-    if (offsetDiff === 0) return // do
+  swipe (_vector: number) {
+    // normalize the vector +1 is the same as totalSlides + 1
+    // and to reduce the motion we vector should change the direction that is nearest
+    let vector = _vector % this.totalSlides
+    if (Math.abs(vector) > this.totalSlides / 2) {
+      vector = -1 * (this.totalSlides - vector)
+    }
+
+    if (vector === 0) return
+
+    console.log(vector, _vector)
 
     const { slides } = this
     const { show } = this.config.slides
 
-    // if not enough slides on the left side
-    if (targetOffset < 0) {
-      const slidesToWraparound = -targetOffset
-      this.wrapToLeft(slidesToWraparound)
+    const rawOffset = this.offset + vector
+
+    // if the rawOffset is negative
+    // it means that thee is not enough slides on the left side
+    if (rawOffset < 0) {
+      this.wrapToLeft(-1 * vector)
+      this.offset += vector
       requestAnimationFrame(() => {
         this.enableTransition()
-        this.setOffset(this.offset + offsetDiff)
+        this.updateTrackOffset()
       })
     }
 
     // if not enough slides on the right side
-    else if (targetOffset + (show - 1) > slides.length - 1) {
-      const slidesToWrap = targetOffset + (show - 1) - (slides.length - 1)
+    else if (this.offset + vector + (show - 1) > slides.length - 1) {
+      const slidesToWrap = this.offset + vector + (show - 1) - (slides.length - 1)
       this.wrapToRight(slidesToWrap)
+      this.offset += vector
       requestAnimationFrame(() => {
         this.enableTransition()
-        this.setOffset(this.offset + offsetDiff)
+        this.updateTrackOffset()
       })
     }
 
     // else if enough slides are present
     else {
-      this.firstVisibleSlideIndex -= offsetDiff
-      this.setOffset(targetOffset)
+      this.offset += vector
+      this.updateTrackOffset()
     }
 
     if (this.pagination) {
-      const firstSlideIndex = this.firstVisibleSlideIndex
-      const activePageIndex = Math.ceil(firstSlideIndex / this.config.slides.show)
-      console.log({ firstSlideIndex })
+      const firstSlideOriginalIndex = this.firstSlideOriginalIndex()
+      const activePageIndex = Math.ceil(firstSlideOriginalIndex / this.config.slides.show)
       this.setActivePaginationIndex(activePageIndex)
     }
+  }
+
+  firstSlideOriginalIndex () {
+    const index = this.offset < 0 ? this.slides.length - 1 + this.offset : this.offset
+    console.log('index', index)
+    const x = Number(this.slides[index].dataset.index)
+    console.log({ x })
+    return x
   }
 
   setActivePaginationIndex (index: number) {

@@ -1,6 +1,5 @@
 import { BlazeSlider } from '../index'
 
-const slidesCount = '--blaze-slide-count'
 const slidesToShow = '--blaze-slides-to-show'
 const slideGap = '--blaze-slide-gap'
 const transitionTimingFunction = '--blaze-ttf'
@@ -13,8 +12,7 @@ export function setupStyles (blazeSlider: BlazeSlider) {
   const { timingFunction, duration } = blazeSlider.config.transition
 
   // set css variables
-  blazeSlider.setOffset(0)
-  blazeSlider.setCSSVar(slidesCount, blazeSlider.totalSlides + '')
+  blazeSlider.updateTrackOffset()
   blazeSlider.setCSSVar(slidesToShow, show + '')
   blazeSlider.setCSSVar(slideGap, gap)
   blazeSlider.setCSSVar(transitionTimingFunction, timingFunction)
