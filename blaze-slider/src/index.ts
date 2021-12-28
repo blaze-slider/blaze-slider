@@ -12,8 +12,6 @@ export class BlazeSlider {
   track: HTMLElement
   slides: HTMLElement[]
   totalSlides: number
-
-  // offset is the firstSlideIndex of the slide in slides array
   offset: number
   pagination?: {
     buttons: BlazePaginationButton[],
@@ -121,8 +119,6 @@ export class BlazeSlider {
 
     if (vector === 0) return
 
-    console.log(vector, _vector)
-
     const { slides } = this
     const { show } = this.config.slides
 
@@ -157,18 +153,10 @@ export class BlazeSlider {
     }
 
     if (this.pagination) {
-      const firstSlideOriginalIndex = this.firstSlideOriginalIndex()
-      const activePageIndex = Math.ceil(firstSlideOriginalIndex / this.config.slides.show)
+      const firstVisibleSlideRealIndex = Number(this.slides[this.offset].dataset.index)
+      const activePageIndex = Math.floor(firstVisibleSlideRealIndex / this.config.slides.show)
       this.setActivePaginationIndex(activePageIndex)
     }
-  }
-
-  firstSlideOriginalIndex () {
-    const index = this.offset < 0 ? this.slides.length - 1 + this.offset : this.offset
-    console.log('index', index)
-    const x = Number(this.slides[index].dataset.index)
-    console.log({ x })
-    return x
   }
 
   setActivePaginationIndex (index: number) {
