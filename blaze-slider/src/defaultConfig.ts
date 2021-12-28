@@ -4,8 +4,11 @@ export const defaultConfig: AllRequired<Config> = {
   slides: {
     show: 1,
     scroll: 1,
-    gap: '10px'
+    gap: '10px',
+    draggable: true
   },
+  navigation: false,
+  pagination: false,
   transition: {
     timingFunction: 'ease',
     duration: '300ms'

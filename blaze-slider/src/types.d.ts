@@ -11,7 +11,13 @@ export type Config = {
     show?: number;
     scroll?: number;
     gap?: string;
+    draggable?: boolean
   };
+  navigation?: {
+    prev: HTMLElement | null,
+    next: HTMLElement | null
+  } | false,
+  pagination?: HTMLElement | false,
   transition?: {
     timingFunction?: string;
     duration?: string;

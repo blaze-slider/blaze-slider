@@ -1,7 +1,8 @@
 import { BlazeSlider } from '../index'
 
 export function handleDrag (blazeSlider: BlazeSlider) {
-  const { track } = blazeSlider
+  const { track, config } = blazeSlider
+  if (!config.slides.draggable) return
 
   let posInitial: number
   let posX1: number

@@ -1,7 +1,8 @@
-import { setupAutoplay } from './setup/autoplay'
+import { handleAutoplay } from './setup/autoplay'
 import { createConfig } from './setup/config'
 import { handleDrag } from './setup/drag'
-import { setupPagination } from './setup/pagination'
+import { handleNavigation } from './setup/navigation'
+import { BlazePaginationButton, handlePagination } from './setup/pagination'
 import { $offset, setupStyles } from './setup/styles'
 import { AllRequired, Config, RootConfig } from './types'
 
@@ -9,24 +10,36 @@ export class BlazeSlider {
   slider: HTMLElement
   config: AllRequired<Config>
   track: HTMLElement
-  nav: {
-    prev: HTMLButtonElement
-    next: HTMLButtonElement
-  }
-
   slides: HTMLElement[]
   totalSlides: number
   offset: number
-  transitionStyle: string
+  pagination?: {
+    buttons: BlazePaginationButton[],
+    active: BlazePaginationButton
+  }
+
+  firstVisibleSlideIndex: number
 
   constructor (slider: HTMLElement, givenConfig?: RootConfig) {
-    this.offset = 0
-    this.slider = slider
-    const track = this.track = slider.querySelector('.blaze-track') as HTMLElement
+    this.config = createConfig(givenConfig)
 
+    this.offset = 0
+    // @todo should be configurable
+    this.firstVisibleSlideIndex = 0
+
+    // slider
+    this.slider = slider
+    // @ts-ignore
+    slider.$blaze = this
     slider.tabIndex = 0
 
-    this.transitionStyle = track.style.transition
+    // style
+    setupStyles(this)
+
+    // track
+    const track = this.track = slider.querySelector('.blaze-track') as HTMLElement
+
+    // slides
     this.slides = Array.from(track.children) as HTMLElement[]
     this.totalSlides = this.slides.length
 
@@ -35,26 +48,14 @@ export class BlazeSlider {
       slide.dataset.index = `${i}`
     })
 
-    this.config = createConfig(givenConfig)
-
-    this.nav = {
-      prev: slider.querySelector('.blaze-prev') as HTMLButtonElement,
-      next: slider.querySelector('.blaze-next') as HTMLButtonElement
-    }
-
-    setupStyles(this)
-
     if (this.slides.length <= this.config.slides.show) {
       slider.classList.add('blaze-static')
       return
     }
 
-    // navigation
-    this.nav.prev.addEventListener('click', () => this.swipeLeft())
-    this.nav.next.addEventListener('click', () => this.swipeRight())
-
-    setupAutoplay(this)
-    setupPagination(this)
+    handleNavigation(this)
+    handleAutoplay(this)
+    handlePagination(this)
     handleDrag(this)
   }
 
@@ -62,21 +63,21 @@ export class BlazeSlider {
     this.track.style.setProperty('--blaze-slide-amount', slideAmount + 'px')
   }
 
-  wrapToLeft (slidesToWraparound: number) {
+  wrapToLeft (n: number) {
     const { slides } = this
-    // remove 'slidesToWraparound' slides from end and add to beginning
-    for (let i = 0; i < slidesToWraparound; i++) {
+    // remove n slides from end and add to beginning
+    for (let i = 0; i < n; i++) {
       slides[0].before(slides[slides.length - 1])
       slides.unshift(slides.pop()!)
     }
 
     this.disableTransition()
-    this.setOffset(this.offset + slidesToWraparound)
+    this.setOffset(this.offset + n)
   }
 
   wrapToRight (slidesToWrap: number) {
     const { slides } = this
-    // move first slide in array to last
+    // remove n slides from the start and add to end
     for (let i = 0; i < slidesToWrap; i++) {
       slides[slides.length - 1].after(slides[0])
       slides.push(slides.shift()!)
@@ -100,7 +101,7 @@ export class BlazeSlider {
   }
 
   enableTransition () {
-    this.track.style.transition = this.transitionStyle
+    this.track.style.transition = ''
   }
 
   swipeLeft () {
@@ -112,7 +113,7 @@ export class BlazeSlider {
   }
 
   swipeTo (targetOffset: number) {
-    const offsetDiff = Math.abs(this.offset - targetOffset)
+    const offsetDiff = this.offset - targetOffset
     if (offsetDiff === 0) return // do
 
     const { slides } = this
@@ -124,7 +125,7 @@ export class BlazeSlider {
       this.wrapToLeft(slidesToWraparound)
       requestAnimationFrame(() => {
         this.enableTransition()
-        this.setOffset(this.offset - offsetDiff)
+        this.setOffset(this.offset + offsetDiff)
       })
     }
 
@@ -140,7 +141,23 @@ export class BlazeSlider {
 
     // else if enough slides are present
     else {
+      this.firstVisibleSlideIndex -= offsetDiff
       this.setOffset(targetOffset)
     }
+
+    if (this.pagination) {
+      const firstSlideIndex = this.firstVisibleSlideIndex
+      const activePageIndex = Math.ceil(firstSlideIndex / this.config.slides.show)
+      console.log({ firstSlideIndex })
+      this.setActivePaginationIndex(activePageIndex)
+    }
+  }
+
+  setActivePaginationIndex (index: number) {
+    const prevActive = this.pagination!.active
+    const newActive = this.pagination!.buttons[index] as BlazePaginationButton
+    prevActive.classList.remove('active')
+    newActive.classList.add('active')
+    this.pagination!.active = newActive
   }
 }
