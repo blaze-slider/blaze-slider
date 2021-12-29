@@ -4,7 +4,7 @@ import { handleDrag } from './setup/drag'
 import { handleNavigation } from './setup/navigation'
 import { BlazePaginationButton, handlePagination } from './setup/pagination'
 import { $offset, setupStyles } from './setup/styles'
-import { AllRequired, Config, RootConfig } from './types'
+import { AllRequired, BlazeSettings, Config } from './types'
 
 export class BlazeSlider {
   slider: HTMLElement
@@ -21,7 +21,7 @@ export class BlazeSlider {
   // number of slides missing in the last page
   valency: number
 
-  constructor (slider: HTMLElement, givenConfig?: RootConfig) {
+  constructor (slider: HTMLElement, givenConfig?: BlazeSettings) {
     this.config = createConfig(givenConfig)
 
     this.offset = 0

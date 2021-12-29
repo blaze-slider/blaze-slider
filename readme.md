@@ -22,36 +22,36 @@
 | swiper       | 40.7ms |
 | slick        | 59.7ms |
 
-Benchmark compares the time taken by each library to render 1 slider with 10 slides with same config and same style
+[More Details about this Benchmark](https://github.com/blaze-slider/blaze-slider/tree/main/benchmark)
 
 <br/>
 
-## ESM
+### ESM
 
 ```bash
 npm i blaze-slider
 ```
 
 ```javascript
-import { blazeSlider } from 'blaze-slider'
+import { BlazeSlider } from 'blaze-slider'
 
-blazeSlider(el, settings?);
+BlazeSlider(el, settings?);
 ```
 
 <br/>
 
-## UMD
+### UMD
 
-download the `dist/blaze-slider.js` and use it via script tag
+Download the `dist/blaze-slider.js` and use it via script tag
 
 ```html
 <script src="/path/to/the/blaze-slider.js"></script>
 ```
 
-after this script is executed, you will get access to a global function `blazeSlider`
+After this script is executed, you will get access to a global constructor function `BlazeSlider`
 
 ```
-blazeSlider(sliderEl, options?)
+new BlazeSlider(sliderEl, options?)
 ```
 
 <br/>
@@ -62,4 +62,76 @@ blazeSlider(sliderEl, options?)
 const slider = document.querySelector('.blaze-slider');
 
 new BlazeSlider(slider);
+```
+
+<br/>
+
+## Types
+
+```typescript
+type Config = {
+  grabCursor?: boolean,
+  slides?: {
+    show?: number;
+    scroll?: number;
+    gap?: string;
+    draggable?: boolean
+  };
+  navigation?: {
+    prev: HTMLElement,
+    next: HTMLElement
+  } | false,
+  pagination?: HTMLElement | false,
+  transition?: {
+    timingFunction?: string;
+    duration?: string;
+  };
+  autoplay?: {
+    enabled?: boolean;
+    interval?: number;
+    toLeft?: boolean;
+    stopOnInteraction?: boolean;
+    pauseOnHover?: boolean;
+  };
+};
+
+type BlazeSettings = {
+  media: {
+    [K: string]: Config;
+  };
+};
+
+declare constructor BlazeSlider(
+  slider: HTMLElement,
+  blazeSettings?: BlazeSettings | undefined
+  ): BlazeSlider
+```
+
+<br/>
+
+### Default Config
+
+```javascript
+{
+  grabCursor: false,
+  slides: {
+    show: 1,
+    scroll: 1,
+    gap: '10px',
+    draggable: true
+  },
+  navigation: false,
+  pagination: false,
+  transition: {
+    timingFunction: 'ease',
+    duration: '300ms'
+  },
+  autoplay: {
+    enabled: false,
+    interval: 3000,
+    toLeft: false,
+    stopOnInteraction: true,
+    pauseOnHover: true
+  }
+}
 ```

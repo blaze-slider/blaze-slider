@@ -15,8 +15,8 @@ export type Config = {
     draggable?: boolean
   };
   navigation?: {
-    prev: HTMLElement | null,
-    next: HTMLElement | null
+    prev: HTMLElement,
+    next: HTMLElement
   } | false,
   pagination?: HTMLElement | false,
   transition?: {
@@ -32,7 +32,7 @@ export type Config = {
   };
 };
 
-export type RootConfig = {
+export type BlazeSettings = {
   media: {
     [K: string]: Config;
   };
