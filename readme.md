@@ -1,6 +1,11 @@
-# blaze-slider
+<img src="assets/BlazeSlider.svg" />
 
-### Blazing Fast Slider 🔥
+<br />
+<br />
+
+# Blaze Slider
+
+Blazing fast slider for high performance web
 
 <br/>
 
