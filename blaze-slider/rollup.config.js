@@ -1,61 +1,55 @@
-// @ts-check
-import fs from 'fs';
-import { terser } from 'rollup-plugin-terser';
-import typescript from 'rollup-plugin-ts';
-import pkg from './package.json';
+import fs from 'fs'
+import { terser } from 'rollup-plugin-terser'
+import typescript from 'rollup-plugin-ts'
+import pkg from './package.json'
 
-const minifier = terser({
-  compress: true,
-});
+const minifier = terser({ compress: true })
 
 const outputs = [
   // esm
   {
-    file: 'dist/lib.esm.js',
-    format: 'esm',
+    file: 'dist/blaze-slider.esm.js',
+    format: 'esm'
   },
   // cjs.dev
   {
-    file: 'dist/lib.cjs.dev.js',
-    format: 'cjs',
+    file: 'dist/blaze-slider.cjs.dev.js',
+    format: 'cjs'
   },
   // cjs.prod
   {
-    file: 'dist/lib.cjs.prod.js',
+    file: 'dist/blaze-slider.cjs.prod.js',
     format: 'cjs',
-    plugins: [minifier],
+    plugins: [minifier]
   },
   // umd
   {
-    file: 'dist/lib.umd.js',
+    file: 'dist/blaze-slider.umd.js',
     name: pkg.name,
-    format: 'umd',
-  },
-];
+    format: 'umd'
+  }
+]
 
-export default (args) => {
+export default args => {
   createCjsFile()
   return {
     input: './src/index.ts',
-    // only build esm in development
     output: args.dev ? outputs[0] : outputs,
-    plugins: [
-      typescript(),
-    ],
-  };
-};
+    plugins: [typescript()]
+  }
+}
 
 const createCjsFile = () => {
   const code = `\
 if (process.env.NODE_ENV !== 'production') {
-  module.exports = require('./lib.cjs.dev.js');
+  module.exports = require('./blaze-slider.cjs.dev.js');
 } else {
-  module.exports = require('./lib.cjs.prod.js');
+  module.exports = require('./blaze-slider.cjs.prod.js');
 };`
 
   fs.mkdirSync('./dist', { recursive: true })
 
-  fs.writeFile('./dist/lib.cjs.js', code, (err) => {
+  fs.writeFile('./dist/blaze-slider.cjs.js', code, err => {
     if (err) console.error(err)
   })
 }
