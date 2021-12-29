@@ -26,3 +26,12 @@ body {
 .blaze-track {
 	margin: 10px 0;
 }
+
+/* slide gap */
+.slick-slide {
+	margin: 0 10px;
+}
+
+.slick-slider {
+	margin: 0 -10px;
+}
