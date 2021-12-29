@@ -1,0 +1,28 @@
+#app {
+	font-family: Avenir, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: #2c3e50;
+	max-width: 1200px;
+	margin: 50px auto;
+}
+
+body {
+	background: #eee;
+}
+
+.blaze-track > *,
+.swiper-slide,
+.slick-slide {
+	height: 400px;
+	background: white;
+	font-size: 50px;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.blaze-track {
+	margin: 10px 0;
+}

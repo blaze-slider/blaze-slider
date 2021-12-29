@@ -18,7 +18,6 @@
 	display: flex;
 	gap: var(--blaze-slide-gap);
 	transition: transform var(--blaze-td, 400ms) var(--blaze-ttf, ease);
-	cursor: grab;
 	transform: translateX(
 		calc(
 			(var(--blaze-slide-width) + var(--blaze-slide-gap)) * -1 * var(--blaze-offset) +
