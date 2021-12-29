@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev-test": "npm run dev -w fixtures/blaze-slider-test"
   },
   "keywords": [],
   "author": "",
