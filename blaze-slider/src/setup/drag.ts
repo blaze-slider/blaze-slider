@@ -20,11 +20,13 @@ export function handleDrag (blazeSlider: BlazeSlider) {
 
     track.style.setProperty('--blaze-slide-amount', 0 + 'px')
 
+    const swipeVector = Math.max(revealCount, config.slides.scroll)
+
     blazeSlider.enableTransition()
     if (slideVector - posInitial < -threshold) {
-      blazeSlider.swipe(revealCount)
+      blazeSlider.swipe(swipeVector)
     } else if (slideVector - posInitial > threshold) {
-      blazeSlider.swipe(-1 * revealCount)
+      blazeSlider.swipe(-1 * swipeVector)
     }
 
     slideVector = 0
