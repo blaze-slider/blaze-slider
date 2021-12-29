@@ -4,8 +4,6 @@ import 'swiper/css';
 // blaze
 import { BlazeSlider } from '../../blaze-slider/src/index';
 import '../../blaze-slider/src/styles.css';
-// slick
-import './slick/slick.css';
 // page styles
 import './style.css';
 
