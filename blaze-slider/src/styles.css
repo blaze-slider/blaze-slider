@@ -20,7 +20,7 @@
 	transition: transform var(--blaze-td, 400ms) var(--blaze-ttf, ease);
 	transform: translateX(
 		calc(
-			(var(--blaze-slide-width) + var(--blaze-slide-gap)) * -1 * var(--blaze-offset) +
+			(var(--blaze-slide-width, 100%) + var(--blaze-slide-gap)) * -1 * var(--blaze-offset) +
 				var(--blaze-slide-amount, 0px)
 		)
 	);
@@ -28,5 +28,5 @@
 
 .blaze-track > * {
 	flex-shrink: 0;
-	width: var(--blaze-slide-width);
+	width: var(--blaze-slide-width, 100%);
 }
