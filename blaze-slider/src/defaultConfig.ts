@@ -1,6 +1,7 @@
 import { AllRequired, Config } from './types'
 
 export const defaultConfig: AllRequired<Config> = {
+  grabCursor: false,
   slides: {
     show: 1,
     scroll: 1,

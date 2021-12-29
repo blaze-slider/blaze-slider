@@ -10,8 +10,12 @@ export function handleDrag (blazeSlider: BlazeSlider) {
 
   const threshold = 100
 
+  const { grabCursor } = blazeSlider.config
+
   function handlePointerUp () {
-    track.style.cursor = 'grab'
+    if (grabCursor) {
+      track.style.cursor = 'grab'
+    }
     const posFinal = offsetLeft
     track.style.setProperty('--blaze-slide-amount', 0 + 'px')
 
@@ -43,7 +47,9 @@ export function handleDrag (blazeSlider: BlazeSlider) {
   }
 
   function handlePointerDown (event: PointerEvent) {
-    track.style.cursor = 'grabbing'
+    if (grabCursor) {
+      track.style.cursor = 'grabbing'
+    }
     // capture all events of this pointerId and consider it as it is meant for track only
     track.setPointerCapture(event.pointerId)
     blazeSlider.disableTransition()
