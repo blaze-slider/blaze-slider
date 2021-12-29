@@ -8,9 +8,7 @@ export function handleDrag (blazeSlider: BlazeSlider) {
   let posX1: number
   let slideVector = 0
 
-  const threshold = 100
-
-  const { grabCursor } = blazeSlider.config
+  const { grabCursor, threshold } = blazeSlider.config
 
   // number of slide-width length of drag done
   let revealCount = 0

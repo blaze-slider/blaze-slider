@@ -8,6 +8,7 @@ export type AllPartial<T> = {
 
 export type Config = {
   grabCursor?: boolean,
+  threshold?: number,
   slides?: {
     show?: number;
     scroll?: number;
