@@ -6,47 +6,67 @@ export function handleDrag (blazeSlider: BlazeSlider) {
 
   let posInitial: number
   let posX1: number
-  let offsetLeft = 0
+  let slideVector = 0
 
   const threshold = 100
 
   const { grabCursor } = blazeSlider.config
 
+  // number of slide-width length of drag done
+  let revealCount = 0
+
   function handlePointerUp () {
     if (grabCursor) {
       track.style.cursor = 'grab'
     }
-    const posFinal = offsetLeft
+
     track.style.setProperty('--blaze-slide-amount', 0 + 'px')
 
     blazeSlider.enableTransition()
-    if (posFinal - posInitial < -threshold) {
-      blazeSlider.swipeRight()
-    } else if (posFinal - posInitial > threshold) {
-      blazeSlider.swipeLeft()
+    if (slideVector - posInitial < -threshold) {
+      blazeSlider.swipe(revealCount)
+    } else if (slideVector - posInitial > threshold) {
+      blazeSlider.swipe(-1 * revealCount)
     }
 
-    offsetLeft = 0
+    slideVector = 0
+    revealCount = 0
     track.onpointerup = null
     track.onpointermove = null
   }
 
   function handlePointerMove (e: PointerEvent) {
     const diff = posX1 - e.clientX
-    // handle peeking
+
     // wrapping to prevent showing empty space
-    if (diff < 0 && blazeSlider.offset === 0) {
-      blazeSlider.wrapToLeft(1)
-    } else if (diff > 0 && blazeSlider.offset === blazeSlider.totalSlides - blazeSlider.config.slides.show) {
-      blazeSlider.wrapToRight(1)
+    if (slideVector > 0) {
+      if (slideVector > revealCount * blazeSlider.slideWidth) {
+        revealCount++
+        if (blazeSlider.offset < revealCount) {
+          blazeSlider.wrapToLeft(1)
+        }
+      }
+    } else {
+      if (-1 * slideVector > revealCount * blazeSlider.slideWidth) {
+        revealCount++
+        const lastVisibleSlidePosition = blazeSlider.offset + blazeSlider.config.slides.show - 1
+        if (lastVisibleSlidePosition + revealCount > blazeSlider.totalSlides - 1) {
+          blazeSlider.wrapToRight(1)
+        }
+      }
     }
+
     posX1 = e.clientX
-    const slideAmount = (offsetLeft - diff)
+    const slideAmount = (slideVector - diff)
     track.style.setProperty('--blaze-slide-amount', slideAmount + 'px')
-    offsetLeft = slideAmount
+    slideVector = slideAmount
   }
 
   function handlePointerDown (event: PointerEvent) {
+    if (!blazeSlider.slideWidth) {
+      blazeSlider.slideWidth = Number(getComputedStyle(blazeSlider.slides[0]).width.slice(0, -2))
+    }
+
     if (grabCursor) {
       track.style.cursor = 'grabbing'
     }
@@ -54,7 +74,7 @@ export function handleDrag (blazeSlider: BlazeSlider) {
     track.setPointerCapture(event.pointerId)
     blazeSlider.disableTransition()
     event.preventDefault()
-    posInitial = offsetLeft
+    posInitial = slideVector
 
     posX1 = event.clientX
     track.onpointermove = handlePointerMove

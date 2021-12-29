@@ -21,6 +21,9 @@ export class BlazeSlider {
   firstPagePrevVector: number;
   lastPageNextVector: number;
 
+  // calculated when slide is dragged for the first time
+  slideWidth!: number
+
   // number of slides missing in the last page
   valency: number
 
@@ -181,22 +184,22 @@ export class BlazeSlider {
     }
 
     if (this.pagination) {
-      const firstVisibleSlideRealIndex = this.firstVisibleSlideIndex()
+      const firstVisibleSlideRealIndex = this.getFirstVisibleSlideIndex()
       const activePageIndex = Math.floor(firstVisibleSlideRealIndex / scroll)
       this.setActivePaginationIndex(activePageIndex)
     }
   }
 
-  firstVisibleSlideIndex () {
+  getFirstVisibleSlideIndex () {
     return Number(this.slides[this.offset].dataset.index)
   }
 
   isLastPage () {
-    return this.firstVisibleSlideIndex() === (this.totalSlides - this.valency + 1)
+    return this.getFirstVisibleSlideIndex() === (this.totalSlides - this.valency + 1)
   }
 
   isFirstPage () {
-    return this.firstVisibleSlideIndex() === 0
+    return this.getFirstVisibleSlideIndex() === 0
   }
 
   setActivePaginationIndex (index: number) {
