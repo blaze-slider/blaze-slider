@@ -23,9 +23,9 @@ function handlePaginationButtonClick (this: BlazePaginationButton) {
 
 export function handlePagination (blazeSlider: BlazeSlider) {
   const { slider, config, totalSlides } = blazeSlider
-  const { show } = config.slides
+  const { scroll } = config.slides
 
-  const pages = Math.ceil(totalSlides / show)
+  const pages = Math.ceil(totalSlides / scroll)
   const pagination = slider.querySelector('.blaze-pagination')!
   if (!pagination) return
 

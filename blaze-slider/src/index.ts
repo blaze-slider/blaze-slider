@@ -18,6 +18,9 @@ export class BlazeSlider {
     active: BlazePaginationButton
   }
 
+  // number of slides missing in the last page
+  valency: number
+
   constructor (slider: HTMLElement, givenConfig?: RootConfig) {
     this.config = createConfig(givenConfig)
 
@@ -38,6 +41,9 @@ export class BlazeSlider {
     // slides
     this.slides = Array.from(track.children) as HTMLElement[]
     this.totalSlides = this.slides.length
+
+    this.valency = this.config.slides.show - this.totalSlides % this.config.slides.show
+    console.log({ val: this.valency })
 
     this.slides.forEach((slide, i) => {
       slide.tabIndex = 0
@@ -110,6 +116,7 @@ export class BlazeSlider {
   }
 
   swipe (_vector: number) {
+    console.log(_vector)
     // normalize the vector +1 is the same as totalSlides + 1
     // and to reduce the motion we vector should change the direction that is nearest
     let vector = _vector % this.totalSlides
@@ -117,7 +124,16 @@ export class BlazeSlider {
       vector = -1 * (this.totalSlides - vector)
     }
 
+    console.log({ vector })
+
     if (vector === 0) return
+
+    // normalize further to handle the non-zero valency
+    if (this.isFirstPage() && vector < 0) {
+      vector = vector + this.valency
+    } else if (this.isLastPage() && vector > 0) {
+      vector = vector - this.valency
+    }
 
     const { slides } = this
     const { show } = this.config.slides
@@ -127,8 +143,10 @@ export class BlazeSlider {
     // if the rawOffset is negative
     // it means that thee is not enough slides on the left side
     if (rawOffset < 0) {
-      this.wrapToLeft(-1 * vector)
-      this.offset += vector
+      const slidesToWrap = -1 * vector
+      const offsetDiff = vector
+      this.wrapToLeft(slidesToWrap)
+      this.offset += offsetDiff
       requestAnimationFrame(() => {
         this.enableTransition()
         this.updateTrackOffset()
@@ -138,8 +156,9 @@ export class BlazeSlider {
     // if not enough slides on the right side
     else if (this.offset + vector + (show - 1) > slides.length - 1) {
       const slidesToWrap = this.offset + vector + (show - 1) - (slides.length - 1)
+      const offsetDiff = vector
       this.wrapToRight(slidesToWrap)
-      this.offset += vector
+      this.offset += offsetDiff
       requestAnimationFrame(() => {
         this.enableTransition()
         this.updateTrackOffset()
@@ -153,10 +172,22 @@ export class BlazeSlider {
     }
 
     if (this.pagination) {
-      const firstVisibleSlideRealIndex = Number(this.slides[this.offset].dataset.index)
-      const activePageIndex = Math.floor(firstVisibleSlideRealIndex / this.config.slides.show)
+      const firstVisibleSlideRealIndex = this.firstVisibleSlideIndex()
+      const activePageIndex = Math.floor(firstVisibleSlideRealIndex / this.config.slides.scroll)
       this.setActivePaginationIndex(activePageIndex)
     }
+  }
+
+  firstVisibleSlideIndex () {
+    return Number(this.slides[this.offset].dataset.index)
+  }
+
+  isLastPage () {
+    return this.firstVisibleSlideIndex() === (this.totalSlides - this.valency + 1)
+  }
+
+  isFirstPage () {
+    return this.firstVisibleSlideIndex() === 0
   }
 
   setActivePaginationIndex (index: number) {
