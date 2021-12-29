@@ -6,7 +6,7 @@ export interface BlazePaginationButton extends HTMLButtonElement {
 
 const activeClass = 'active'
 
-function handlePaginationButtonClick (this: BlazePaginationButton) {
+function handlePaginationButtonClick(this: BlazePaginationButton) {
   const { blazeSlider } = this
   const { show } = blazeSlider.config.slides
   const showPageIndex = Number(this.dataset.index)
@@ -21,7 +21,7 @@ function handlePaginationButtonClick (this: BlazePaginationButton) {
   blazeSlider.swipe(firstSlideIndex + showPageIndex * show - blazeSlider.offset)
 }
 
-export function handlePagination (blazeSlider: BlazeSlider) {
+export function handlePagination(blazeSlider: BlazeSlider) {
   const { slider, config, totalSlides } = blazeSlider
   const { scroll } = config.slides
 
@@ -31,7 +31,7 @@ export function handlePagination (blazeSlider: BlazeSlider) {
 
   // @ts-ignore
   blazeSlider.pagination = {
-    buttons: []
+    buttons: [],
   }
 
   for (let i = 0; i < pages; i++) {

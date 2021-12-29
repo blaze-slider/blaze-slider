@@ -1,8 +1,8 @@
-function isObject (value: any): value is object {
+function isObject(value: any): value is object {
   return typeof value === 'object' && value !== null
 }
 
-export function override (a: object, b: object) {
+export function override(a: object, b: object) {
   Object.keys(b).forEach((key) => {
     // @ts-ignore
     if (!isObject(a[key])) {
@@ -15,7 +15,7 @@ export function override (a: object, b: object) {
   })
 }
 
-export function deepClone<T extends object> (obj: T): T {
+export function deepClone<T extends object>(obj: T): T {
   const clone = {} as T
   Object.keys(obj).forEach((key) => {
     // @ts-ignore

@@ -14,12 +14,12 @@ export class BlazeSlider {
   totalSlides: number
   offset: number
   pagination?: {
-    buttons: BlazePaginationButton[],
+    buttons: BlazePaginationButton[]
     active: BlazePaginationButton
   }
 
-  firstPagePrevVector: number;
-  lastPageNextVector: number;
+  firstPagePrevVector: number
+  lastPageNextVector: number
 
   // calculated when slide is dragged for the first time
   slideWidth!: number
@@ -27,7 +27,7 @@ export class BlazeSlider {
   // number of slides missing in the last page
   valency: number
 
-  constructor (slider: HTMLElement, givenConfig?: BlazeSettings) {
+  constructor(slider: HTMLElement, givenConfig?: BlazeSettings) {
     this.config = createConfig(givenConfig)
     const { show, scroll } = this.config.slides
 
@@ -49,7 +49,9 @@ export class BlazeSlider {
     setupStyles(this)
 
     // track
-    const track = this.track = slider.querySelector('.blaze-track') as HTMLElement
+    const track = (this.track = slider.querySelector(
+      '.blaze-track'
+    ) as HTMLElement)
 
     // slides
     this.slides = Array.from(track.children) as HTMLElement[]
@@ -76,11 +78,11 @@ export class BlazeSlider {
     handleDrag(this)
   }
 
-  setSlideAmount (slideAmount: number) {
+  setSlideAmount(slideAmount: number) {
     this.track.style.setProperty('--blaze-slide-amount', slideAmount + 'px')
   }
 
-  wrapToLeft (n: number) {
+  wrapToLeft(n: number) {
     const { slides } = this
     // remove n slides from end and add to beginning
     for (let i = 0; i < n; i++) {
@@ -93,7 +95,7 @@ export class BlazeSlider {
     this.updateTrackOffset()
   }
 
-  wrapToRight (n: number) {
+  wrapToRight(n: number) {
     const { slides } = this
     // remove n slides from the start and add to end
     for (let i = 0; i < n; i++) {
@@ -106,31 +108,31 @@ export class BlazeSlider {
     this.updateTrackOffset()
   }
 
-  updateTrackOffset () {
+  updateTrackOffset() {
     this.setCSSVar($offset, this.offset + '')
   }
 
-  setCSSVar (name: string, value: string) {
+  setCSSVar(name: string, value: string) {
     this.slider.style.setProperty(name, value)
   }
 
-  disableTransition () {
+  disableTransition() {
     this.track.style.transition = 'none'
   }
 
-  enableTransition () {
+  enableTransition() {
     this.track.style.transition = ''
   }
 
-  swipeLeft () {
+  swipeLeft() {
     this.swipe(-1 * this.config.slides.scroll)
   }
 
-  swipeRight () {
+  swipeRight() {
     this.swipe(this.config.slides.scroll)
   }
 
-  swipe (_vector: number) {
+  swipe(_vector: number) {
     // normalize the vector +1 is the same as totalSlides + 1
     // and to reduce the motion we vector should change the direction that is nearest
     let vector = _vector % this.totalSlides
@@ -167,7 +169,8 @@ export class BlazeSlider {
 
     // if not enough slides on the right side
     else if (this.offset + vector + (show - 1) > slides.length - 1) {
-      const slidesToWrap = this.offset + vector + (show - 1) - (slides.length - 1)
+      const slidesToWrap =
+        this.offset + vector + (show - 1) - (slides.length - 1)
       const offsetDiff = vector
       this.wrapToRight(slidesToWrap)
       this.offset += offsetDiff
@@ -190,19 +193,21 @@ export class BlazeSlider {
     }
   }
 
-  getFirstVisibleSlideIndex () {
+  getFirstVisibleSlideIndex() {
     return Number(this.slides[this.offset].dataset.index)
   }
 
-  isLastPage () {
-    return this.getFirstVisibleSlideIndex() === (this.totalSlides - this.valency + 1)
+  isLastPage() {
+    return (
+      this.getFirstVisibleSlideIndex() === this.totalSlides - this.valency + 1
+    )
   }
 
-  isFirstPage () {
+  isFirstPage() {
     return this.getFirstVisibleSlideIndex() === 0
   }
 
-  setActivePaginationIndex (index: number) {
+  setActivePaginationIndex(index: number) {
     const prevActive = this.pagination!.active
     const newActive = this.pagination!.buttons[index] as BlazePaginationButton
     prevActive.classList.remove('active')

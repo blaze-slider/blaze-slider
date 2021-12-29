@@ -1,20 +1,21 @@
 module.exports = {
   globals: {
-    NodeJS: true
+    NodeJS: true,
   },
   env: {
     jest: true,
     browser: true,
-    es2021: true
+    es2021: true,
   },
-  extends: ['standard'],
+  extends: ['standard', 'plugin:prettier/recommended'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 13,
-    sourceType: 'module'
+    sourceType: 'module',
   },
   plugins: ['@typescript-eslint'],
   rules: {
-    'brace-style': 'off'
-  }
+    'linebreak-style': 'off',
+    'brace-style': 'off',
+  },
 }

@@ -7,7 +7,7 @@ const transitionDuration = '--blaze-td'
 const slidesToScroll = '--blaze-slides-to-scroll'
 export const $offset = '--blaze-offset'
 
-export function setupStyles (blazeSlider: BlazeSlider) {
+export function setupStyles(blazeSlider: BlazeSlider) {
   const { show, gap, scroll } = blazeSlider.config.slides
   const { timingFunction, duration } = blazeSlider.config.transition
 

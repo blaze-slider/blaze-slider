@@ -2,7 +2,7 @@ import { defaultConfig } from '../defaultConfig'
 import { BlazeSettings } from '../types'
 import { deepClone, override } from '../utils'
 
-export function createConfig (blazeSettings?: BlazeSettings) {
+export function createConfig(blazeSettings?: BlazeSettings) {
   const config = deepClone(defaultConfig)
 
   // override responsive stuff

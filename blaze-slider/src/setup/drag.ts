@@ -1,6 +1,6 @@
 import { BlazeSlider } from '../index'
 
-export function handleDrag (blazeSlider: BlazeSlider) {
+export function handleDrag(blazeSlider: BlazeSlider) {
   const { track, config } = blazeSlider
   if (!config.slides.draggable) return
 
@@ -13,7 +13,7 @@ export function handleDrag (blazeSlider: BlazeSlider) {
   // number of slide-width length of drag done
   let revealCount = 0
 
-  function handlePointerUp () {
+  function handlePointerUp() {
     if (grabCursor) {
       track.style.cursor = 'grab'
     }
@@ -35,7 +35,7 @@ export function handleDrag (blazeSlider: BlazeSlider) {
     track.onpointermove = null
   }
 
-  function handlePointerMove (e: PointerEvent) {
+  function handlePointerMove(e: PointerEvent) {
     const diff = posX1 - e.clientX
 
     // wrapping to prevent showing empty space
@@ -49,22 +49,28 @@ export function handleDrag (blazeSlider: BlazeSlider) {
     } else {
       if (-1 * slideVector > revealCount * blazeSlider.slideWidth) {
         revealCount++
-        const lastVisibleSlidePosition = blazeSlider.offset + blazeSlider.config.slides.show - 1
-        if (lastVisibleSlidePosition + revealCount > blazeSlider.totalSlides - 1) {
+        const lastVisibleSlidePosition =
+          blazeSlider.offset + blazeSlider.config.slides.show - 1
+        if (
+          lastVisibleSlidePosition + revealCount >
+          blazeSlider.totalSlides - 1
+        ) {
           blazeSlider.wrapToRight(1)
         }
       }
     }
 
     posX1 = e.clientX
-    const slideAmount = (slideVector - diff)
+    const slideAmount = slideVector - diff
     track.style.setProperty('--blaze-slide-amount', slideAmount + 'px')
     slideVector = slideAmount
   }
 
-  function handlePointerDown (event: PointerEvent) {
+  function handlePointerDown(event: PointerEvent) {
     if (!blazeSlider.slideWidth) {
-      blazeSlider.slideWidth = Number(getComputedStyle(blazeSlider.slides[0]).width.slice(0, -2))
+      blazeSlider.slideWidth = Number(
+        getComputedStyle(blazeSlider.slides[0]).width.slice(0, -2)
+      )
     }
 
     if (grabCursor) {

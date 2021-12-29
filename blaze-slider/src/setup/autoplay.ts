@@ -1,21 +1,21 @@
 import { BlazeSlider } from '../index'
 
-export function handleAutoplay (blazeSlider: BlazeSlider) {
-  const {
-    config, slider, swipeLeft, swipeRight
-  } = blazeSlider
+export function handleAutoplay(blazeSlider: BlazeSlider) {
+  const { config, slider, swipeLeft, swipeRight } = blazeSlider
   let autoplayInterval: NodeJS.Timer
   let interactionDone = false
 
-  function autoplayStart () {
+  function autoplayStart() {
     if (interactionDone) return
-    const fn = config.autoplay.toLeft ? swipeLeft.bind(blazeSlider) : swipeRight.bind(blazeSlider)
+    const fn = config.autoplay.toLeft
+      ? swipeLeft.bind(blazeSlider)
+      : swipeRight.bind(blazeSlider)
     autoplayInterval = setInterval(() => {
       requestAnimationFrame(fn)
     }, config.autoplay.interval)
   }
 
-  function autoplayStop () {
+  function autoplayStop() {
     clearInterval(autoplayInterval)
   }
 

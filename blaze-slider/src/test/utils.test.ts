@@ -5,7 +5,7 @@ test('override', () => {
   override(a, { bar: 2 })
   expect(a).toEqual({
     foo: 1,
-    bar: 2
+    bar: 2,
   })
 
   const b = {}
@@ -20,17 +20,17 @@ test('override', () => {
 test('deepClone', () => {
   const a = {
     foo: {
-      bar: 10
+      bar: 10,
     },
-    bizz: 20
+    bizz: 20,
   }
 
   const clone = deepClone(a)
   expect(clone).toEqual({
     foo: {
-      bar: 10
+      bar: 10,
     },
-    bizz: 20
+    bizz: 20,
   })
   expect(clone).not.toBe(a)
   expect(clone.foo).not.toBe(a.foo)
