@@ -18,11 +18,21 @@ export class BlazeSlider {
     active: BlazePaginationButton
   }
 
+  firstPagePrevVector: number;
+  lastPageNextVector: number;
+
   // number of slides missing in the last page
   valency: number
 
   constructor (slider: HTMLElement, givenConfig?: BlazeSettings) {
     this.config = createConfig(givenConfig)
+    const { show, scroll } = this.config.slides
+
+    // check for invalid config
+    if (scroll > show) {
+      console.warn('blazeSlider: ignored invalid config.slides.scroll value')
+      this.config.slides.scroll = show
+    }
 
     this.offset = 0
 
@@ -42,15 +52,17 @@ export class BlazeSlider {
     this.slides = Array.from(track.children) as HTMLElement[]
     this.totalSlides = this.slides.length
 
-    this.valency = this.config.slides.show - this.totalSlides % this.config.slides.show
-    console.log({ val: this.valency })
+    const mod = this.totalSlides % scroll
+    this.valency = mod === 0 ? 0 : scroll - mod
+    this.firstPagePrevVector = -1 * (show - this.valency)
+    this.lastPageNextVector = show - this.valency
 
     this.slides.forEach((slide, i) => {
       slide.tabIndex = 0
       slide.dataset.index = `${i}`
     })
 
-    if (this.slides.length <= this.config.slides.show) {
+    if (this.totalSlides <= show) {
       slider.classList.add('blaze-static')
       return
     }
@@ -116,7 +128,6 @@ export class BlazeSlider {
   }
 
   swipe (_vector: number) {
-    console.log(_vector)
     // normalize the vector +1 is the same as totalSlides + 1
     // and to reduce the motion we vector should change the direction that is nearest
     let vector = _vector % this.totalSlides
@@ -124,20 +135,18 @@ export class BlazeSlider {
       vector = -1 * (this.totalSlides - vector)
     }
 
-    console.log({ vector })
-
     if (vector === 0) return
 
-    // normalize further to handle the non-zero valency
-    if (this.isFirstPage() && vector < 0) {
-      vector = vector + this.valency
-    } else if (this.isLastPage() && vector > 0) {
-      vector = vector - this.valency
+    if (this.valency !== 0) {
+      if (this.isFirstPage() && vector < 0) {
+        vector = this.firstPagePrevVector
+      } else if (this.isLastPage() && vector > 0) {
+        vector = this.lastPageNextVector
+      }
     }
 
     const { slides } = this
-    const { show } = this.config.slides
-
+    const { show, scroll } = this.config.slides
     const rawOffset = this.offset + vector
 
     // if the rawOffset is negative
@@ -173,7 +182,7 @@ export class BlazeSlider {
 
     if (this.pagination) {
       const firstVisibleSlideRealIndex = this.firstVisibleSlideIndex()
-      const activePageIndex = Math.floor(firstVisibleSlideRealIndex / this.config.slides.scroll)
+      const activePageIndex = Math.floor(firstVisibleSlideRealIndex / scroll)
       this.setActivePaginationIndex(activePageIndex)
     }
   }
