@@ -1,3 +1,5 @@
+<br />
+
 <img src="assets/BlazeSlider.svg" />
 
 <br />
