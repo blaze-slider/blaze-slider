@@ -42,7 +42,7 @@ npm i blaze-slider
 ```javascript
 import { BlazeSlider } from 'blaze-slider'
 
-BlazeSlider(el, settings?);
+new BlazeSlider(el, settings?);
 ```
 
 <br/>
@@ -77,41 +77,40 @@ new BlazeSlider(slider);
 
 ```typescript
 type Config = {
-  grabCursor?: boolean,
-  slides?: {
-    show?: number;
-    scroll?: number;
-    gap?: string;
-    draggable?: boolean
-  };
-  navigation?: {
-    prev: HTMLElement,
-    next: HTMLElement
-  } | false,
-  pagination?: HTMLElement | false,
-  transition?: {
-    timingFunction?: string;
-    duration?: string;
-  };
-  autoplay?: {
-    enabled?: boolean;
-    interval?: number;
-    toLeft?: boolean;
-    stopOnInteraction?: boolean;
-    pauseOnHover?: boolean;
-  };
+	grabCursor?: boolean;
+	threshold?: number;
+	slides?: {
+		loop?: boolean;
+		show?: number;
+		scroll?: number;
+		gap?: string;
+		draggable?: boolean;
+	};
+	navigation?:
+		| {
+				prev: HTMLElement;
+				next: HTMLElement;
+		  }
+		| false;
+	pagination?: HTMLElement | false;
+	transition?: {
+		timingFunction?: string;
+		duration?: string;
+	};
+	autoplay?: {
+		enabled?: boolean;
+		interval?: number;
+		toLeft?: boolean;
+		stopOnInteraction?: boolean;
+		pauseOnHover?: boolean;
+	};
 };
 
 type BlazeSettings = {
-  media: {
-    [K: string]: Config;
-  };
+	media: {
+		[K: string]: Config;
+	};
 };
-
-declare constructor BlazeSlider(
-  slider: HTMLElement,
-  blazeSettings?: BlazeSettings | undefined
-  ): BlazeSlider
 ```
 
 <br/>
