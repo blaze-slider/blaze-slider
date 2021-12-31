@@ -2,7 +2,7 @@
   "name": "blaze-slider",
   "version": "0.0.1",
   "description": "",
-  "main": "dist/blaze-slider.cmd.js",
+  "main": "dist/blaze-slider.cjs.js",
   "scripts": {
     "lint": "eslint src/** --fix",
     "test": "jest",
