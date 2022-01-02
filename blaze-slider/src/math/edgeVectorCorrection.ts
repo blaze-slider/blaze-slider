@@ -6,7 +6,7 @@ export function edgeVectorCorrection(vector: number, blazeSlider: BlazeSlider) {
   if (blazeSlider.pageIndex === 0 && vector < 0) {
     return -1 * overflow
   } else if (
-    blazeSlider.pageIndex === blazeSlider.paginationButtons.length - 1 &&
+    blazeSlider.pageIndex === blazeSlider.pages.length - 1 &&
     vector > 0
   ) {
     return overflow

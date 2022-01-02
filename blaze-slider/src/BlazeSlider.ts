@@ -13,7 +13,7 @@ export class BlazeSlider {
   slider: HTMLElement
   track: HTMLElement
   slides: HTMLElement[]
-  paginationButtons!: BlazePaginationButton[]
+  paginationButtons?: BlazePaginationButton[]
 
   // config
   config: AllRequired<Config>
