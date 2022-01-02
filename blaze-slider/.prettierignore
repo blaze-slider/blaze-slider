@@ -1,3 +1,5 @@
 package-lock.json
 node_modules/
 *.prod.js
+*.d.ts
+*.cjs.js
