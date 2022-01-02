@@ -52,13 +52,9 @@ export function setActivePaginationIndex(
   blazeSlider: BlazeSlider,
   index: number
 ) {
-  try {
-    const prevActive = blazeSlider.paginationButtons[blazeSlider.pageIndex]
-    const newActive = blazeSlider.paginationButtons[index]
-    prevActive.classList.remove('active')
-    newActive.classList.add('active')
-    blazeSlider.pageIndex = index
-  } catch (e) {
-    debugger
-  }
+  const prevActive = blazeSlider.paginationButtons[blazeSlider.pageIndex]
+  const newActive = blazeSlider.paginationButtons[index]
+  prevActive.classList.remove('active')
+  newActive.classList.add('active')
+  blazeSlider.pageIndex = index
 }
