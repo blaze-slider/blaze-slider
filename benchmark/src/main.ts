@@ -2,7 +2,7 @@
 import { Swiper } from 'swiper';
 import 'swiper/css';
 // blaze
-import { BlazeSlider } from '../../blaze-slider/src/index';
+import BlazeSlider from '../../blaze-slider/src/index';
 import '../../blaze-slider/src/styles.css';
 // page styles
 import './style.css';
