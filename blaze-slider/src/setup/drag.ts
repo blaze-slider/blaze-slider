@@ -6,7 +6,7 @@ import { wrapToLeft, wrapToRight } from '../dom/wrap'
 
 export function handleDrag(blazeSlider: BlazeSlider) {
   const { track } = blazeSlider
-  const { scroll, show } = blazeSlider.config.slides
+  const { scroll } = blazeSlider.config.slides
 
   let initialClientX: number
 
