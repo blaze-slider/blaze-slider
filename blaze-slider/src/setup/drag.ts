@@ -6,7 +6,7 @@ import { wrapToLeft, wrapToRight } from '../dom/wrap'
 
 export function handleDrag(blazeSlider: BlazeSlider) {
   const { track } = blazeSlider
-  const { scroll } = blazeSlider.config.slides
+  const { scroll, show } = blazeSlider.config.slides
 
   let initialClientX: number
 
@@ -27,6 +27,8 @@ export function handleDrag(blazeSlider: BlazeSlider) {
     let swipeAmount = scroll
     if (slidesDragged > scroll) {
       swipeAmount = Math.ceil(slidesDragged / scroll) * scroll
+      // scroll can not be larger than maxScroll
+      swipeAmount = Math.min(swipeAmount, blazeSlider.maxScroll)
     }
 
     // enableTransition(blazeSlider)
@@ -48,24 +50,27 @@ export function handleDrag(blazeSlider: BlazeSlider) {
   function handlePointerMove(e: PointerEvent) {
     const diff = initialClientX - e.clientX
 
-    // wrapping to prevent showing empty space
-    if (slideVector > 0) {
-      if (slideVector > slidesDragged * blazeSlider.slideWidth) {
-        slidesDragged++
-        if (blazeSlider.offset < slidesDragged) {
-          wrapToLeft(blazeSlider, 1)
+    // limit the slidesDragged to be less maxScroll also
+    if (slidesDragged < blazeSlider.maxScroll) {
+      // wrapping to prevent showing empty space
+      if (slideVector > 0) {
+        if (slideVector > slidesDragged * blazeSlider.slideWidth) {
+          slidesDragged++
+          if (blazeSlider.offset < slidesDragged) {
+            wrapToLeft(blazeSlider, 1)
+          }
         }
-      }
-    } else {
-      if (-1 * slideVector > slidesDragged * blazeSlider.slideWidth) {
-        slidesDragged++
-        const lastVisibleSlidePosition =
-          blazeSlider.offset + blazeSlider.config.slides.show - 1
-        if (
-          lastVisibleSlidePosition + slidesDragged >
-          blazeSlider.totalSlides - 1
-        ) {
-          wrapToRight(blazeSlider, 1)
+      } else {
+        if (-1 * slideVector > slidesDragged * blazeSlider.slideWidth) {
+          slidesDragged++
+          const lastVisibleSlidePosition =
+            blazeSlider.offset + blazeSlider.config.slides.show - 1
+          if (
+            lastVisibleSlidePosition + slidesDragged >
+            blazeSlider.totalSlides - 1
+          ) {
+            wrapToRight(blazeSlider, 1)
+          }
         }
       }
     }

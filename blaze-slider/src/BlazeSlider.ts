@@ -21,6 +21,7 @@ export class BlazeSlider {
   // one time computed
   totalSlides: number
   pages: Page[]
+  maxScroll: number
 
   // state
   offset: number
@@ -58,6 +59,11 @@ export class BlazeSlider {
 
     this.slides = Array.from(track.children) as HTMLElement[]
     this.totalSlides = this.slides.length
+
+    const maxPossibleScroll = Math.floor(this.totalSlides / 2)
+
+    // maxScroll must also be multiple of scroll
+    this.maxScroll = Math.floor(maxPossibleScroll / scroll) * scroll
 
     this.pages = createPages(this.totalSlides, show, scroll)
 
