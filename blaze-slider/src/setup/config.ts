@@ -1,6 +1,6 @@
-import { defaultConfig } from '../defaultConfig'
+import { defaultConfig } from '../config/defaultConfig'
+import { deepClone, override } from '../config/utils'
 import { BlazeSettings } from '../types'
-import { deepClone, override } from '../utils'
 
 export function createConfig(blazeSettings?: BlazeSettings) {
   const config = deepClone(defaultConfig)

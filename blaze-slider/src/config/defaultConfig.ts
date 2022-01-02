@@ -1,4 +1,4 @@
-import { AllRequired, Config } from './types'
+import { AllRequired, Config } from '../types'
 
 export const defaultConfig: AllRequired<Config> = {
   grabCursor: false,

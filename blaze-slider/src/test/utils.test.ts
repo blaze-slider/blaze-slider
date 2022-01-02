@@ -1,4 +1,4 @@
-import { deepClone, override } from '../utils'
+import { deepClone, override } from '../config/utils'
 
 test('override', () => {
   const a = { foo: 1 }
