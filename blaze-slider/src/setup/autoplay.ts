@@ -1,4 +1,4 @@
-import { BlazeSlider } from '../index'
+import { BlazeSlider } from '../BlazeSlider'
 
 export function handleAutoplay(blazeSlider: BlazeSlider) {
   const { config, slider, swipeLeft, swipeRight } = blazeSlider

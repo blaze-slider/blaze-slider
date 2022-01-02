@@ -1,4 +1,4 @@
-import { BlazeSlider } from '../index'
+import { BlazeSlider } from '../BlazeSlider'
 
 export function handleA11y(blazeSlider: BlazeSlider) {
   // a11y

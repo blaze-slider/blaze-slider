@@ -1,4 +1,4 @@
-import { BlazeSlider } from '../index'
+import { BlazeSlider } from '../BlazeSlider'
 
 export interface BlazePaginationButton extends HTMLButtonElement {
   blazeSlider: BlazeSlider

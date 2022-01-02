@@ -1,4 +1,4 @@
-import { BlazeSlider } from '../index'
+import { BlazeSlider } from '../BlazeSlider'
 
 export function handleNavigation(blazeSlider: BlazeSlider) {
   const navigation = blazeSlider.config.navigation

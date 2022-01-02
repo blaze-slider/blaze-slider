@@ -1,4 +1,4 @@
-import { BlazeSlider } from '../index'
+import { BlazeSlider } from '../BlazeSlider'
 
 const slidesToShow = '--blaze-slides-to-show'
 const slideGap = '--blaze-slide-gap'

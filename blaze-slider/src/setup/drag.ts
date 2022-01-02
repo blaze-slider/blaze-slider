@@ -1,4 +1,4 @@
-import { BlazeSlider } from '../index'
+import { BlazeSlider } from '../BlazeSlider'
 
 export function handleDrag(blazeSlider: BlazeSlider) {
   const { track, config } = blazeSlider
