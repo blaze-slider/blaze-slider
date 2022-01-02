@@ -8,14 +8,15 @@ export function handleDrag(blazeSlider: BlazeSlider) {
   const { track } = blazeSlider
   const { scroll } = blazeSlider.config.slides
 
-  let posInitial: number
   let initialClientX: number
-  let slideVector = 0
 
-  const { grabCursor, threshold } = blazeSlider.config
+  // pixels dragged
+  let slideVector = 0
 
   // number of slide-width length of drag done
   let slidesDragged = 0
+
+  const { grabCursor, threshold } = blazeSlider.config
 
   function handlePointerUp() {
     if (grabCursor) {
@@ -29,9 +30,9 @@ export function handleDrag(blazeSlider: BlazeSlider) {
     }
 
     // enableTransition(blazeSlider)
-    if (slideVector - posInitial < -threshold) {
+    if (slideVector < -threshold) {
       swipe(blazeSlider, swipeAmount)
-    } else if (slideVector - posInitial > threshold) {
+    } else if (slideVector > threshold) {
       swipe(blazeSlider, -1 * swipeAmount)
     }
 
@@ -89,7 +90,6 @@ export function handleDrag(blazeSlider: BlazeSlider) {
     track.setPointerCapture(event.pointerId)
     disableTransition(blazeSlider)
     event.preventDefault()
-    posInitial = slideVector
 
     initialClientX = event.clientX
     track.onpointermove = handlePointerMove
