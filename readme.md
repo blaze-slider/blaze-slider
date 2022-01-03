@@ -14,21 +14,22 @@ Blazing fast slider for high performance web
 ## Features
 
 - Fastest Slider Library
-- Looping supported without slide cloning
-- Expressive css media-query based config
+- Slide Looping without cloning
+- Expressive CSS Media-Query based config
 - Full TypeScript support
-- Extremely small bundle size
+- Extremely small bundle size (1kB gzipped)
 
 <br/>
 
 ## Performance Benchmark
 
-| Library | Time   | Compare |
-| ------- | ------ | ------- |
-| Blaze   | 2.2ms  | 1x      |
-| Glide   | 18.1ms | 8.2x    |
-| Swiper  | 31.4ms | 14.2x   |
-| Slick   | 67.3ms | 30.5x   |
+| Rank | Library  | Time   | Compare |
+| ---- | -------- | ------ | ------- |
+| 1    | Blaze    | 2.2ms  | 1x      |
+| 2    | Glide    | 14.5ms | 6.5x    |
+| 3    | Flickity | 18.3ms | 8.2x    |
+| 4    | Swiper   | 31.4ms | 14.2x   |
+| 5    | Slick    | 67.3ms | 30.5x   |
 
 [More Details about this Benchmark](https://github.com/blaze-slider/blaze-slider/tree/main/benchmark)
 
