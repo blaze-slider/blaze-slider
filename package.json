@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev-test": "npm run dev -w fixtures/blaze-slider-test"
+    "test": "npm run test -w blaze-slider",
+    "dev-test": "npm run dev -w fixtures/blaze-slider-test",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +15,8 @@
     "blaze-slider",
     "fixtures/*",
     "benchmark"
-  ]
+  ],
+  "devDependencies": {
+    "husky": "^7.0.4"
+  }
 }
