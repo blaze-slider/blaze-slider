@@ -1,14 +1,14 @@
 #app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	color: #2c3e50;
-	max-width: 1200px;
-	margin: 50px auto;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  max-width: 1200px;
+  margin: 50px auto;
 }
 
 body {
-	background: #eee;
+  background: #eee;
 }
 
 .blaze-track > *,
@@ -16,50 +16,50 @@ body {
 .my-slick-slide,
 .glide__slide,
 .carousel-cell {
-	height: 400px;
-	background: white;
-	font-size: 50px;
-	display: flex !important;
-	align-items: center;
-	justify-content: center;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+  height: 400px;
+  background: white;
+  font-size: 50px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 /* blaze-slider: add margin to prevent slide shadow being clipped */
 .blaze-track {
-	margin: 10px 0;
+  margin: 10px 0;
 }
 
 /* slick-slider set gap */
 .slick-slide {
-	margin: 0 10px;
+  margin: 0 10px;
 }
 
 .slick-slider {
-	margin: 0 -10px;
+  margin: 0 -10px;
 }
 
 /* prevent slick slider layout shift */
 .my-slick-slider {
-	display: flex;
-	overflow: hidden;
+  display: flex;
+  overflow: hidden;
 }
 
 .my-slick-slide {
-	flex-shrink: 0;
-	width: 100%;
+  flex-shrink: 0;
+  width: 100%;
 }
 
 /* reduce layout shift in flickity */
 .main-carousel:not(.flickity-enabled) {
-	overflow: hidden;
-	display: flex;
+  overflow: hidden;
+  display: flex;
 }
 
 /* flickity cell width */
 .carousel-cell {
-	flex-shrink: 0;
-	display: inline-block;
-	margin: 0 10px;
-	width: calc((100% -40px) / 3);
+  flex-shrink: 0;
+  display: inline-block;
+  margin: 0 10px;
+  width: calc((100% -40px) / 3);
 }

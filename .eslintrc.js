@@ -17,5 +17,6 @@ module.exports = {
   rules: {
     'linebreak-style': 'off',
     'brace-style': 'off',
+    'no-new': 'off',
   },
 }

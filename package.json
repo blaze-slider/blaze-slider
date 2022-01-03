@@ -1,15 +1,14 @@
 {
   "name": "blaze-slider-js",
-  "version": "1.0.1",
-  "description": "",
-  "main": "index.js",
+  "description": "blaze-slider Monorepo",
   "scripts": {
+    "lint": "eslint \"**/*.{ts,tsx,html,css,json}\" --fix",
     "test": "npm run test -w blaze-slider",
-    "dev-test": "npm run dev -w fixtures/blaze-slider-test",
+    "dev": "npm run dev -w fixtures/blaze-slider-test",
     "prepare": "husky install"
   },
   "keywords": [],
-  "author": "",
+  "author": "Manan Tank",
   "license": "ISC",
   "workspaces": [
     "blaze-slider",
@@ -17,6 +16,17 @@
     "benchmark"
   ],
   "devDependencies": {
-    "husky": "^7.0.4"
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
+    "@typescript-eslint/parser": "^5.8.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "husky": "^7.0.4",
+    "prettier-eslint": "^13.0.0"
   }
 }
