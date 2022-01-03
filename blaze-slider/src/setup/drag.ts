@@ -1,7 +1,7 @@
 import { BlazeSlider } from '../BlazeSlider'
 import { setCSSVar } from '../dom/setCSSVar'
 import { swipe } from '../dom/swipe'
-import { disableTransition } from '../dom/transition'
+import { disableTransition, enableTransition } from '../dom/transition'
 import { wrapToLeft, wrapToRight } from '../dom/wrap'
 
 export function handleDrag(blazeSlider: BlazeSlider) {
@@ -31,11 +31,14 @@ export function handleDrag(blazeSlider: BlazeSlider) {
       swipeAmount = Math.min(swipeAmount, blazeSlider.maxScroll)
     }
 
-    // enableTransition(blazeSlider)
+    console.log({ slideVector })
+
     if (slideVector < -threshold) {
       swipe(blazeSlider, swipeAmount)
     } else if (slideVector > threshold) {
       swipe(blazeSlider, -1 * swipeAmount)
+    } else {
+      enableTransition(blazeSlider)
     }
 
     // reset slides drag related data
