@@ -1,3 +1,7 @@
+// glide
+// @ts-ignore
+import Glide from '@glidejs/glide';
+import '@glidejs/glide/dist/css/glide.core.min.css';
 // swiper
 import { Swiper } from 'swiper';
 import 'swiper/css';
@@ -29,6 +33,13 @@ async function tester() {
 	});
 	performance.mark('blaze-slider-end');
 	performance.measure('blaze-slider', 'blaze-slider-start', 'blaze-slider-end');
+
+	await sleep(100);
+
+	performance.mark('glide-slider-start');
+	new Glide('.glide', { startAt: 0, perView: 3, gap: 20, swipeThreshold: 0, rewind: true }).mount();
+	performance.mark('glide-slider-end');
+	performance.measure('glide-slider', 'glide-slider-start', 'glide-slider-end');
 
 	await sleep(100);
 

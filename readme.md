@@ -23,11 +23,12 @@ Blazing fast slider for high performance web
 
 ## Performance Benchmark
 
-| Library      | Time   |
-| ------------ | ------ |
-| blaze-slider | 3.2ms  |
-| swiper       | 40.7ms |
-| slick        | 59.7ms |
+| Library | Time   | Compare |
+| ------- | ------ | ------- |
+| Blaze   | 2.2ms  | 1x      |
+| Glide   | 18.1ms | 8.2x    |
+| Swiper  | 31.4ms | 14.2x   |
+| Slick   | 67.3ms | 30.5x   |
 
 [More Details about this Benchmark](https://github.com/blaze-slider/blaze-slider/tree/main/benchmark)
 
@@ -40,7 +41,7 @@ npm i blaze-slider
 ```
 
 ```javascript
-import { BlazeSlider } from 'blaze-slider'
+import BlazeSlider from 'blaze-slider'
 
 new BlazeSlider(el, settings?);
 ```
@@ -57,18 +58,8 @@ Download the `dist/blaze-slider.js` and use it via script tag
 
 After this script is executed, you will get access to a global constructor function `BlazeSlider`
 
-```
-new BlazeSlider(sliderEl, options?)
-```
-
-<br/>
-
-### Example
-
 ```javascript
-const slider = document.querySelector('.blaze-slider');
-
-new BlazeSlider(slider);
+new BlazeSlider(sliderEl, options?)
 ```
 
 <br/>

@@ -13,7 +13,8 @@ body {
 
 .blaze-track > *,
 .swiper-slide,
-.slick-slide {
+.slick-slide,
+.glide__slide {
 	height: 400px;
 	background: white;
 	font-size: 50px;

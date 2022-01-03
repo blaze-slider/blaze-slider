@@ -2,12 +2,22 @@
 
 <br/>
 
-## Render 1 slider with 10 slides
+## Create 1 slider with 10 slides
 
-Benchmark compares the time taken by each library to render 1 slider with 10 slides with same config and same style
+| Library | Time   | Compare |
+| ------- | ------ | ------- |
+| Blaze   | 2.2ms  | 1x      |
+| Glide   | 18.1ms | 8.2x    |
+| Swiper  | 31.4ms | 14.2x   |
+| Slick   | 67.3ms | 30.5x   |
 
-| Library      | Time   |
-| ------------ | ------ |
-| blaze-slider | 3.2ms  |
-| swiper       | 40.7ms |
-| slick        | 59.7ms |
+<br/>
+
+## Create 1 slider with 10 slides (4X CPU slowdown)
+
+| Library | Time   | Compare |
+| ------- | ------ | ------- |
+| Blaze   | 6.3ms  | 1x      |
+| Glide   | 42.5ms | 6.7x    |
+| Swiper  | 96ms   | 15.2x   |
+| Slick   | 178ms  | 28.2x   |
