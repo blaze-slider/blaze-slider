@@ -9,7 +9,6 @@
   "scripts": {
     "publish-patch": "npm version patch && npm run build && npm publish --public",
     "dist-cleanup": "mv dist/blaze-slider.cjs.dev.d.ts dist/blaze-slider.d.ts && rm -f dist/blaze-slider.cjs.prod.d.ts dist/blaze-slider.esm.d.ts dist/blaze-slider.iife.d.ts dist/blaze-slider.min.d.ts",
-    "lint": "eslint src/** --fix",
     "test": "jest",
     "build": "npm run lint && rollup -c && npm run dist-cleanup"
   },

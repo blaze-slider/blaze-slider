@@ -2,7 +2,9 @@
   "name": "blaze-slider-js",
   "description": "blaze-slider Monorepo",
   "scripts": {
-    "lint": "eslint \"**/*.{ts,tsx,html,css,json}\" --fix",
+    "validate": "npm run prettier && npm run lint && npm run test",
+    "prettier": "prettier --write \"**/*.{ts,html,json,css}\"",
+    "lint": "eslint \"**/*.ts\" --fix ",
     "test": "npm run test -w blaze-slider",
     "dev": "npm run dev -w fixtures/blaze-slider-test",
     "prepare": "husky install"
@@ -26,7 +28,6 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "^5.2.0",
-    "husky": "^7.0.4",
-    "prettier-eslint": "^13.0.0"
+    "husky": "^7.0.4"
   }
 }

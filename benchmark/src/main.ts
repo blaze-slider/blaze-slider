@@ -22,6 +22,7 @@ async function sleep(time: number) {
 async function tester() {
   await sleep(1000)
 
+  // blaze slider -----------------------------
   performance.mark('blaze-slider-start')
   const blazeTarget = document.querySelector('.blaze-slider') as HTMLElement
   new BlazeSlider(blazeTarget, {
@@ -40,6 +41,7 @@ async function tester() {
 
   await sleep(100)
 
+  // glide slider -----------------------------
   performance.mark('glide-slider-start')
   new Glide('.glide', {
     startAt: 0,
@@ -53,6 +55,7 @@ async function tester() {
 
   await sleep(100)
 
+  // swiper slider -----------------------------
   performance.mark('swiper-slider-start')
   const swiperTarget = document.querySelector('.swiper') as HTMLElement
   new Swiper(swiperTarget, {
@@ -71,6 +74,7 @@ async function tester() {
 
   await sleep(100)
 
+  // slick slider -----------------------------
   performance.mark('slick-slider-start')
   // @ts-ignore
   // eslint-disable-next-line no-undef
@@ -84,6 +88,7 @@ async function tester() {
 
   await sleep(100)
 
+  // flickity slider -----------------------------
   performance.mark('flickity-slider-start')
   const elem = document.querySelector('.main-carousel')
   new Flickity(elem, {
@@ -95,7 +100,6 @@ async function tester() {
     dragThreshold: 0,
     pageDots: false,
     prevNextButtons: false,
-    // groupCells: '100%'
   })
 
   performance.mark('flickity-slider-end')
