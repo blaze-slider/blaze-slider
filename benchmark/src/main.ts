@@ -2,6 +2,10 @@
 // @ts-ignore
 import Glide from '@glidejs/glide';
 import '@glidejs/glide/dist/css/glide.core.min.css';
+// flickity
+// @ts-ignore
+import Flickity from 'flickity';
+import 'flickity/css/flickity.css';
 // swiper
 import { Swiper } from 'swiper';
 import 'swiper/css';
@@ -50,6 +54,7 @@ async function tester() {
 		slidesPerGroup: 3,
 		loop: true,
 		spaceBetween: 20,
+		resizeObserver: false
 	});
 	performance.mark('swiper-slider-end');
 	performance.measure('swiper-slider', 'swiper-slider-start', 'swiper-slider-end');
@@ -65,6 +70,25 @@ async function tester() {
 	});
 	performance.mark('slick-slider-end');
 	performance.measure('slick-slider', 'slick-slider-start', 'slick-slider-end');
+
+	await sleep(100);
+
+	performance.mark('flickity-slider-start');
+	var elem = document.querySelector('.main-carousel');
+	new Flickity( elem, {
+		// options
+		cellAlign: 'left',
+		contain: true,
+		wrapAround: true,
+		groupCells: 3,
+		dragThreshold: 0,
+		pageDots: false,
+		prevNextButtons: false,
+		// groupCells: '100%'
+	});
+
+	performance.mark('flickity-slider-end');
+	performance.measure('flickity-slider', 'flickity-slider-start', 'flickity-slider-end');
 }
 
 tester();

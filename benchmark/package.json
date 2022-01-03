@@ -10,6 +10,7 @@
   "dependencies": {
     "@glidejs/glide": "^3.5.2",
     "blaze-slider": "0.0.1",
+    "flickity": "^2.3.0",
     "swiper": "^7.4.1"
   },
   "devDependencies": {
