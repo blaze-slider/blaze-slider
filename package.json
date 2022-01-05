@@ -3,7 +3,7 @@
   "description": "blaze-slider Monorepo",
   "scripts": {
     "prettier": "prettier --write \"**/*.{ts,html,json,css}\"",
-    "lint": "eslint \"**/*.ts\" --fix ",
+    "lint": "eslint \"**/*.ts\" --fix",
     "test": "npm run test -w blaze-slider",
     "dev": "npm run dev -w fixtures/blaze-slider-test",
     "prepare": "husky install"
@@ -29,5 +29,10 @@
     "eslint-plugin-promise": "^5.2.0",
     "husky": "^7.0.4",
     "pretty-quick": "^3.1.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx pretty-quick --staged && npm run lint && npm run test"
+    }
   }
 }
