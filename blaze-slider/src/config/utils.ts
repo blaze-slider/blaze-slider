@@ -5,7 +5,7 @@ function isObject(value: any): value is object {
 export function override(a: object, b: object) {
   Object.keys(b).forEach((key) => {
     // @ts-ignore
-    if (!isObject(a[key])) {
+    if (!isObject(b[key]) || !isObject(a[key])) {
       // @ts-ignore
       a[key] = b[key]
     } else {

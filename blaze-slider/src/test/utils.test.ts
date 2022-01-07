@@ -15,6 +15,10 @@ test('override', () => {
   const c = { foo: { bar: 1 } }
   override(c, { foo: { bar: 2, bazz: 3 } })
   expect(c).toEqual({ foo: { bar: 2, bazz: 3 } })
+
+  const d = { foo: { bar: 1 } }
+  override(d, { foo: true })
+  expect(d).toEqual({ foo: true })
 })
 
 test('deepClone', () => {
