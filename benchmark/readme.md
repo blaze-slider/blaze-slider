@@ -1,4 +1,4 @@
-# Slider Benchmark
+# Slider Benchmark ⚡
 
 <br/>
 

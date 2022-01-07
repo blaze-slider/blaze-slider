@@ -1,135 +1,72 @@
-<br />
-
-<img src="assets/BlazeSlider.svg" />
+<img src="assets/LOGO.svg" />
 
 <br />
 <br />
 
 # Blaze Slider
 
-Blazing fast slider for high performance web
+Blazing Fast Slider For High Performance Web ⚡
+
+<br />
+
+⚡ Fastest Slider Library
+
+✨ Feature Rich
+
+🔁 Infinite Looping without cloning slides
+
+📱 Expressive CSS Media-Query based Responsive config
+
+🌀 Written in TypeScript
+
+🤏 Extremely small bundle size (1kB Gzipped)
 
 <br/>
-
-## Features
-
-- Fastest Slider Library
-- Slide Looping without cloning
-- Expressive CSS Media-Query based config
-- Full TypeScript support
-- Extremely small bundle size (1kB gzipped)
-
 <br/>
 
-## Performance Benchmark
+## Blazing Fast Performance
+
+<br/>
 
 | Rank | Library  | Time   | Compare |
 | ---- | -------- | ------ | ------- |
-| 1    | Blaze    | 2.2ms  | 1x      |
+| 1    | Blaze 👑 | 2.2ms  | 1x      |
 | 2    | Glide    | 14.5ms | 6.5x    |
 | 3    | Flickity | 18.3ms | 8.2x    |
 | 4    | Swiper   | 31.4ms | 14.2x   |
 | 5    | Slick    | 67.3ms | 30.5x   |
 
-[More Details about this Benchmark](https://github.com/blaze-slider/blaze-slider/tree/main/benchmark)
+[See More Benchmarks](/benchmark/readme.md)
 
 <br/>
 
-### ESM
+## Installation and Usage
+
+<br/>
+
+### Using as NPM Package
 
 ```bash
 npm i blaze-slider
 ```
 
+Make sure that you import the styles.css as well. Without this CSS, blaze-slider will not work.
+
 ```javascript
 import BlazeSlider from 'blaze-slider'
+import 'blaze-slider/src/styles.css'
 
-new BlazeSlider(el, settings?);
-```
-
-<br/>
-
-### UMD
-
-Download the `dist/blaze-slider.js` and use it via script tag
-
-```html
-<script src="/path/to/the/blaze-slider.js"></script>
-```
-
-After this script is executed, you will get access to a global constructor function `BlazeSlider`
-
-```javascript
 new BlazeSlider(sliderEl, options?)
 ```
 
 <br/>
 
-## Types
+### Using the dist JS and CSS files directly
 
-```typescript
-type Config = {
-	grabCursor?: boolean;
-	threshold?: number;
-	slides?: {
-		loop?: boolean;
-		show?: number;
-		scroll?: number;
-		gap?: string;
-		draggable?: boolean;
-	};
-	navigation?:
-		| {
-				prev: HTMLElement;
-				next: HTMLElement;
-		  }
-		| false;
-	pagination?: HTMLElement | false;
-	transition?: {
-		timingFunction?: string;
-		duration?: string;
-	};
-	autoplay?: {
-		enabled?: boolean;
-		interval?: number;
-		toLeft?: boolean;
-		stopOnInteraction?: boolean;
-		pauseOnHover?: boolean;
-	};
-};
+Get the JS and CSS dist files of a specific version of blaze-slider by following [these steps](get-dist/readme.md)
 
-type BlazeSettings = {
-	media: {
-		[K: string]: Config;
-	};
-};
-```
-
-<br/>
-
-### Default Config
+Including the blaze-slider js will create a global constructor function `BlazeSlider`
 
 ```javascript
-{
-  grabCursor: false,
-  slides: {
-    show: 1,
-    scroll: 1,
-    gap: '10px',
-    draggable: true
-  },
-  navigation: false,
-  pagination: false,
-  transition: {
-    timingFunction: 'ease',
-    duration: '300ms'
-  },
-  autoplay: {
-    enabled: false,
-    interval: 3000,
-    toLeft: false,
-    stopOnInteraction: true,
-    pauseOnHover: true
-  }
-}
+new BlazeSlider(sliderEl, options?)
 ```
