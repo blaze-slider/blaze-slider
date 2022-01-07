@@ -12,5 +12,8 @@ export function handleNavigation(blazeSlider: BlazeSlider) {
     ;(next as HTMLButtonElement).addEventListener('click', () =>
       blazeSlider.swipeRight()
     )
+
+    prev.classList.add('enabled')
+    next.classList.add('enabled')
   }
 }
