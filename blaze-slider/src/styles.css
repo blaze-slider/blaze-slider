@@ -5,7 +5,7 @@
 
 .blaze-slider {
   --blaze-visible-gap: calc(
-    var(--blaze-slide-gap) * (var(--blaze-slides-to-show) - 1)
+    var(--blaze-slide-gap) * 1px * (var(--blaze-slides-to-show) - 1)
   );
   --blaze-slide-width: calc(
     (100% - var(--blaze-visible-gap)) / var(--blaze-slides-to-show)
@@ -21,11 +21,11 @@
   touch-action: none;
   will-change: auto;
   display: flex;
-  gap: var(--blaze-slide-gap);
+  gap: calc(var(--blaze-slide-gap) * 1px);
   transition: transform var(--blaze-td, 400ms) var(--blaze-ttf, ease);
   transform: translateX(
     calc(
-      (var(--blaze-slide-width, 100%) + var(--blaze-slide-gap)) * -1 *
+      (var(--blaze-slide-width, 100%) + var(--blaze-slide-gap) * 1px) * -1 *
         var(--blaze-offset) + var(--blaze-slide-amount, 0px)
     )
   );

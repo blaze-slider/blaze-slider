@@ -1,3 +1,4 @@
+import { testConfig } from './config/testConfig'
 import { swipe } from './dom/swipe'
 import { createPages, Page } from './pages'
 import { handleAutoplay } from './setup/autoplay'
@@ -7,6 +8,8 @@ import { handleNavigation } from './setup/navigation'
 import { BlazePaginationButton, handlePagination } from './setup/pagination'
 import { setupStyles } from './setup/styles'
 import { AllRequired, BlazeSettings, Config } from './types'
+
+const autoplayClass = 'autoplaying'
 
 export class BlazeSlider {
   // dom
@@ -20,8 +23,9 @@ export class BlazeSlider {
 
   // one time computed
   totalSlides: number
-  pages: Page[]
-  maxScroll: number
+  pages!: Page[]
+  maxScroll!: number
+  maxSlideAmount!: number
 
   // state
   offset: number
@@ -30,27 +34,18 @@ export class BlazeSlider {
   // calculated when slide is dragged for the first time
   slideWidth!: number
 
-  constructor(slider: HTMLElement, givenConfig?: BlazeSettings) {
-    this.pageIndex = 0
-    this.offset = 0
+  // autoplay
+  autoplay?: {
+    intervalId: number
+    interactionDone: boolean
+  }
 
-    this.config = createConfig(givenConfig)
-    const { show, scroll } = this.config.slides
-
-    // check for invalid config and fix
-    if (scroll > show) {
-      console.warn('blazeSlider: ignored invalid config.slides.scroll value')
-      this.config.slides.scroll = show
-    }
-
-    // slider
+  constructor(slider: HTMLElement, blazeSettings?: BlazeSettings) {
+    // dom
     this.slider = slider
     // @ts-ignore
     slider.$blaze = this
     slider.tabIndex = 0
-
-    // style
-    setupStyles(this)
 
     // track
     const track = (this.track = slider.querySelector(
@@ -60,24 +55,32 @@ export class BlazeSlider {
     this.slides = Array.from(track.children) as HTMLElement[]
     this.totalSlides = this.slides.length
 
-    const maxPossibleScroll = Math.floor(this.totalSlides / 2)
-
-    // maxScroll must also be multiple of scroll
-    this.maxScroll = Math.floor(maxPossibleScroll / scroll) * scroll
-
-    this.pages = createPages(this.totalSlides, show, scroll)
-
     this.slides.forEach((slide, i) => {
       slide.tabIndex = 0
       slide.dataset.index = `${i}`
     })
 
-    if (this.totalSlides <= show) {
+    // state
+    this.pageIndex = 0
+    this.offset = 0
+
+    this.config = createConfig(blazeSettings)
+
+    testConfig(this)
+
+    // style
+    setupStyles(this)
+
+    // use config
+    const { navigation, pagination, autoplay, slides } = this.config
+
+    if (this.totalSlides <= slides.show) {
       slider.classList.add('blaze-static')
       return
     }
 
-    const { navigation, pagination, autoplay, slides } = this.config
+    // after the config is fixed
+    this.pages = createPages(this.totalSlides, slides.show, slides.scroll)
 
     if (navigation) {
       handleNavigation(this)
@@ -102,5 +105,29 @@ export class BlazeSlider {
 
   swipeRight() {
     swipe(this, this.config.slides.scroll)
+  }
+
+  play() {
+    const { autoplay } = this.config
+    if (!autoplay) return
+    if (this.autoplay!.interactionDone) return
+
+    this.slider.classList.add(autoplayClass)
+
+    this.autoplay!.intervalId = window.setInterval(() => {
+      requestAnimationFrame(() => {
+        if (autoplay.toLeft) {
+          this.swipeLeft()
+        } else {
+          this.swipeRight()
+        }
+      })
+    }, autoplay.interval)
+  }
+
+  pause() {
+    if (!this.config.autoplay) return
+    this.slider.classList.remove(autoplayClass)
+    clearInterval(this.autoplay!.intervalId)
   }
 }

@@ -1,7 +1,6 @@
 <img src="assets/LOGO.svg" />
 
 <br />
-<br />
 
 # Blaze Slider
 
@@ -42,8 +41,6 @@ Blazing Fast Slider For High Performance Web ⚡
 
 ## Installation and Usage
 
-<br/>
-
 ### Using as NPM Package
 
 ```bash
@@ -59,13 +56,25 @@ import 'blaze-slider/src/styles.css'
 new BlazeSlider(sliderEl, options?)
 ```
 
-<br/>
-
 ### Using the dist JS and CSS files directly
 
-Get the JS and CSS dist files of a specific version of blaze-slider by following [these steps](get-dist/readme.md)
+Get the JS and CSS dist files of a specific version of blaze-slider by from unpkg
 
-Including the blaze-slider js will create a global constructor function `BlazeSlider`
+Example: V0.0.10
+
+JavaScript
+
+```
+https://unpkg.com/blaze-slider@0.0.10/dist/blaze-slider.min.js
+```
+
+CSS
+
+```
+https://unpkg.com/blaze-slider@0.0.10/dist/blaze.css
+```
+
+Including the blaze-slider.min.js will create make the constructor function `BlazeSlider` available globally and can be used as follows:
 
 ```javascript
 new BlazeSlider(sliderEl, options?)

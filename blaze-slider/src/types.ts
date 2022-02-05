@@ -7,13 +7,12 @@ export type AllPartial<T> = {
 }
 
 export type Config = {
-  grabCursor?: boolean
   threshold?: number
   slides?: {
     loop?: boolean
     show?: number
     scroll?: number
-    gap?: string
+    gap?: number
     draggable?: boolean
   }
   navigation?:

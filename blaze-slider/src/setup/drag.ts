@@ -4,8 +4,10 @@ import { swipe } from '../dom/swipe'
 import { disableTransition, enableTransition } from '../dom/transition'
 import { wrapToLeft, wrapToRight } from '../dom/wrap'
 
+const grabbingClass = 'grabbing'
+
 export function handleDrag(blazeSlider: BlazeSlider) {
-  const { track } = blazeSlider
+  const { track, slider } = blazeSlider
   const { scroll } = blazeSlider.config.slides
 
   let initialClientX: number
@@ -16,12 +18,10 @@ export function handleDrag(blazeSlider: BlazeSlider) {
   // number of slide-width length of drag done
   let slidesDragged = 0
 
-  const { grabCursor, threshold } = blazeSlider.config
+  const { threshold } = blazeSlider.config
 
   function handlePointerUp() {
-    if (grabCursor) {
-      track.style.cursor = 'grab'
-    }
+    slider.classList.remove(grabbingClass)
 
     // scroll in multiples of config.scroll
     let swipeAmount = scroll
@@ -30,8 +30,6 @@ export function handleDrag(blazeSlider: BlazeSlider) {
       // scroll can not be larger than maxScroll
       swipeAmount = Math.min(swipeAmount, blazeSlider.maxScroll)
     }
-
-    console.log({ slideVector })
 
     if (slideVector < -threshold) {
       swipe(blazeSlider, swipeAmount)
@@ -54,7 +52,7 @@ export function handleDrag(blazeSlider: BlazeSlider) {
     const diff = initialClientX - e.clientX
 
     // limit the slidesDragged to be less maxScroll also
-    if (slidesDragged < blazeSlider.maxScroll) {
+    if (slidesDragged <= blazeSlider.maxScroll) {
       // wrapping to prevent showing empty space
       if (slideVector > 0) {
         if (slideVector > slidesDragged * blazeSlider.slideWidth) {
@@ -78,10 +76,17 @@ export function handleDrag(blazeSlider: BlazeSlider) {
       }
     }
 
-    initialClientX = e.clientX
     const slideAmount = slideVector - diff
-    setCSSVar(blazeSlider, '--blaze-slide-amount', slideAmount + 'px')
-    slideVector = slideAmount
+
+    if (Math.abs(slideAmount) < blazeSlider.maxSlideAmount) {
+      initialClientX = e.clientX
+      setCSSVar(blazeSlider, '--blaze-slide-amount', slideAmount + 'px')
+      slideVector = slideAmount
+    } else {
+      const dir = slideAmount < 0 ? -1 : 1
+      slideVector = blazeSlider.maxSlideAmount * dir
+      handlePointerUp()
+    }
   }
 
   function handlePointerDown(event: PointerEvent) {
@@ -89,11 +94,14 @@ export function handleDrag(blazeSlider: BlazeSlider) {
       blazeSlider.slideWidth = Number(
         getComputedStyle(blazeSlider.slides[0]).width.slice(0, -2)
       )
+
+      blazeSlider.maxSlideAmount =
+        blazeSlider.slideWidth +
+        blazeSlider.config.slides.gap * (blazeSlider.config.slides.show - 1)
     }
 
-    if (grabCursor) {
-      track.style.cursor = 'grabbing'
-    }
+    slider.classList.add(grabbingClass)
+
     // capture all events of this pointerId and consider it as it is meant for track only
     track.setPointerCapture(event.pointerId)
     disableTransition(blazeSlider)

@@ -13,10 +13,10 @@ export function setupStyles(blazeSlider: BlazeSlider) {
   const { timingFunction, duration } = blazeSlider.config.transition
 
   // set css variables
-  setCSSVar(blazeSlider, $offset, 0 + '')
-  setCSSVar(blazeSlider, slidesToShow, show + '')
+  setCSSVar(blazeSlider, $offset, 0)
+  setCSSVar(blazeSlider, slidesToShow, show)
   setCSSVar(blazeSlider, slideGap, gap)
   setCSSVar(blazeSlider, transitionTimingFunction, timingFunction)
   setCSSVar(blazeSlider, transitionDuration, duration)
-  setCSSVar(blazeSlider, slidesToScroll, scroll + '')
+  setCSSVar(blazeSlider, slidesToScroll, scroll)
 }
