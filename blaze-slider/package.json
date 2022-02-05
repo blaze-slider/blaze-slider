@@ -1,6 +1,6 @@
 {
   "name": "blaze-slider",
-  "version": "0.0.9",
+  "version": "0.0.12",
   "description": "Blazing Fast Slider For High Performance Web",
   "main": "dist/blaze-slider.cjs.js",
   "module": "dist/blaze-slider.esm.js",
@@ -11,7 +11,7 @@
     "dist-cleanup": "mv dist/blaze-slider.cjs.dev.d.ts dist/blaze-slider.d.ts && rm -f dist/blaze-slider.cjs.prod.d.ts dist/blaze-slider.esm.d.ts dist/blaze-slider.iife.d.ts dist/blaze-slider.min.d.ts",
     "test": "jest",
     "build-css": "csso src/styles.css --output dist/blaze.css",
-    "build": "npm run lint && rollup -c && npm run dist-cleanup && npm run build-css"
+    "build": "rollup -c && npm run dist-cleanup && npm run build-css"
   },
   "keywords": [
     "blaze-slider",
