@@ -1,4 +1,6 @@
 node_modules
 dist
-fixtures/blaze-slider-test
-get-dist/package-lock.json
+fixtures/*
+website
+.DS_Store
+.vscode

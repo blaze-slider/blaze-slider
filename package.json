@@ -2,11 +2,14 @@
   "name": "blaze-slider-js",
   "description": "blaze-slider Monorepo",
   "scripts": {
+    "benchmark": "npm run dev -w benchmark",
+    "build:website": "npm run build -w blaze-slider-website",
     "prettier-staged": "pretty-quick --staged",
     "lint": "eslint \"**/*.ts\" --fix",
     "test": "npm run test -w blaze-slider",
     "dev": "npm run dev -w fixtures/blaze-slider-test",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prettier": "prettier -w ."
   },
   "keywords": [],
   "author": "Manan Tank",
@@ -15,7 +18,7 @@
     "blaze-slider",
     "fixtures/*",
     "benchmark",
-    "get-dist"
+    "docs"
   ],
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.8.0",

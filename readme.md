@@ -1,47 +1,69 @@
-<img src="assets/LOGO.svg" />
+<img src="assets/blaze-slider.svg" />
 
 <br />
 
-# Blaze Slider
+# Blaze Slider 🌈
 
-Blazing Fast Slider For High Performance Web ⚡
-
-<br />
-
-⚡ Fastest Slider Library
+⚡ **Fastest Slider Library**
 
 ✨ Feature Rich
 
-🔁 Infinite Looping without cloning slides
+🔁 No slide cloning
 
-📱 Expressive CSS Media-Query based Responsive config
+📱 CSS Media-Query based Responsive configuration
 
-🌀 Written in TypeScript
+🌀 Full TypeScript support
 
 🤏 Extremely small bundle size (1kB Gzipped)
 
-<br/>
-<br/>
-
-## Blazing Fast Performance
+🎨 inline CSS variable based configuration supported to remove layout shifts
 
 <br/>
+<br/>
 
-| Rank | Library  | Time   | Compare |
-| ---- | -------- | ------ | ------- |
-| 1    | Blaze 👑 | 2.2ms  | 1x      |
-| 2    | Glide    | 14.5ms | 6.5x    |
-| 3    | Flickity | 18.3ms | 8.2x    |
-| 4    | Swiper   | 31.4ms | 14.2x   |
-| 5    | Slick    | 67.3ms | 30.5x   |
-
-[See More Benchmarks](/benchmark/readme.md)
+## Blazing Fast Performance 🔥
 
 <br/>
 
-## Installation and Usage
+| Rank | Library  | Time    | Speed              |
+| ---- | -------- | ------- | ------------------ |
+| 1    | Blaze 🌈 | 2.1ms   | **1**x             |
+| 2    | Glide    | 12.2ms  | **5.8**x _slower_  |
+| 3    | Flickity | 13.29ms | **6.32**x _slower_ |
+| 4    | Swiper   | 29.8ms  | **14.2**x _slower_ |
+| 5    | Slick    | 60.0ms  | **28.5**x _slower_ |
 
-### Using as NPM Package
+<br/>
+
+Benchmark measures the time taken to create a slider with 10 slides each with same configuration content and style
+
+Benchmark is measured on Apple M1 Pro with 6X CPU slowdown on Google Chrome V103
+
+See [Benchmark](/benchmark/src/main.ts) for more details
+
+<br/>
+
+---
+
+<br/>
+
+## Features
+
+All features below are customizable and can be enabled or disabled
+
+- Infinite Loop
+- Drag & Swipe
+- Custom number of slides to show and scroll
+- pagination
+- prev and next navigation
+- autoplay
+- pause autoplay on interaction
+- pause autoplay on hover
+- custom transition delay and timing function (effect)
+
+## Installation
+
+### Using as NPM module
 
 ```bash
 npm i blaze-slider
@@ -50,15 +72,17 @@ npm i blaze-slider
 Make sure that you import the styles.css as well. Without this CSS, blaze-slider will not work.
 
 ```javascript
-import BlazeSlider from 'blaze-slider'
+import { BlazeSlider } from 'blaze-slider'
 import 'blaze-slider/src/styles.css'
 
-new BlazeSlider(sliderEl, options?)
+new BlazeSlider(element, options?)
 ```
 
-### Using the dist JS and CSS files directly
+<br/>
 
-Get the JS and CSS dist files of a specific version of blaze-slider by from unpkg
+### Using the dist JS and CSS files
+
+Get the JS and CSS dist files of a specific version of blaze-slider from unpkg.com
 
 Example: V0.0.10
 
@@ -74,8 +98,36 @@ CSS
 https://unpkg.com/blaze-slider@0.0.10/dist/blaze.css
 ```
 
-Including the blaze-slider.min.js will create make the constructor function `BlazeSlider` available globally and can be used as follows:
+Including the blaze-slider.min.js will make the `BlazeSlider` globally available can be used as follows:
+
+<br/>
+
+## Usage
+
+### HTML
+
+For blaze slider to work, wrap your slides with a `div.blaze-track` and wrap that with `div.blaze-slider`
+
+Example:
+
+```html
+<div class="blaze-slider">
+  <div class="blaze-track">
+    <div>slide 1</div>
+    <div>slide 2</div>
+    <div>slide 3</div>
+  </div>
+</div>
+```
+
+### JavaScript
+
+- get the `div.blaze-slider` element from DOM where you want to initialize the blaze-slider
+- create an instance of blaze slider with optional configuration
+
+Example
 
 ```javascript
-new BlazeSlider(sliderEl, options?)
+const el = document.querySelector('.blaze-slider')
+const blazeSlider = new BlazeSlider(el)
 ```

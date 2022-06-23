@@ -10,8 +10,8 @@ import 'flickity/css/flickity.css'
 import { Swiper } from 'swiper'
 import 'swiper/css'
 // blaze
-import BlazeSlider from '../../blaze-slider/src/index'
-import '../../blaze-slider/src/styles.css'
+import '../../blaze-slider/src/blaze.css'
+import { BlazeSlider } from '../../blaze-slider/src/index'
 // page styles
 import './style.css'
 
@@ -20,29 +20,36 @@ async function sleep(time: number) {
 }
 
 async function tester() {
-  await sleep(1000)
+  await sleep(300)
+  let start: number, end: number
 
   // blaze slider -----------------------------
-  performance.mark('blaze-slider-start')
+
   const blazeTarget = document.querySelector('.blaze-slider') as HTMLElement
+  const swiperTarget = document.querySelector('.swiper') as HTMLElement
+  const flickityTarget = document.querySelector('.main-carousel')
+
+  performance.mark('blaze-slider-start')
+  start = performance.now()
   new BlazeSlider(blazeTarget, {
     media: {
       '(max-width: 9999px)': {
-        slides: {
-          show: 3,
-          scroll: 3,
-          gap: '20px',
-        },
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        slideGap: '20px',
       },
     },
   })
+  end = performance.now()
+  console.log('blaze', end - start)
   performance.mark('blaze-slider-end')
   performance.measure('blaze-slider', 'blaze-slider-start', 'blaze-slider-end')
 
-  await sleep(100)
+  await sleep(20)
 
   // glide slider -----------------------------
   performance.mark('glide-slider-start')
+  start = performance.now()
   new Glide('.glide', {
     startAt: 0,
     perView: 3,
@@ -50,14 +57,16 @@ async function tester() {
     swipeThreshold: 0,
     rewind: true,
   }).mount()
+  end = performance.now()
+  console.log('glide', end - start)
   performance.mark('glide-slider-end')
   performance.measure('glide-slider', 'glide-slider-start', 'glide-slider-end')
 
-  await sleep(100)
+  await sleep(20)
 
   // swiper slider -----------------------------
+  start = performance.now()
   performance.mark('swiper-slider-start')
-  const swiperTarget = document.querySelector('.swiper') as HTMLElement
   new Swiper(swiperTarget, {
     slidesPerView: 3,
     slidesPerGroup: 3,
@@ -65,6 +74,8 @@ async function tester() {
     spaceBetween: 20,
     resizeObserver: false,
   })
+  end = performance.now()
+  console.log('swiper', end - start)
   performance.mark('swiper-slider-end')
   performance.measure(
     'swiper-slider',
@@ -72,10 +83,12 @@ async function tester() {
     'swiper-slider-end'
   )
 
-  await sleep(100)
+  await sleep(20)
 
   // slick slider -----------------------------
   performance.mark('slick-slider-start')
+  start = performance.now()
+
   // @ts-ignore
   // eslint-disable-next-line no-undef
   jQuery('.my-slick-slider').slick({
@@ -83,15 +96,17 @@ async function tester() {
     slidesToShow: 3,
     slidesToScroll: 3,
   })
+  end = performance.now()
+  console.log('slick', end - start)
   performance.mark('slick-slider-end')
   performance.measure('slick-slider', 'slick-slider-start', 'slick-slider-end')
 
-  await sleep(100)
+  await sleep(20)
 
   // flickity slider -----------------------------
   performance.mark('flickity-slider-start')
-  const elem = document.querySelector('.main-carousel')
-  new Flickity(elem, {
+  start = performance.now()
+  new Flickity(flickityTarget, {
     // options
     cellAlign: 'left',
     contain: true,
@@ -102,6 +117,8 @@ async function tester() {
     prevNextButtons: false,
   })
 
+  end = performance.now()
+  console.log('flickity', end - start)
   performance.mark('flickity-slider-end')
   performance.measure(
     'flickity-slider',

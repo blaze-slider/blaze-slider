@@ -3,3 +3,4 @@ node_modules/
 *.prod.js
 *.d.ts
 *.cjs.js
+dist/*
