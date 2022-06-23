@@ -1,0 +1,53 @@
+.blaze-slider {
+  --dragged: 0;
+  --slides-to-show: 1; /* default, final will be set by js */
+  --offset: 0;
+  --slide-gap: 20px;
+  --total-gap: (var(--slides-to-show) - 1) * var(--slide-gap);
+  --slide-width: calc((100% - var(--total-gap)) / var(--slides-to-show));
+  --transition-duration: 200ms;
+  --transition-timing-function: ease;
+  overflow: hidden;
+  direction: ltr;
+}
+
+.blaze-slider:not(.static) {
+  cursor: grab;
+}
+
+.blaze-slider,
+.blaze-slider * {
+  box-sizing: border-box;
+}
+
+.blaze-track {
+  touch-action: none; /* required for pointer move  to work properly */
+  display: flex;
+  gap: var(--slide-gap);
+  transform: translateX(
+    calc(
+      var(--offset) * (var(--slide-gap) + var(--slide-width)) +
+        calc(1px * var(--dragged))
+    )
+  );
+  transition: transform var(--transition-duration)
+    var(--transition-timing-function);
+}
+
+.no-transition .blaze-track {
+  transition: none !important;
+}
+
+.blaze-track > * {
+  width: var(--slide-width);
+  flex-shrink: 0;
+}
+
+.blaze-slider.dragging {
+  user-select: none;
+  cursor: grabbing;
+}
+
+.blaze-slider.dragging .blaze-track {
+  transition: none !important;
+}

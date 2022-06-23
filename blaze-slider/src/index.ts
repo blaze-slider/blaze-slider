@@ -1,3 +1,1 @@
-import { BlazeSlider } from './BlazeSlider'
-
-export default BlazeSlider
+export { BlazeSlider } from './slider'
