@@ -1,6 +1,5 @@
 node_modules
 dist
 fixtures/*
-website
 .DS_Store
 .vscode
