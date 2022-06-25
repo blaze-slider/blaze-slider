@@ -15,7 +15,7 @@ const tsDontEmitDeclaration = typescript({
   tsconfig: 'tsconfig.nodecl.json',
 })
 
-const input = './src/slider.ts'
+const input = './src/index.ts'
 
 /**
  * CJS bundles are for older bundlers that can not handle CJS modules
@@ -31,6 +31,7 @@ const devBuilds = {
     {
       file: 'dist/blaze-slider.cjs.dev.js',
       format: 'cjs',
+      exports: 'default',
     },
     // IIFE dev
     {
@@ -62,6 +63,7 @@ const prodBuilds = {
     {
       file: 'dist/blaze-slider.cjs.prod.js',
       format: 'cjs',
+      exports: 'default',
     },
   ],
   plugins: [
