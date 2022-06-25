@@ -1,4 +1,4 @@
-<img src="assets/blaze-slider.svg" />
+<img src="../assets/blaze-slider.svg" />
 
 <br />
 

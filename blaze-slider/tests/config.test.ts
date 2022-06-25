@@ -3,25 +3,24 @@ import { createConfig, defaultConfig } from '../src/utils/config'
 
 // @ts-ignore - mock matchMedia
 window.matchMedia = (media: string) => {
+  // only foo and bar matches
   return {
-    matches: media === 'foo' || 'bar',
+    matches: media === 'foo' || media === 'bar',
   }
 }
 
 test('works', () => {
   const config = createConfig({
-    media: {
-      foo: {
-        slidesToShow: 5,
-        transitionTimingFunction: 'ease-in',
-      },
-      bar: {
-        slidesToScroll: 3,
-        transitionTimingFunction: 'ease-out',
-      },
-      bazz: {
-        transitionDuration: 10000,
-      },
+    foo: {
+      slidesToShow: 5,
+      transitionTimingFunction: 'ease-in',
+    },
+    bar: {
+      slidesToScroll: 3,
+      transitionTimingFunction: 'ease-out',
+    },
+    bazz: {
+      transitionDuration: 10000,
     },
   })
 

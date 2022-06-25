@@ -1,4 +1,4 @@
-import { Automata } from '../src/automata'
+import { Automata } from '../src/automata/automata'
 
 describe('slider', () => {
   test('loop false', () => {

@@ -1,5 +1,6 @@
-import { Automata } from '../automata'
-import { isDEV } from './env'
+import { Automata } from '../automata/automata'
+
+const DEV = process.env.NODE_ENV !== 'production'
 
 /**
  * it fixes below scenarios which are wrong (and adds a warning in console in development)
@@ -10,9 +11,8 @@ import { isDEV } from './env'
 export function fixSliderConfig(slider: Automata) {
   const { slidesToScroll, slidesToShow } = slider.config
   const { totalSlides, config } = slider
-
   if (totalSlides < slidesToShow) {
-    if (isDEV) {
+    if (DEV) {
       console.warn(
         'slidesToShow can not be larger than number of slides. Setting slidesToShow = totalSlides instead.'
       )
@@ -27,7 +27,7 @@ export function fixSliderConfig(slider: Automata) {
 
   // detect slider skipping
   if (slidesToScroll > slidesToShow) {
-    if (isDEV) {
+    if (DEV) {
       console.warn(
         'slidesToScroll can not be greater than slidesToShow. Setting slidesToScroll = slidesToShow instead'
       )
@@ -38,7 +38,7 @@ export function fixSliderConfig(slider: Automata) {
   // detect slider jumping glitch
   if (totalSlides < slidesToScroll + slidesToShow) {
     const properSlidesToScroll = totalSlides - slidesToShow
-    if (isDEV) {
+    if (DEV) {
       console.warn(
         `slidesToScroll = ${slidesToScroll} is too large for a slider with ${totalSlides} slides with slidesToShow=${slidesToShow}, setting max possible slidesToScroll = ${properSlidesToScroll} instead.`
       )

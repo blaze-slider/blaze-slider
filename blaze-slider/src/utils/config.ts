@@ -1,33 +1,39 @@
 import { BlazeConfig, MediaConfig } from '../types'
 
 export const defaultConfig: MediaConfig = {
+  // layout
   slideGap: '20px',
   slidesToScroll: 1,
   slidesToShow: 1,
+  // behavior
   loop: true,
-  paginationContainer: null,
+  // autoplay
   pauseAutoplayOnHover: true,
-  enablePagination: false,
   enableAutoplay: false,
+  stopAutoplayOnInteraction: true,
   autoplayInterval: 3000,
+  autoplayDirection: 'to left',
+  // pagination
+  enablePagination: true,
+  // transition
   transitionDuration: 500,
   transitionTimingFunction: 'ease',
-  autoplayDirection: 'to left',
 }
 
 export function createConfig(blazeConfig: BlazeConfig) {
-  // start with default config
-  const config = defaultConfig
-  Object.keys(blazeConfig.media).forEach((media: string) => {
+  // start with default config clone
+  const config = { ...defaultConfig }
+
+  for (const media in blazeConfig) {
     // if the media matches, override the config with media config
     if (window.matchMedia(media).matches) {
-      const mediaConfig = blazeConfig.media[media]
-      Object.keys(mediaConfig).forEach((key: string) => {
+      const mediaConfig = blazeConfig[media]
+      for (const key in mediaConfig) {
         // @ts-expect-error
         config[key] = mediaConfig[key]
-      })
+      }
     }
-  })
+  }
 
   return config
 }

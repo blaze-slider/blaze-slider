@@ -1,4 +1,4 @@
-import { Automata } from '../automata'
+import { Automata } from './automata'
 import { Page } from '../types'
 
 /**

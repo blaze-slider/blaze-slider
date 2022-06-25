@@ -13,16 +13,10 @@ export interface MediaConfig extends AutomataConfig {
    * default: `"20px"`
    */
   slideGap: string
-  /**
-   * element inside of which the pagination buttons should be rendered
-   *
-   * default: `null`
-   * */
-  paginationContainer: HTMLElement | null
 
   /** enable or disable pagination
    *
-   * default: `false`
+   * default: `true`
    */
   enablePagination: boolean
 
@@ -56,6 +50,15 @@ export interface MediaConfig extends AutomataConfig {
   pauseAutoplayOnHover: boolean
 
   /**
+   * stop the autoplay when user interacts with the slider
+   * either give `true` or `false`
+   * or specify the amount of time in milliseconds after which the slider should resume autoplay after stopping
+   *
+   * default: `true`
+   */
+  stopAutoplayOnInteraction: boolean | number
+
+  /**
    * css transition duration for the scroll effect in milliseconds
    *
    * default: `500`
@@ -73,9 +76,7 @@ export interface MediaConfig extends AutomataConfig {
 }
 
 /** blaze slider configuration */
-export type BlazeConfig = {
-  media: Record<string, Partial<MediaConfig>>
-}
+export type BlazeConfig = Record<string, Partial<MediaConfig>>
 
 /** Indicates which sliders it shows by storing a range from startIndex to endIndex */
 export type Page = [start: number, end: number]

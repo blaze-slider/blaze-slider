@@ -10,8 +10,8 @@ import 'flickity/css/flickity.css'
 import { Swiper } from 'swiper'
 import 'swiper/css'
 // blaze
-import '../../blaze-slider/src/blaze.css'
-import { BlazeSlider } from '../../blaze-slider/src/index'
+import { BlazeSlider } from 'blaze-slider'
+import 'blaze-slider/dist/blaze.css'
 // page styles
 import './style.css'
 

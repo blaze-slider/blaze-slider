@@ -1,4 +1,4 @@
-import { Automata } from '../src/automata'
+import { Automata } from '../src/automata/automata'
 
 describe('loop: true', () => {
   test('7 / 3 / 3', () => {
@@ -186,6 +186,8 @@ describe('loop: true', () => {
   })
 
   test('3 / 4 / * - static', () => {
+    const consoleWarnMock = jest.spyOn(console, 'warn').mockImplementation()
+
     const slider = new Automata(3, {
       slidesToShow: 4,
       slidesToScroll: 1,
@@ -211,5 +213,13 @@ describe('loop: true', () => {
         },
       },
     ])
+
+    expect(consoleWarnMock).toHaveBeenCalledWith(
+      expect.stringContaining(
+        'slidesToShow can not be larger than number of slides. Setting slidesToShow = totalSlides instead.'
+      )
+    )
+
+    consoleWarnMock.mockRestore()
   })
 })

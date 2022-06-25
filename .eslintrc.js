@@ -18,5 +18,9 @@ module.exports = {
     'linebreak-style': 'off',
     'brace-style': 'off',
     'no-new': 'off',
+    'no-undef': 'off',
+    'no-constant-condition': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    'no-use-before-define': 'off',
   },
 }

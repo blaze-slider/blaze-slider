@@ -1,9 +1,25 @@
-import { Automata } from './automata'
+import { Automata } from './automata/automata'
+import { END, START } from './constants'
 import { BlazeConfig, MediaConfig } from './types'
+import { handleAutoplay } from './utils/autoplay'
 import { createConfig, defaultConfig } from './utils/config'
 import { dragSupport } from './utils/drag'
-import { isDEV } from './utils/env'
+import { handleNavigation } from './utils/navigation'
 import { handlePagination } from './utils/pagination'
+import { scrollNext, scrollPrev } from './utils/scroll'
+
+const DEV = process.env.NODE_ENV !== 'production'
+
+function isTransitioning(
+  slider: BlazeSlider,
+  time = slider.config.transitionDuration
+) {
+  if (slider.isTransitioning) return
+  slider.isTransitioning = true
+  setTimeout(() => {
+    slider.isTransitioning = false
+  }, time)
+}
 
 export class BlazeSlider extends Automata {
   el: HTMLElement
@@ -11,169 +27,116 @@ export class BlazeSlider extends Automata {
   track: HTMLElement
   isDragging: boolean
   config: MediaConfig
-  paginationButtons: HTMLCollection | undefined
-  constructor(blazeSliderEl: HTMLElement, blazeConfig?: BlazeConfig) {
-    const config = blazeConfig ? createConfig(blazeConfig) : defaultConfig
-    const track = blazeSliderEl.querySelector('.blaze-track') as HTMLElement
+  paginationButtons: HTMLButtonElement[] | undefined
 
+  constructor(blazeSliderEl: HTMLElement, blazeConfig?: BlazeConfig) {
+    const config = blazeConfig
+      ? createConfig(blazeConfig)
+      : { ...defaultConfig }
+
+    const track = blazeSliderEl.querySelector('.blaze-track') as HTMLElement
     const slides = track.children
+
     super(slides.length, config)
+
     this.config = config
     this.el = blazeSliderEl
     this.track = track
     this.slides = slides
     this.isDragging = false
-    this.track.addEventListener('transitionstart', () => {
-      this.isTransitioning = true
-    })
-    this.track.addEventListener('transitionend', () => {
-      this.isTransitioning = false
-    })
 
-    if (this.isStatic) {
-      this.el.classList.add('static')
+    const slider = this
+
+    if (!config.loop) {
+      slider.el.classList.add(START)
     }
 
-    // apply config to css variables
-    this.el.style.setProperty('--slides-to-show', this.config.slidesToShow + '')
-    this.el.style.setProperty(
-      '--transition-duration',
-      this.config.transitionDuration + 'ms'
-    )
-
-    this.el.style.setProperty('--slide-gap', this.config.slideGap)
-
-    this.el.style.setProperty(
-      '--transition-timing-function',
-      this.config.transitionTimingFunction + ''
-    )
-    if (!this.isStatic) {
-      dragSupport(this)
-    }
-    handlePagination(this)
     if (config.enableAutoplay && !config.loop) {
-      if (isDEV) {
+      if (DEV) {
         console.warn(
-          'enableAutoplay = true is not consistent with loop = false, setting enableAutoplay = false instead'
+          'enableAutoplay:true is not consistent with loop:false, auto-fixing with enableAutoplay:false'
         )
       }
       config.enableAutoplay = false
     }
 
-    // @ts-ignore
-    window.slider = this
+    setCSS(slider)
 
-    if (config.enableAutoplay) {
-      const dir = config.autoplayDirection === 'to left' ? 'next' : 'prev'
-      setInterval(() => {
-        this[dir]()
-      }, config.autoplayInterval)
-    }
-  }
-
-  onStateChange(prev: number, current: number) {
-    const buttons = this.paginationButtons
-    if (buttons) {
-      buttons[prev].classList.remove('active')
-      buttons[current].classList.add('active')
-    }
-  }
-
-  setDrag(amount: number) {
-    // dragAmountEl.textContent = amount + "";
-    this.el.style.setProperty('--dragged', amount + '')
-  }
-
-  disableTransition() {
-    this.el.classList.add('no-transition')
-  }
-
-  enableTransition() {
-    this.el.classList.remove('no-transition')
-  }
-
-  onTrasitionEnd(cb: Function) {
-    // @ts-ignore
-    this.track.addEventListener('transitionend', cb, { once: true })
-  }
-
-  resetOffset() {
-    this.el.style.setProperty('--offset', '0')
-  }
-
-  setOffset(offset: number) {
-    // negative offset makes the slider move <-- (next direction)
-    // positive offset makes the slider move --> (prev direction)
-    // 0 offset puts the slider in it's original position where the first elements are visible
-    this.el.style.setProperty('--offset', offset + '')
-  }
-
-  wrapNext(count: number) {
-    for (let i = 0; i < count; i++) {
-      this.track.append(this.slides[0])
-    }
-  }
-
-  wrapPrev(count: number) {
-    const len = this.slides.length
-    for (let i = 0; i < count; i++) {
-      // pick the last and move to first
-      this.track.prepend(this.slides[len - 1])
-    }
-  }
-
-  noLoopScroll() {
-    this.setOffset(-1 * this.states[this.stateIndex].page[0])
-  }
-
-  // <--- move slider to left for showing content on right
-  scrollNext(count: number) {
-    if (!this.config.loop) {
-      this.noLoopScroll()
+    if (!slider.isStatic) {
+      dragSupport(slider)
     } else {
-      // apply offset and let the slider scroll from  <- (right to left)
-      this.setOffset(-1 * count)
-
-      // once the transition is done
-      this.onTrasitionEnd(() => {
-        // remove the elements from start that are no longer visible and put them at the end
-        this.wrapNext(count)
-        this.disableTransition()
-        // disable transition and reset offset to prevent jumping
-        requestAnimationFrame(() => {
-          this.resetOffset()
-          // after that, enable transition again
-          requestAnimationFrame(() => {
-            this.enableTransition()
-          })
-        })
-      })
+      slider.el.classList.add('static')
     }
+
+    handlePagination(slider)
+    handleAutoplay(slider)
+    handleNavigation(slider)
   }
 
-  scrollPrev(count: number) {
-    if (!this.config.loop) {
-      this.noLoopScroll()
+  next(count?: number) {
+    const transition = super.next(count)
+    if (!transition) return
+    const [prevStateIndex, slideCount] = transition
+    handleStateChange(this, prevStateIndex)
+    isTransitioning(this)
+    scrollNext(this, slideCount)
+  }
+
+  prev(count?: number) {
+    const transition = super.prev(count)
+    if (!transition) return
+    const [prevStateIndex, slideCount] = transition
+    handleStateChange(this, prevStateIndex)
+    isTransitioning(this)
+    scrollPrev(this, slideCount)
+  }
+}
+
+function handleStateChange(slider: BlazeSlider, prevStateIndex: number) {
+  const classList = slider.el.classList
+  const stateIndex = slider.stateIndex
+
+  if (!slider.config.loop) {
+    if (stateIndex === 0) {
+      classList.add(START)
     } else {
-      this.disableTransition()
-      this.setOffset(-1 * count) // move the elements to start
-      this.wrapPrev(count) // move the track so it looks like nothing is changed
+      classList.remove(START)
+    }
 
-      const reset = () => {
-        requestAnimationFrame(() => {
-          this.enableTransition()
-          requestAnimationFrame(() => {
-            this.resetOffset() // reset the offset to move the slider to new position
-          })
-        })
-      }
-      // if the scroll was done as part of dragging
-      // reset should be done after the dragging is completed
-      if (this.isDragging) {
-        this.track.addEventListener('pointerup', reset, { once: true })
-      } else {
-        requestAnimationFrame(reset)
-      }
+    if (stateIndex === slider.states.length - 1) {
+      classList.add(END)
+    } else {
+      classList.remove(END)
     }
   }
+
+  const buttons = slider.paginationButtons
+  if (buttons) {
+    buttons[prevStateIndex].classList.remove('active')
+    buttons[stateIndex].classList.add('active')
+  }
+}
+
+function setCSS(slider: BlazeSlider) {
+  const {
+    slidesToShow,
+    transitionDuration,
+    slideGap,
+    transitionTimingFunction,
+  } = slider.config
+
+  // layout
+  slider.el.style.setProperty('--slides-to-show', slidesToShow + '')
+  slider.el.style.setProperty('--slide-gap', slideGap)
+
+  // transition
+  slider.el.style.setProperty(
+    '--transition-duration',
+    transitionDuration + 'ms'
+  )
+
+  slider.el.style.setProperty(
+    '--transition-timing-function',
+    transitionTimingFunction + ''
+  )
 }

@@ -7,17 +7,19 @@
   --slide-width: calc((100% - var(--total-gap)) / var(--slides-to-show));
   --transition-duration: 200ms;
   --transition-timing-function: ease;
-  overflow: hidden;
   direction: ltr;
 }
 
-.blaze-slider:not(.static) {
+.blaze-slider:not(.static) .blaze-track {
   cursor: grab;
 }
 
-.blaze-slider,
-.blaze-slider * {
-  box-sizing: border-box;
+.blaze-container {
+  position: relative;
+}
+
+.blaze-track-container {
+  overflow: hidden;
 }
 
 .blaze-track {
@@ -34,20 +36,20 @@
     var(--transition-timing-function);
 }
 
-.no-transition .blaze-track {
+/* disabling transition */
+.blaze-slider.no-transition .blaze-track,
+.blaze-slider.dragging .blaze-track {
   transition: none !important;
 }
 
+/* setting with on slides */
 .blaze-track > * {
   width: var(--slide-width);
   flex-shrink: 0;
 }
 
+/* grab cursor when dragging */
 .blaze-slider.dragging {
   user-select: none;
   cursor: grabbing;
-}
-
-.blaze-slider.dragging .blaze-track {
-  transition: none !important;
 }

@@ -1,6 +1,8 @@
-import { AutomataConfig, State } from './types'
-import { calculateStates } from './utils/calculateStates'
-import { fixSliderConfig } from './utils/fixSliderConfig'
+import { AutomataConfig, State } from '../types'
+import { calculateStates } from './calculateStates'
+import { fixSliderConfig } from '../utils/fixSliderConfig'
+
+export type Transition = [oldStateIndex: number, slideCount: number]
 
 export class Automata {
   config: AutomataConfig
@@ -20,32 +22,35 @@ export class Automata {
     this.totalSlides = totalSlides
     this.stateIndex = 0
     this.isStatic = totalSlides <= config.slidesToShow
+    this.isTransitioning = false
     fixSliderConfig(this)
     this.states = calculateStates(this)
-    this.isTransitioning = false
   }
 
-  next(pages = 1) {
-    if (this.isStatic || this.isTransitioning) return
+  next(pages = 1): Transition | void {
+    if (this.isTransitioning || this.isStatic) return
     const { stateIndex } = this
     let slidesMoved = 0
     let newStateIndex = stateIndex
+
     for (let i = 0; i < pages; i++) {
       const state = this.states[newStateIndex]
       slidesMoved += state.next.moveSlides
       newStateIndex = state.next.stateIndex
     }
+
     if (newStateIndex === stateIndex) return
     this.stateIndex = newStateIndex
-    this.onStateChange(stateIndex, newStateIndex)
-    this.scrollNext(slidesMoved)
+
+    return [stateIndex, slidesMoved]
   }
 
-  prev(pages = 1) {
-    if (this.isStatic || this.isTransitioning) return
+  prev(pages = 1): Transition | void {
+    if (this.isTransitioning || this.isStatic) return
     const { stateIndex } = this
     let slidesMoved = 0
     let newStateIndex = stateIndex
+
     for (let i = 0; i < pages; i++) {
       const state = this.states[newStateIndex]
       slidesMoved += state.prev.moveSlides
@@ -53,12 +58,7 @@ export class Automata {
     }
     if (newStateIndex === stateIndex) return
     this.stateIndex = newStateIndex
-    this.onStateChange(stateIndex, newStateIndex)
-    this.scrollPrev(slidesMoved)
-  }
 
-  // to be implemented by child class
-  scrollNext(slideCount: number) {}
-  scrollPrev(slideCount: number) {}
-  onStateChange(prev: number, current: number) {}
+    return [stateIndex, slidesMoved]
+  }
 }

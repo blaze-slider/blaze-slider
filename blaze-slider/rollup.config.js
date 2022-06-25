@@ -1,55 +1,86 @@
+import replace from '@rollup/plugin-replace'
 import banner from 'rollup-plugin-banner'
-import { eslintBundle } from 'rollup-plugin-eslint-bundle'
 import { terser } from 'rollup-plugin-terser'
 import typescript from 'rollup-plugin-ts'
-
-const minifier = terser({ compress: true })
-
-const eslintPlugin = eslintBundle({
-  eslintOptions: {
-    fix: true,
-  },
-  throwOnWarning: true,
-  throwOnError: true,
-  formatter: 'compact',
-})
 
 const bannerPlugin = banner(
   'blaze-slider v<%= pkg.version %> by <%= pkg.author %>'
 )
 
-const outputs = [
-  // Modern ESM
-  {
+// use this tsconfig to prevent declaration files from being emitted
+// don't emit declaration files for each build - emit just one time when building the ESM bundle
+// so that we don't have the same file 5 times in the dist folder
+const tsDontEmitDeclaration = typescript({
+  tsconfig: 'tsconfig.nodecl.json',
+})
+
+const input = './src/slider.ts'
+
+/**
+ * CJS bundles are for older bundlers that can not handle CJS modules
+ * ESM bundle is for modern bundlers that can handle ES modules
+ * modern bundler will choose ESM because we have specified it in pkg.module
+ * IIFE bundles can be used directly on browser without any bundlers
+ */
+
+const devBuilds = {
+  input: input,
+  output: [
+    // CJS Dev
+    {
+      file: 'dist/blaze-slider.cjs.dev.js',
+      format: 'cjs',
+    },
+    // IIFE dev
+    {
+      file: 'dist/blaze-slider.dev.js',
+      name: 'BlazeSlider',
+      format: 'iife',
+    },
+  ],
+  plugins: [
+    tsDontEmitDeclaration,
+    replace({
+      preventAssignment: true,
+      'process.env.NODE_ENV': '"development"',
+    }),
+    bannerPlugin,
+  ],
+}
+
+const prodBuilds = {
+  input: input,
+  output: [
+    // IIFE prod
+    {
+      file: 'dist/blaze-slider.min.js',
+      name: 'BlazeSlider',
+      format: 'iife',
+    },
+    // CJS PROD
+    {
+      file: 'dist/blaze-slider.cjs.prod.js',
+      format: 'cjs',
+    },
+  ],
+  plugins: [
+    tsDontEmitDeclaration,
+    replace({
+      preventAssignment: true,
+      'process.env.NODE_ENV': '"production"',
+    }),
+    terser({ compress: true }),
+    bannerPlugin,
+  ],
+}
+
+const esmBuild = {
+  input: input,
+  plugins: [typescript()],
+  output: {
     file: 'dist/blaze-slider.esm.js',
     format: 'esm',
-    plugins: [eslintPlugin, bannerPlugin],
   },
-  // CJS Dev
-  {
-    file: 'dist/blaze-slider.cjs.dev.js',
-    format: 'cjs',
-    plugins: [eslintPlugin, bannerPlugin],
-  },
-  // CJS PROD
-  {
-    file: 'dist/blaze-slider.cjs.prod.js',
-    format: 'cjs',
-    plugins: [minifier, bannerPlugin],
-  },
-  // IIFE
-  {
-    file: 'dist/blaze-slider.min.js',
-    name: 'BlazeSlider',
-    format: 'iife',
-    plugins: [minifier, bannerPlugin],
-  },
-]
-
-export default (args) => {
-  return {
-    input: './src/index.ts',
-    output: args.dev ? outputs[0] : outputs,
-    plugins: [typescript()],
-  }
 }
+
+export default [devBuilds, prodBuilds, esmBuild]
