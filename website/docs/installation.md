@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Installtion 🛠
+# Installation
 
 Blaze slider can either be used as an NPM module or just by including it's JS and CSS files
 
@@ -13,6 +13,8 @@ Install the blaze-slider as a dependency in your project
 ```bash
 npm i blaze-slider
 ```
+
+<br/>
 
 ## Using JS and CSS files directly
 

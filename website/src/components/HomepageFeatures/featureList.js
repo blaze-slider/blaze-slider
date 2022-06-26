@@ -1,16 +1,10 @@
-import FastSVG from '@site/static/svg/fast.svg'
-import ExplosionSVG from '@site/static/svg/explosion.svg'
-import CustomizableSVG from '@site/static/svg/customizable.svg'
-import ResponsiveSVG from '@site/static/svg/responsive.svg'
-import EyeSVG from '@site/static/svg/eye.svg'
-import NoCloneSVG from '@site/static/svg/noclone.svg'
 import React from 'react'
 
 export const FeatureList = [
   {
     className: 'fast',
-    title: 'High Performance',
-    Svg: <FastSVG />,
+    color: '#fc427b',
+    title: 'High Performance 🔥',
     description: (
       <>
         Lightening fast slider initialization with zero layout shifts.
@@ -20,9 +14,10 @@ export const FeatureList = [
     ),
   },
   {
+    color: '#c56cf0',
+
     className: 'explosion',
-    title: 'Packed With Features',
-    Svg: <ExplosionSVG />,
+    title: 'Packed With Features ✨',
     description: (
       <>
         Touch support, drag, swipe, autoplay, pagination, navigation, infinite
@@ -31,9 +26,10 @@ export const FeatureList = [
     ),
   },
   {
-    title: 'Super Customizable',
+    color: '#7d5fff',
+
+    title: 'Super Customizable 🧑‍🎨',
     className: 'customizable',
-    Svg: <CustomizableSVG />,
     description: (
       <>
         Customize everything from number of slides to show, scroll, transition
@@ -42,8 +38,9 @@ export const FeatureList = [
     ),
   },
   {
-    title: 'Responsive Configuration',
-    Svg: <ResponsiveSVG />,
+    color: '#70a1ff',
+
+    title: 'Responsive Config 🛠',
     className: 'responsive',
     description: (
       <>
@@ -53,9 +50,9 @@ export const FeatureList = [
     ),
   },
   {
+    color: '#d6a2e8',
     className: 'eye',
-    title: 'Zero Layout Shifts',
-    Svg: <EyeSVG />,
+    title: 'Zero Layout Shifts 🎨',
     description: (
       <>
         Blaze Slider creates layout using css variables, so you can configure
@@ -65,13 +62,12 @@ export const FeatureList = [
   },
   {
     className: 'noclone',
-    title: 'No Slide Cloning',
-    Svg: <NoCloneSVG />,
+    color: '#f8c291',
+    title: 'Infinite Loop without cloning slides  🙌',
     description: (
       <>
-        Even when infinite looping is enabled, blaze slider does not clone the
-        slides. This removes an entire class of bugs that are caused by slide
-        cloning
+        Blaze slider does not clone the slides. This removes an entire class of
+        bugs that can be caused by slide cloning
       </>
     ),
   },

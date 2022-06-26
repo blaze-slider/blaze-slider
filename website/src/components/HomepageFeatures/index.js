@@ -24,15 +24,6 @@ export default function HomepageFeatures() {
     <section className="feature-section">
       <div className="container">
         <div className="blaze-slider" ref={sliderRef}>
-          <div className="bottom-nav" style={{ height: '40px' }}>
-            <button className="blaze-prev">
-              <PrevSVG />
-            </button>
-            <div className="blaze-pagination"></div>
-            <button className="blaze-next" aria-label="next">
-              <NextSVG />
-            </button>
-          </div>
           <div className="blaze-container">
             <div className="blaze-track-container">
               <div className="blaze-track">
@@ -42,18 +33,26 @@ export default function HomepageFeatures() {
               </div>
             </div>
           </div>
+          <div className="bottom-nav" style={{ height: '40px' }}>
+            <button className="blaze-prev">
+              <PrevSVG />
+            </button>
+            <div className="blaze-pagination"></div>
+            <button className="blaze-next" aria-label="next">
+              <NextSVG />
+            </button>
+          </div>
         </div>
       </div>
     </section>
   )
 }
 
-function Feature({ imgSrc, title, description, Svg, className }) {
+function Feature({ title, description, className, color }) {
   return (
     <div className="feature-container">
       <div className={`feature ${className}`}>
-        {Svg || <img src={imgSrc} className="feature-img" />}
-        <h3>{title}</h3>
+        <h3 style={{ color: color }}>{title}</h3>
         <p>{description}</p>
       </div>
     </div>

@@ -40,29 +40,30 @@
   color: white;
 }
 
-a.card,
+/* a.card,
 .card h2 {
   text-shadow: none !important;
-}
+} */
 
 .navbar--fixed-top:not(.navbar-sidebar--show),
 .navbar-sidebar {
   backdrop-filter: saturate(180%) blur(20px);
-  background: hsl(215deg 21% 10% / 71%) !important;
+  background: hsl(215deg 21% 8% / 71%) !important;
 }
 
 .hero__title {
+  color: var(--ifm-color-primary);
   font-size: 90px;
-  text-shadow: -4px -4px 40px hsl(181deg 100% 50% / 62%);
+  /* text-shadow: -4px -4px 40px hsl(181deg 100% 50% / 32%); */
 }
 
-h1 {
+/* h1 {
   text-shadow: -2px -2px 20px hsl(181deg 100% 50% / 32%);
 }
 
 h2 {
-  text-shadow: -2px -2px 10px hsl(0deg 100% 50% / 42%);
-}
+  text-shadow: -2px -2px 10px hsl(0deg 100% 50% / 32%);
+} */
 
 @media (max-width: 500px) {
   .hero__title {
@@ -124,10 +125,22 @@ header {
 }
 
 .cta {
+  margin-top: 20px;
   background: var(--gradient-1) !important;
   color: var(--ifm-color-primary) !important;
   border-color: currentColor;
   background: var(--gradient-1);
+  transition: transform 200ms ease, background 200ms ease;
+  border: 2px solid;
+}
+
+@media (hover: hover) {
+  .cta:hover {
+    transform: scale(1.2);
+    background: var(--ifm-color-primary) !important;
+    color: var(--bg-darker) !important;
+    border: 2px solid var(--ifm-color-primary);
+  }
 }
 
 .bottom-nav {
@@ -156,7 +169,6 @@ header {
 
 .blaze-slider {
   margin-bottom: 50px;
-  margin-top: 50px;
 }
 
 .feature-section .blaze-slider {
@@ -176,8 +188,4 @@ header {
 .blaze-prev svg,
 .blaze-next svg {
   fill: var(--bg-lightest);
-}
-
-a {
-  text-shadow: -2px -2px 10px #37e2d56e;
 }
