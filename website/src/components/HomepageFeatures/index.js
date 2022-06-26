@@ -23,11 +23,7 @@ export default function HomepageFeatures() {
   return (
     <section className="feature-section">
       <div className="container">
-        <div
-          className="blaze-slider"
-          ref={sliderRef}
-          style={{ '--slides-to-show': '3', '--slide-gap': '0px' }}
-        >
+        <div className="blaze-slider" ref={sliderRef}>
           <div className="bottom-nav" style={{ height: '40px' }}>
             <button className="blaze-prev">
               <PrevSVG />

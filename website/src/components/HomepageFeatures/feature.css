@@ -98,3 +98,20 @@
 .eye {
   --feature-color: hsl(218deg 100% 50% / 60%);
 }
+
+.feature-section .blaze-slider {
+  --slides-to-show: 3;
+  --slide-gap: 0px;
+}
+
+@media (max-width: 991px) {
+  .feature-section .blaze-slider {
+    --slides-to-show: 2;
+  }
+}
+
+@media (max-width: 500px) {
+  .feature-section .blaze-slider {
+    --slides-to-show: 1;
+  }
+}
