@@ -1,64 +1,61 @@
-import clsx from 'clsx'
-import styles from './styles.module.css'
 import React from 'react'
+import './feature.css'
+import { useBlazeSlider } from '../../hooks/useBlazeSlider'
+import { FeatureList } from './featureList'
+import PrevSVG from '@site/static/svg/prev.svg'
+import NextSVG from '@site/static/svg/next.svg'
 
-const FeatureList = [
-  {
-    title: 'High Performance',
-    imgSrc: '/img/fast.png',
-    description: (
-      <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
-    ),
-  },
-  {
-    title: 'Tons of Features',
-    imgSrc: '/img/party.png',
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
-  },
-  {
-    title: 'Highly Customizable',
-    imgSrc: '/img/customizable.png',
-    description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
-      </>
-    ),
-  },
-]
+export default function HomepageFeatures() {
+  const sliderRef = useBlazeSlider({
+    screen: {
+      slidesToShow: 3,
+      slideGap: '0px',
+      loop: false,
+    },
+    '(max-width: 991px)': {
+      slidesToShow: 2,
+    },
+    '(max-width: 500px)': {
+      slidesToShow: 1,
+    },
+  })
 
-function Feature({ imgSrc, title, description }) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <img src={imgSrc} className="feature-img" />
+    <section className="feature-section">
+      <div className="container">
+        <div className="blaze-slider" ref={sliderRef}>
+          <div className="bottom-nav">
+            <button className="blaze-prev">
+              <PrevSVG />
+            </button>
+            <div className="blaze-pagination"></div>
+            <button className="blaze-next" aria-label="next">
+              <NextSVG />
+            </button>
+          </div>
+          <div className="blaze-container">
+            <div className="blaze-track-container">
+              <div className="blaze-track">
+                {FeatureList.map((props, idx) => (
+                  <Feature key={idx} {...props} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="text--center padding-horiz--md">
+    </section>
+  )
+}
+
+function Feature({ imgSrc, title, description, Svg, className }) {
+  return (
+    <div className="feature-container">
+      <div className={`feature ${className}`}>
+        {Svg || <img src={imgSrc} className="feature-img" />}
         <h3>{title}</h3>
         <p>{description}</p>
       </div>
     </div>
-  )
-}
-
-export default function HomepageFeatures() {
-  return (
-    <section className={styles.features}>
-      <div className="container">
-        <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
-        </div>
-      </div>
-    </section>
   )
 }

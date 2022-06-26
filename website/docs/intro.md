@@ -8,11 +8,11 @@ Blaze slider is a _high performance_ JavaScript UI library for creating sliders
 
 The problem with existing slider libraries is that they are not designed with performance in mind, they block the main thread for a long time when initializing a slider which results in bad [FID](https://web.dev/fid/) metric for your website.
 
-They also create layout shifts which negatively impact the user experience and [CLS](https://web.dev/cls/) metric of your website and they don't (or can't) provide any way to reduce layout shifts, and often times there is no way to avoid layout shifts when you use these libraries because of how they initilize the sliders.
+They also create layout shifts which negatively impact the user experience and [CLS](https://web.dev/cls/) metric of your website and they don't (or can't) provide any way to reduce layout shifts, and often times there is no way to avoid layout shifts when you use these libraries because of how they initialize the sliders.
 
-Blaze Slider is built to fix these issues. It can initialize the slider **`30x faster` than the most popular slider library** - slick slider, and `15x faster` than swiper slider. blaze-slider allows you to specify the configuration as inline style which allows slider initialization with `zero layout shifts` - so that your slider will look exactly before and after javascript runs.
+Blaze Slider is built to fix these issues. It can initialize the slider <span className='wow'>30x faster</span> than the most popular slider library - slick slider, and <span className='wow'>15x faster</span> than swiper slider. blaze-slider allows you to specify the configuration via css variables which allows slider initialization with <span className='wow'>zero layout shifts</span> - so that your slider will look exactly before and after javascript runs.
 
-## Highlights
+## Highlights ✨
 
 - The Fastest Slider Library
 - Zero layout shifts
@@ -26,13 +26,13 @@ Blaze Slider is built to fix these issues. It can initialize the slider **`30x f
 
 <br/>
 
-| Speed Rank | Slider Library | Time to initialize | Speed Comparison   | Layout shift avoidable? |
-| ---------- | -------------- | ------------------ | ------------------ | ----------------------- |
-| 1          | Blaze          | 2.1 ms             | **1**x             | Yes ✅                  |
-| 2          | Glide          | 12.2 ms            | **5.8**x _slower_  | No ❌                   |
-| 3          | Flickity       | 13.29 ms           | **6.32**x _slower_ | No ❌                   |
-| 4          | Swiper         | 29.8 ms            | **14.2**x _slower_ | No ❌                   |
-| 5          | Slick          | 60.0 ms            | **28.5**x _slower_ | No ❌                   |
+| Speed Rank                      | Slider Library                      | Time to initialize                   | Speed Comparison                 |
+| ------------------------------- | ----------------------------------- | ------------------------------------ | -------------------------------- |
+| <span className='wow'>1 </span> | <span className='wow'>Blaze </span> | <span className='wow'>2.1 ms </span> | <span className='wow'>1x </span> |
+| 2                               | Glide                               | 12.2 ms                              | **5.8**x _slower_                |
+| 3                               | Flickity                            | 13.29 ms                             | **6.32**x _slower_               |
+| 4                               | Swiper                              | 29.8 ms                              | **14.2**x _slower_               |
+| 5                               | Slick                               | 60.0 ms                              | **28.5**x _slower_               |
 
 <br/>
 

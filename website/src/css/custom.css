@@ -4,23 +4,9 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
-:root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-}
-
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  /*background of hero */
-  --ifm-color-primary: #f2ba4b;
+  --ifm-color-primary: #37e2d5;
   --ifm-color-primary-dark: #21af90;
   --ifm-color-primary-darker: #1fa588;
   --ifm-color-primary-darkest: #1a8870;
@@ -28,20 +14,54 @@
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  --bg: hsl(215deg 21% 12%);
+  --bg-light-shadow: hsl(215deg 21% 20% / 70%);
+  --bg-darker: hsl(215deg 21% 8%);
+  --bg-slight-darker: hsl(215deg 21% 10%);
+  --bg-slight-lighter: hsl(215deg 21% 15%);
+  --bg-lighter: hsl(215deg 21% 20%);
+  --bg-lightest: hsl(215deg 21% 40%);
+
+  --ifm-navbar-background-color: var(--bg-slight-darker);
+  --gradient-1: linear-gradient(
+    109deg,
+    var(--bg-slight-slighter),
+    hsl(215deg 21% 9%)
+  );
+
+  --ifm-table-head-background: var(--bg-slight-lighter);
+  --ifm-table-stripe-background: var(--bg-slight-lighter) !important;
+  --ifm-card-background-color: var(--bg-slight-darker);
+  --ifm-code-background: var(--bg-lighter) !important;
 }
 
-html[data-theme='dark'] .hero--primary {
+.hero--primary {
   color: white;
-  background: var(--ifm-background-color);
 }
 
-html[data-theme='light'] .hero--primary {
-  color: black;
-  background: var(--ifm-background-color);
+a.card,
+.card h2 {
+  text-shadow: none !important;
+}
+
+.navbar--fixed-top:not(.navbar-sidebar--show),
+.navbar-sidebar {
+  backdrop-filter: saturate(180%) blur(20px);
+  background: hsl(215deg 21% 10% / 71%) !important;
 }
 
 .hero__title {
   font-size: 90px;
+  text-shadow: -4px -4px 40px hsl(181deg 100% 50% / 62%);
+}
+
+h1 {
+  text-shadow: -2px -2px 20px hsl(181deg 100% 50% / 32%);
+}
+
+h2 {
+  text-shadow: -2px -2px 10px hsl(0deg 100% 50% / 42%);
 }
 
 @media (max-width: 500px) {
@@ -50,14 +70,114 @@ html[data-theme='light'] .hero--primary {
   }
 }
 
-.feature-img {
-  max-width: 120px;
-  margin-bottom: 30px;
-  margin-top: 50px;
+.blaze-pagination button {
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+  border-radius: 50%;
+  color: transparent;
+  outline: none;
+  border: none;
+  background: var(--bg-darker);
+  cursor: pointer;
+  transition: transform 200ms ease, background 300ms ease;
+  border: 2px solid var(--bg-lightest);
+}
+
+@media (max-width: 500px) {
+  .blaze-pagination button {
+    margin: 8px;
+  }
 }
 
 .footer {
   padding: 20px;
   color: var(--ifm-color-emphasis-800);
-  background: var(--ifm-color-emphasis-0);
+  background: var(--bg-darker);
+}
+
+.blaze-pagination button.active {
+  background-color: var(--bg-lightest);
+}
+
+@media (hover: hover) {
+  .blaze-pagination button:hover {
+    transform: scale(1.5);
+  }
+}
+
+.blaze-pagination button.active {
+  transform: scale(1.5);
+}
+
+.blaze-pagination {
+  display: flex;
+  justify-content: center;
+}
+
+#__docusaurus {
+  background: var(--bg);
+}
+
+header {
+  background: none !important;
+}
+
+.cta {
+  background: var(--gradient-1) !important;
+  color: var(--ifm-color-primary) !important;
+  border-color: currentColor;
+  background: var(--gradient-1);
+}
+
+.bottom-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0px;
+}
+
+.blaze-next,
+.blaze-prev {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.blaze-slider.dragging .blaze-track {
+  cursor: grabbing !important;
+}
+
+@media (max-width: 500px) {
+  header {
+    padding: 20px 0 !important;
+  }
+}
+
+.blaze-slider {
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.feature-section .blaze-slider {
+  user-select: none;
+}
+
+.blaze-prev,
+.blaze-next {
+  transition: opacity 300ms ease;
+}
+
+.blaze-slider.start .blaze-prev,
+.blaze-slider.end .blaze-next {
+  opacity: 0.1;
+}
+
+.blaze-prev svg,
+.blaze-next svg {
+  fill: var(--bg-lightest);
+}
+
+a {
+  text-shadow: -2px -2px 10px #37e2d56e;
 }
