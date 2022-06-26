@@ -9,9 +9,9 @@ import {
   wrapNext,
 } from './methods'
 
-const rAf = requestAnimationFrame
-
 export function scrollPrev(slider: BlazeSlider, slideCount: number) {
+  const rAf = requestAnimationFrame
+
   if (!slider.config.loop) {
     noLoopScroll(slider)
   } else {
@@ -40,6 +40,8 @@ export function scrollPrev(slider: BlazeSlider, slideCount: number) {
 
 // <--- move slider to left for showing content on right
 export function scrollNext(slider: BlazeSlider, slideCount: number) {
+  const rAf = requestAnimationFrame
+
   if (!slider.config.loop) {
     noLoopScroll(slider)
   } else {
