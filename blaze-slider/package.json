@@ -1,10 +1,9 @@
 {
   "name": "blaze-slider",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Blazing Fast Slider For High Performance Web",
   "main": "dist/blaze-slider.cjs.js",
   "module": "dist/blaze-slider.esm.js",
-  "browser": "dist/blaze-slider.min.js",
   "types": "dist/blaze-slider.esm.d.ts",
   "scripts": {
     "publish:patch": "npm version patch && npm run build && npm publish --public",

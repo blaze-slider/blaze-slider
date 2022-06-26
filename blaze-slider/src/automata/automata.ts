@@ -21,9 +21,9 @@ export class Automata {
     this.config = config
     this.totalSlides = totalSlides
     this.stateIndex = 0
-    this.isStatic = totalSlides <= config.slidesToShow
     this.isTransitioning = false
     fixSliderConfig(this)
+    this.isStatic = totalSlides <= config.slidesToShow
     this.states = calculateStates(this)
   }
 
