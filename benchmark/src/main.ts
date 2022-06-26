@@ -10,7 +10,7 @@ import 'flickity/css/flickity.css'
 import { Swiper } from 'swiper'
 import 'swiper/css'
 // blaze
-import { BlazeSlider } from 'blaze-slider'
+import BlazeSlider from 'blaze-slider'
 import 'blaze-slider/dist/blaze.css'
 // page styles
 import './style.css'
@@ -32,12 +32,10 @@ async function tester() {
   performance.mark('blaze-slider-start')
   start = performance.now()
   new BlazeSlider(blazeTarget, {
-    media: {
-      '(max-width: 9999px)': {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        slideGap: '20px',
-      },
+    screen: {
+      slidesToShow: 3,
+      slidesToScroll: 3,
+      slideGap: '20px',
     },
   })
   end = performance.now()
