@@ -1,9 +1,9 @@
 import React from 'react'
 import './feature.css'
+import './slider.css'
 import { useBlazeSlider } from '../../hooks/useBlazeSlider'
 import { FeatureList } from './featureList'
-import PrevSVG from '@site/static/svg/prev.svg'
-import NextSVG from '@site/static/svg/next.svg'
+import ChevronSVG from '@site/static/svg/chevron.svg'
 
 export default function HomepageFeatures() {
   const sliderRef = useBlazeSlider({
@@ -35,11 +35,11 @@ export default function HomepageFeatures() {
           </div>
           <div className="bottom-nav" style={{ height: '40px' }}>
             <button className="blaze-prev">
-              <PrevSVG />
+              <ChevronSVG />
             </button>
             <div className="blaze-pagination"></div>
             <button className="blaze-next" aria-label="next">
-              <NextSVG />
+              <ChevronSVG />
             </button>
           </div>
         </div>

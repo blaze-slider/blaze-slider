@@ -1,10 +1,6 @@
 .feature {
-  background: linear-gradient(
-    129deg,
-    var(--bg-slight-lighter),
-    var(--bg-slight-darker)
-  );
-  box-shadow: 8px 8px 30px var(--bg-darker);
+  background: var(--gradient-1) !important;
+  box-shadow: 12px 12px 24px var(--bg-darker);
   border-radius: 20px;
   height: 100%;
   padding: 30px;
@@ -83,4 +79,12 @@
   .feature-section .blaze-slider {
     --slides-to-show: 1;
   }
+}
+
+.feature-section .blaze-slider {
+  user-select: none;
+}
+
+.feature-section .blaze-slider {
+  margin-bottom: 50px;
 }

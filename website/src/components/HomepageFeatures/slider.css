@@ -1,0 +1,76 @@
+/* blaze-pagination */
+.blaze-pagination button {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  color: transparent;
+  outline: none;
+  border: none;
+  background: var(--bg-lighter);
+  cursor: pointer;
+  transition: transform 200ms ease, background 300ms ease;
+}
+
+.blaze-pagination button.active {
+  background-color: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+}
+
+@media (hover: hover) {
+  .blaze-pagination button:hover {
+    transform: scale(1.5);
+  }
+}
+
+.blaze-pagination button.active {
+  transform: scale(1.5);
+}
+
+.blaze-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.bottom-nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
+.blaze-next,
+.blaze-prev {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.blaze-slider.dragging .blaze-track {
+  cursor: grabbing !important;
+}
+
+/* blaze navigation */
+.blaze-prev {
+  transform: rotate(180deg);
+}
+
+.blaze-prev,
+.blaze-next {
+  transition: opacity 300ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blaze-slider.start .blaze-prev,
+.blaze-slider.end .blaze-next {
+  opacity: 0.1;
+}
+
+.blaze-prev svg,
+.blaze-next svg {
+  fill: var(--ifm-color-primary);
+}
