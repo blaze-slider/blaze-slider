@@ -17,7 +17,7 @@ new BlazeSlider(
 
 First argument is the `div.blaze-slider` element on which you want to initialize the slider
 
-Second argument is the blaze-slider [configuration](/BlazeConfig)
+Second argument is the blaze-slider [configuration](/docs/api/BlazeConfig)
 
 ### Example 1: No Config
 
