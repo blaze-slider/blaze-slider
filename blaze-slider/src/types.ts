@@ -43,13 +43,6 @@ export interface MediaConfig extends AutomataConfig {
   autoplayDirection: 'to right' | 'to left'
 
   /**
-   * pause autoplay when hovering the slider
-   *
-   * default: `true`
-   */
-  pauseAutoplayOnHover: boolean
-
-  /**
    * stop the autoplay when user interacts with the slider
    * either give `true` or `false`
    * or specify the amount of time in milliseconds after which the slider should resume autoplay after stopping

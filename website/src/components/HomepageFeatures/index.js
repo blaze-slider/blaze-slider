@@ -1,6 +1,7 @@
 import React from 'react'
 import './feature.css'
 import './slider.css'
+import '../../css/blaze-custom.css'
 import { useBlazeSlider } from '../../hooks/useBlazeSlider'
 import { FeatureList } from './featureList'
 import ChevronSVG from '@site/static/svg/chevron.svg'

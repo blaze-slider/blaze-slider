@@ -34,6 +34,22 @@
   --ifm-table-stripe-background: var(--bg-slight-lighter) !important;
   --ifm-card-background-color: var(--bg-slight-darker);
   --ifm-code-background: var(--bg-lighter) !important;
+  --ifm-font-size-base: 18px;
+}
+
+a.navbar__brand {
+  color: var(--ifm-color-primary);
+  font-size: 24px;
+}
+
+@media (max-width: 500px) {
+  .hero-logo {
+    height: 100px;
+  }
+}
+
+.navbar__logo img {
+  filter: drop-shadow(0px 0px 10px hsl(175deg 75% 55% / 48%));
 }
 
 #__docusaurus {
@@ -56,9 +72,17 @@ header {
   color: white;
 }
 
+.hero {
+  padding-top: 40px !important;
+}
+
+img.hero-logo {
+  filter: drop-shadow(0px 0px 35px hsl(175deg 75% 55% / 48%));
+}
+
 .hero__title {
   color: var(--ifm-color-primary);
-  font-size: 90px;
+  font-size: 70px;
 }
 
 @media (max-width: 500px) {
@@ -95,4 +119,23 @@ header {
   padding: 20px;
   color: var(--ifm-color-emphasis-800);
   background: var(--bg-darker);
+}
+
+.alert--info {
+  background: var(--bg-lighter);
+  border-left-color: var(--bg-lightest);
+}
+
+.alert--secondary {
+  background: var(--bg-darker);
+  border-left-color: var(--ifm-color-primary);
+}
+
+.wow {
+  color: var(--ifm-color-primary);
+  font-weight: bold;
+}
+
+body pre.prism-code {
+  --prism-background-color: var(--bg-darker) !important;
 }

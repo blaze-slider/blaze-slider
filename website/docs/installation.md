@@ -4,9 +4,9 @@ sidebar_position: 2
 
 # Installation
 
-Blaze slider can either be used as an NPM module or just by including it's JS and CSS files
+Blaze slider can either be used as an NPM module for modern web app or just by including it's JS and CSS files for traditional websites
 
-## Using as an NPM module
+## Installing NPM module
 
 Install the blaze-slider as a dependency in your project
 
@@ -14,30 +14,45 @@ Install the blaze-slider as a dependency in your project
 npm i blaze-slider
 ```
 
+### Using library via NPM module
+
+```javascript
+import BlazeSlider from 'blaze-slider'
+import 'blaze-slider/dist/blaze.css'
+```
+
+:::info
+
+You MUST import the blaze.css, without it slider will not work
+
+:::
+
 <br/>
 
 ## Using JS and CSS files directly
 
-You can get the latest JS and CSS fiiles of blaze slider from [unpkg.com](https://unpkg.com/) as shown below:
+You can get the latest JS and CSS files of blaze slider from [unpkg.com](https://unpkg.com/) as shown below:
 
-Production build minified Javascript: https://unpkg.com/blaze-slider@latest/dist/blaze-slider.min.js
+| Asset               | Link                                                           |
+| ------------------- | -------------------------------------------------------------- |
+| JS Production build | https://unpkg.com/blaze-slider@latest/dist/blaze-slider.min.js |
+| JS Dev build        | https://unpkg.com/blaze-slider@latest/dist/blaze-slider.dev.js |
+| CSS                 | https://unpkg.com/blaze-slider@latest/dist/blaze.css           |
 
-Development build Javascript: https://unpkg.com/blaze-slider@latest/dist/blaze-slider.dev.js
+JS Development build is non-minified and it contains extra code that logs warnings in console when to alert wrong configurations to developer.
 
-CSS: https://unpkg.com/blaze-slider@latest/dist/blaze.css
+### Using Library with JS and CSS files
 
-Development build is non-minified and it contains extra code that logs warnings when it finds wrong configurations
-
-```tip
-sf
-```
+Once you add the JS build in your website, a global constructor function `BlazeSlider` will be available. you can use this to initialize the sliders on desired slider elements as mentioned in [this tutorial](/docs/Tutorial/initialize-slider)
 
 <br/>
 
 If you want a specific version of blaze-slider library, replace the `latest` with a version instead as shown in example below:
 
-https://unpkg.com/blaze-slider@0.1.1/dist/blaze-slider.min.js
+https://unpkg.com/blaze-slider@0.1.6/dist/blaze-slider.min.js
 
-https://unpkg.com/blaze-slider@0.1.1/dist/blaze.css
+:::info
 
-Though you can use the [unpkg.com](https://unpkg.com/) links directly in your website for loading css and js, it's better to download these files and self host from your server instead to avoid making connection to third party domains.
+Though you can directly use these links to load CSS and JS in your website, it is better to self host these files to avoid third party network connections
+
+:::

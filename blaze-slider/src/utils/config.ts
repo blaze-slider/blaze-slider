@@ -8,7 +8,6 @@ export const defaultConfig: MediaConfig = {
   // behavior
   loop: true,
   // autoplay
-  pauseAutoplayOnHover: true,
   enableAutoplay: false,
   stopAutoplayOnInteraction: true,
   autoplayInterval: 3000,

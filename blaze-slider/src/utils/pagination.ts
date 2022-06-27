@@ -12,10 +12,13 @@ export function handlePagination(slider: BlazeSlider) {
 
   slider.paginationButtons = []
 
-  for (let index = 0; index < slider.states.length; index++) {
+  const total = slider.states.length
+
+  for (let index = 0; index < total; index++) {
     const button = document.createElement('button')
     slider.paginationButtons.push(button)
     button.textContent = 1 + index + ''
+    button.ariaLabel = `${index + 1} of ${total}`
     paginationContainer.append(button)
     // @ts-expect-error
     button.slider = slider

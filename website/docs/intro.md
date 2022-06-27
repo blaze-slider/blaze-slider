@@ -4,18 +4,24 @@ sidebar_position: 1
 
 # Introduction
 
-Blaze slider is a _high performance_ JavaScript UI library for creating sliders
+Blaze slider is a high performance JavaScript UI library for creating sliders.
 
-The problem with existing slider libraries is that they are not designed with performance in mind, they block the main thread for a long time when initializing a slider which results in bad [FID](https://web.dev/fid/) metric for your website.
+## The Problem
 
-They also create layout shifts which negatively impact the user experience and [CLS](https://web.dev/cls/) metric of your website and they don't (or can't) provide any way to reduce layout shifts, and often times there is no way to avoid layout shifts when you use these libraries because of how they initialize the sliders.
+Existing slider libraries are not designed with performance in mind. They block the main thread for a long time when initializing a slider which results in poor [FID](https://web.dev/fid/) metric for your website.
 
-Blaze Slider is built to fix these issues. It can initialize the slider <span className='wow'>30x faster</span> than the most popular slider library - slick slider, and <span className='wow'>15x faster</span> than swiper slider. blaze-slider allows you to specify the configuration via css variables which allows slider initialization with <span className='wow'>zero layout shifts</span> - so that your slider will look exactly before and after javascript runs.
+They also create layout shifts which negatively impacts the user experience and [CLS](https://web.dev/cls/) metric of your website. They don't provide any idiomatic way to reduce the layout shifts.
+
+## The Solution
+
+Blaze Slider is built to fix these issues. It can initialize the slider incredibly fast. It initializes the slider <span className='wow'>30x faster</span> than the most popular slider library - slick slider, and <span className='wow'>15x faster</span> than swiper slider.
+
+blaze-slider allows you to specify the layout configuration via css variables which enables slider initialization with <span className='wow'>zero layout shifts</span> - so that your slider will look exactly same before and after javascript runs.
 
 ## Highlights ✨
 
 - The Fastest Slider Library
-- Zero layout shifts
+- Zero layout shifts by providing a css config
 - Tons of features and fully customizable
 - Powerful CSS Media Query based responsive configuration
 - No slide cloning
@@ -40,4 +46,4 @@ Benchmark measures the time taken to create a slider with 10 slides by each slid
 
 Benchmark is measured on Apple M1 Pro CPU with 6X slowdown on Google Chrome 103
 
-See [Benchmark Repo](https://github.com/blaze-slider/blaze-slider/tree/main/benchmark) for more details
+See [Benchmark Repo](https://github.com/blaze-slider/blaze-slider/tree/main/benchmark) to see how these libraries are tested
