@@ -2,7 +2,7 @@ import type { BlazeConfig } from 'blaze-slider'
 import BlazeSlider from 'blaze-slider'
 import React from 'react'
 
-export function useBlazeSlider(config: BlazeConfig) {
+export function useBlazeSlider(config?: BlazeConfig) {
   const sliderRef = React.useRef<BlazeSlider>()
   const elRef = React.useRef<HTMLDivElement | null>(null)
 

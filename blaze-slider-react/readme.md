@@ -43,6 +43,12 @@ function Example() {
 }
 ```
 
+# Live Demo
+
+Checkout this [sandbox](https://codesandbox.io/s/react-blaze-slider-3g6cw1?file=/src/App.tsx) to see the live demo
+
+<br/>
+
 ## Blaze Slider Documentation
 
 Checkout the Website [blaze-slider.dev](https://blaze-slider.dev/) for Documentation about the blaze-slider core library.
