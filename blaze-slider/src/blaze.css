@@ -10,6 +10,10 @@
   direction: ltr;
 }
 
+.blaze-track > * {
+  box-sizing: border-box;
+}
+
 .blaze-slider:not(.static) .blaze-track {
   cursor: grab;
 }
