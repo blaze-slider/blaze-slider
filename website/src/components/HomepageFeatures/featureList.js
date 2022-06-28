@@ -6,15 +6,26 @@ export const FeatureList = [
     title: 'High Performance',
     description: (
       <>
-        Lightening fast slider initialization with zero layout shifts.
+        Lightening fast slider initialization. Blaze slider is
         <span className="wow"> 30x faster </span> than Slick slider,
         <span className="wow"> 15x faster </span>than Swiper slider.
       </>
     ),
   },
   {
+    color: '#d6a2e8',
+    title: 'Zero Layout Shifts',
+    description: (
+      <>
+        Blaze Slider creates layout using CSS variables, So you can configure
+        the css variables in CSS file to prevent layout shifts across all media
+        devices
+      </>
+    ),
+  },
+  {
     color: '#c56cf0',
-    title: 'Packed With Features',
+    title: 'Packed with Features',
     description: (
       <>
         Touch support, drag, swipe, autoplay, pagination, navigation, infinite
@@ -34,7 +45,7 @@ export const FeatureList = [
   },
   {
     color: '#70a1ff',
-    title: 'Responsive Config',
+    title: 'Powerful Responsive Config',
     description: (
       <>
         You can have unique configurations for each type of media with power css
@@ -43,12 +54,12 @@ export const FeatureList = [
     ),
   },
   {
-    color: '#d6a2e8',
-    title: 'Zero Layout Shifts',
+    color: '#e7ce74',
+    title: 'Just 2Kb of JavaScript',
     description: (
       <>
-        Blaze Slider creates layout using css variables, so you can configure
-        the css variables to prevent layout shifts.
+        Blaze Slider is super tiny. It's <span className="wow">5x smaller</span>{' '}
+        than Slick, <span className="wow">19x smaller</span> than Swiper
       </>
     ),
   },
