@@ -44,7 +44,7 @@ new BlazeSlider(el, {
 ```
 
 <LayoutShiftSlider
-  shift= { window.innerWidth < 500 ?  [1, 2] : [1,3]  }
+  shift= { typeof window !== 'undefined' && window.innerWidth < 500 ?  [1, 2] : [1,3]  }
   config={{
     all: {
       slidesToShow: 3,

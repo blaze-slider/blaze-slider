@@ -26,12 +26,12 @@
   color: var(--bg-darker);
 }
 
-.cls-fix .foo-slider.blaze-slider {
+.cls-fix .blaze-slider {
   --slides-to-show: 3;
 }
 
 @media (max-width: 500px) {
-  .cls-fix .foo-slider.blaze-slider {
+  .cls-fix .blaze-slider {
     --slides-to-show: 2;
   }
 }
