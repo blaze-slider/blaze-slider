@@ -2,7 +2,6 @@ import React from 'react'
 
 export const FeatureList = [
   {
-    className: 'fast',
     color: '#fc427b',
     title: 'High Performance',
     description: (
@@ -15,8 +14,6 @@ export const FeatureList = [
   },
   {
     color: '#c56cf0',
-
-    className: 'explosion',
     title: 'Packed With Features',
     description: (
       <>
@@ -27,9 +24,7 @@ export const FeatureList = [
   },
   {
     color: '#7d5fff',
-
     title: 'Super Customizable',
-    className: 'customizable',
     description: (
       <>
         Customize everything from number of slides to show, scroll, transition
@@ -39,9 +34,7 @@ export const FeatureList = [
   },
   {
     color: '#70a1ff',
-
     title: 'Responsive Config',
-    className: 'responsive',
     description: (
       <>
         You can have unique configurations for each type of media with power css
@@ -51,17 +44,15 @@ export const FeatureList = [
   },
   {
     color: '#d6a2e8',
-    className: 'eye',
     title: 'Zero Layout Shifts',
     description: (
       <>
         Blaze Slider creates layout using css variables, so you can configure
-        the css variables to prevent layout shifts
+        the css variables to prevent layout shifts.
       </>
     ),
   },
   {
-    className: 'noclone',
     color: '#f8c291',
     title: 'Infinite Loop without cloning slides',
     description: (

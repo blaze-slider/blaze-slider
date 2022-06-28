@@ -1,10 +1,16 @@
 import { useBlazeSlider } from '../../hooks/useBlazeSlider'
-import React from 'react'
+import React, { useEffect } from 'react'
 import './example-slider.css'
 import '../../css/blaze-custom.css'
 
-export const ExampleSlider = ({ children, config, addNav }) => {
+export const ExampleSlider = ({ children, config, addNav, getRef }) => {
   const ref = useBlazeSlider(config)
+  useEffect(() => {
+    if (getRef) {
+      getRef(ref)
+    }
+  })
+
   return (
     <div className="example-slider">
       <div className="blaze-slider" ref={ref}>

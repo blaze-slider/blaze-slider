@@ -49,10 +49,10 @@ export default function HomepageFeatures() {
   )
 }
 
-function Feature({ title, description, className, color }) {
+function Feature({ title, description, color }) {
   return (
     <div className="feature-container">
-      <div className={`feature ${className}`}>
+      <div className={`feature`}>
         <h3 style={{ color: color }}>{title}</h3>
         <p>{description}</p>
       </div>
