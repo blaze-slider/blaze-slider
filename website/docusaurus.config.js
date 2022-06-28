@@ -86,6 +86,11 @@ const config = {
             position: 'left',
           },
           {
+            to: 'https://codesandbox.io/s/blaze-slider-playground-ps0b9u',
+            position: 'left',
+            label: 'Playground',
+          },
+          {
             href: 'https://github.com/blaze-slider/blaze-slider',
             label: 'GitHub',
             position: 'right',
