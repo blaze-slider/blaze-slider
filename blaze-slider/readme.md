@@ -1,4 +1,4 @@
-<img src="../assets/BlazeLogo.svg" height='150' />
+<img src="https://raw.githubusercontent.com/blaze-slider/blaze-slider/main/assets/BlazeLogo.svg" height='150' />
 
 # Blaze Slider
 
