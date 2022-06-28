@@ -14,7 +14,7 @@
 
 <br/>
 
-## Blazing Fast Performance ⚡️
+## Benchmark
 
 <br/>
 
@@ -28,4 +28,19 @@
 
 <br/>
 
-## [blaze-slider.dev](https://blaze-slider.dev/) ⚡️
+## Documentation
+
+You can checkout the documentation on the website [blaze-slider.dev](https://blaze-slider.dev/)
+
+The documentation is divided into several sections:
+
+- [Getting Start](https://blaze-slider.dev/docs/intro)
+- [Tutorial](https://blaze-slider.dev/docs/category/tutorial)
+- [API Reference](https://blaze-slider.dev/docs/category/api)
+- [Examples](https://blaze-slider.dev/docs/category/examples)
+
+<br/>
+
+## License
+
+Blaze-slider is MIT licensed.
