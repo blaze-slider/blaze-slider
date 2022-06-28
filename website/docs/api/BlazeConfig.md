@@ -4,9 +4,15 @@ sidebar_position: 2
 
 # BlazeConfig
 
-BlazeConfig is an object that contains configuration for various media types. The key can be any valid media query and the value is the configuration object.
+BlazeConfig is an object that contains the slider configuration for various types of media.
 
-If the `BlazeSlider` is not given any configuration as the second argument, below show default configuration will be applied
+```typescript
+type BlazeConfig = Record<string, MediaConfig>
+```
+
+The key of this object can be any valid media query string and the value is the configuration object for that media.
+
+If the `BlazeSlider` is not given any configuration as the second argument, below show default configuration is used.
 
 ## Default Config
 
@@ -18,7 +24,7 @@ const defaultConfig = {
     slidesToScroll: 1,
     slideGap: '20px',
 
-    // behavior
+    // loop
     loop: true,
 
     // autoplay
@@ -37,9 +43,9 @@ const defaultConfig = {
 }
 ```
 
-Notice the `all` key in configuration above, it is one of the 3 [media-types](https://developer.mozilla.org/en-US/docs/Web/CSS/@media#media_types) that targets all kinds of devices. You may have seen media types such as `all`, `print` and `screen` when writing media queries in css.
+Notice the `all` key in configuration above, it is one of the 3 [media-types](https://developer.mozilla.org/en-US/docs/Web/CSS/@media#media_types). It targets all devices. You may have seen media types ( `all`, `print` and `screen` ) when writing media queries in css
 
-The key can be any valid [media query syntax](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#syntax) which means that you can also combine different media queries using the [logical operators](https://developer.mozilla.org/en-US/docs/Web/CSS/@media#logical_operators) such as `only`, `not`, `and`, `,`
+The key can be any valid [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#syntax) string, which means that you can also combine different media queries using the [logical operators](https://developer.mozilla.org/en-US/docs/Web/CSS/@media#logical_operators) such as `only`, `not`, `and`, `,`
 
 ### Examples of valid media query keys
 
@@ -58,9 +64,13 @@ The key can be any valid [media query syntax](https://developer.mozilla.org/en-U
 etc...
 ```
 
-## Responsive Configurations
+<hr/>
 
-Other Slider libraries force you write some the config in some esoteric "width" based configuration, and force you to write either a mobile first or desktop first config. In Blaze Slider there is no such concept as being desktop first or mobile first config. You can write any kind of config and mix match - just like how you would write a css media query.
+## Cascading Configurations
+
+Other Slider libraries force you write responsive configuration based on "width" of a media, and force you to write either a mobile first or desktop first config.
+
+Blaze Slider has no such concept desktop first or mobile first config. You can write any kind of config and even mix and match - just like how you would write a css media query.
 
 ### Example: A Desktop first Config
 
@@ -88,15 +98,15 @@ So in the example above, blaze-slider will
 - show 2 slides on tablet, loop enabled
 - show 1 slide on the mobile device, loop disabled
 
-To understand why, just treat this configuration like you would treat a css media query
+Because
 
-In desktop device, only the first media query matches, so it shows 1 slide with loop enabled.
+- In desktop device, only the first media query matches, so desktop gets the first media query's configuration as is.
+- In tablet device, first and second media query matches, but because the second one comes after first one, it overrides the first one's value of `slidesToShow` and inherits the value of `loop`.
+- In Mobile device, first and third media query matches, but both values of first media queries get overridden by the third media query confuration
 
-In tablet device, first and second media query matches, but because the second one comes after first one, it overrides the first one's value of `slidesToShow` and inherits the value of `loop`
+This configuration above is written in a desktop-first style. But you can just as well write a mobile first config using `min-width` instead as shown below, just like how you do it in css.
 
 ### Example: Same config written in mobile-first style
-
-This configuration above is written in a desktop-first style. But you can just as well write a mobile first config using `min-width` instead as shown below (just like css)
 
 ```javascript
 const exampleConfig = {
@@ -114,9 +124,9 @@ const exampleConfig = {
 }
 ```
 
-As you can see, This allows you to write the Responsive configuration in very intuitive way, just like you would write CSS
+As you can see, This allows you to write the Responsive configuration in very intuitive way.
 
-But if you rather be explicit than relying on cascade, you can do it as well, just like how you do it in css as shown below:
+But if you rather be explicit than relying on the cascade, you can target a specific media in a media-query configuration
 
 ```javascript
 const exampleConfig = {
@@ -138,8 +148,18 @@ const exampleConfig = {
 }
 ```
 
-### Going beyond the width based configuration
+<hr/>
+
+## Going beyond the width based configuration
 
 Because blaze-slider allows you to use any valid media-queries, rather than just width.
 
-you can target all kinds of media that is simply not possible with other libraries. such as targeting a phone in landscape mode, targeting a device where use prefers reduce motion, targeting a device based on height, targeting a device where a user has capability to hover etc.
+you can target all kinds of media that is simply not possible with other libraries.
+
+such as targeting:
+
+- a phone in landscape orientation
+- a device where use prefers reduce motion
+- a device based on it's height
+- a device where a user has capability to hover
+  etc...

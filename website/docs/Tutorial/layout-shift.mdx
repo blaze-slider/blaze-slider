@@ -72,16 +72,16 @@ This happens because until JavaScript runs, the slider's layout is rendered usin
 <br />
 <br />
 
-To do this, the slider must "know" about the configuration before JavaScript runs. And we can achieve this by saving the configuration in our CSS file using css variables
+To do this, the slider must "know" about the configuration before JavaScript runs. And we can achieve this by providing the layout configuration in using css variables in css file.
 
-BlazeSlider uses CSS variables, two of which are `--slides-to-show`, `--slides-gap` which is responsible for layout. So in order to avoid layout shift, you must specify them in CSS with same values you are specifying in JS.
+BlazeSlider uses CSS variables, two of which are `--slides-to-show`, `--slides-gap` which is responsible for layout. So in order to avoid layout shift, you must configure these 2 css variables in CSS with same values you are configuring in JS.
 
 ### Example
 
-To target our slider in css, we have added one more class `foo-slider` in HTML above, so we can use that class for defining the css variables.
+To target our slider in css, we have added one more class `foo-slider` in HTML above, so we can use that class for targetting the slider and configure the css variables.
 
 :::note
-CSS varibles must be defined on `.blaze-slider` selector, as shown below
+CSS varibles must be configured on `.blaze-slider` selector.
 
 :::
 
@@ -98,7 +98,7 @@ CSS varibles must be defined on `.blaze-slider` selector, as shown below
 ```
 
 By adding this CSS, we have the successfully removed the layout shifts and created a
-stable UI that looks exactly same before and after JavaScript executed
+stable UI that looks exactly same before and after JavaScript is executed
 
 <LayoutShiftSlider
   className='cls-fix'

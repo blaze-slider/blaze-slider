@@ -6,7 +6,7 @@ import { ExampleSlider } from '@site/src/components/ExampleSlider'
 
 # `slidesToScroll`
 
-Number of slides to scroll when user navigates to previous or next page by either swiping or dragging the slider or by using the previous and next navination buttons.
+Number of slides to scroll when user navigates to previous or next page by either swiping, dragging or by using the previous and next navination buttons.
 
 ## default
 
@@ -16,9 +16,7 @@ slidesToScroll: 1
 
 <br />
 
-In the examples below, pagination and navigation buttons are also added so you can see the impact of `slidesToScroll` on their behaviors
-
-### Example : `slidesToScroll: 1`
+### Example: `slidesToScroll: 1`
 
 ```javascript
 new BlazeSlider(el, {
@@ -48,9 +46,7 @@ new BlazeSlider(el, {
 
 <br />
 
-### Example : `slidesToScroll: 3`
-
-Notice how the number of pages has also decreased compared to previous example, because now we are scrolling 3 slides at a time.
+### Example: `slidesToScroll: 3`
 
 ```javascript
 new BlazeSlider(el, {
@@ -78,15 +74,21 @@ new BlazeSlider(el, {
   <div> 6 </div>
 </ExampleSlider>
 
+:::note
+Notice how the number of pages decreased compared to previous example, because this slider is scrolling 3 slides at a time.
+
+:::
+
+<hr />
+
 ## Edge Cases
 
-If there are not enough slides to scroll, blaze-slider will dynamically reduce the `slidesToScroll` value
+If there are not enough slides to scroll, Blaze slider will dynamically reduce the `slidesToScroll` value.
+Let's take a look at slider with 7 slides and slidesToShow: 3
 
 ### Example (loop enabled)
 
-In this example, we have 7 slides in the slider.
-
-Now if you scroll next on the last page (to go to first page), you will notice that only 1 slide was scrolled
+if you scroll next on the last page (to go to first page), only 1 slide is scrolled instead of 3
 
 ```javascript
 new BlazeSlider(el, {
@@ -117,9 +119,7 @@ new BlazeSlider(el, {
 
 ### Example (loop disabled)
 
-In this example, we also have 7 slides like the previous example, but we have turned off looping
-
-Now if you scroll next on the second page, you will notice that only 1 slide was scrolled
+if you scroll next on the second page, only 1 slide is scrolled instead of 3
 
 ```javascript
 new BlazeSlider(el, {

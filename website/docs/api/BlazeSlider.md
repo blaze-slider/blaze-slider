@@ -6,8 +6,6 @@ sidebar_position: 1
 
 BlazeSlider is a constructor function which is used for initializing the slider on a `div.blaze-slider` element
 
-## Usage
-
 ```typescript
 new BlazeSlider(
   el: HTMLElement,
@@ -19,7 +17,9 @@ First argument is the `div.blaze-slider` element on which you want to initialize
 
 Second argument is the blaze-slider [configuration](/docs/api/BlazeConfig)
 
-### Example 1: No Config
+<br/>
+
+### Example: No Config
 
 ```javascript
 const el = document.querySelector('.blaze-slider')
@@ -27,7 +27,7 @@ const el = document.querySelector('.blaze-slider')
 const slider = new BlazeSlider(el)
 ```
 
-### Example 2: With Config (mobile-first)
+### Example: With Config
 
 ```javascript
 const el = document.querySelector('.blaze-slider')

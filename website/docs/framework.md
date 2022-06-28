@@ -4,9 +4,11 @@ sidebar_position: 6
 
 # Framework Integration
 
-Blaze Slider is framework agnostic, all it requires is DOM element to initialize the slider on and configuration object.
+Blaze Slider is framework agnostic, all it requires is DOM element on which you want to initialize the slider and configuration object.
 
-All Frameworks provide some way to get the underlying DOM element it renders For example
+All Frameworks provide a way to get the underlying DOM element once the framework has rendered the component.
+
+Such as:
 
 - React's [Ref API](https://reactjs.org/docs/refs-and-the-dom.html)
 - Svelte's [this binding API](https://svelte.dev/tutorial/bind-this)
@@ -15,9 +17,18 @@ All Frameworks provide some way to get the underlying DOM element it renders For
 
 <br/>
 
+You can use this API to get the reference to DOM element and then initialize the slider with `BlazeSlider` constructor
+
+:::caution
+
+You must make sure that you don't initialize the BlazeSlider on same element more than once !
+:::
+
+<hr />
+
 # Example: React
 
-in React, we can create a custom hook for initializing the blaze-slider as shown below
+In React, you can create a custom hook to integrate blaze-slider with react in a reusable way.
 
 ```javascript
 import React from 'react'
@@ -38,7 +49,7 @@ function useBlazeSlider(config) {
 }
 ```
 
-The above little utility function is also available on NPM via [blaze-slider-react](https://www.npmjs.com/package/blaze-slider-react) package
+The above function is also available on NPM via [react-blaze-react](https://www.npmjs.com/package/react-blaze-slider) package. You can use this package directly, or create your own hook or component - whatever you prefer.
 
 ### Using in React Components
 

@@ -107,7 +107,5 @@ document.querySelectorAll('.blaze-slider').forEach(el => {
 ```
 
 You can also initialize the slider lazily when it is about to come into viewport using [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API).
-This is a pretty common optimization approach suggested by the web performance experts
-
-Though it is not really worth doing such kind of optimization for blaze-slider because blaze-slider initializes the slider extremly fast
+This is a pretty common optimization for sliders. Though it is not really worth doing such kind of optimization for blaze-slider because blaze-slider initializes the slider extremly fast
 and unless you have a ton of sliders on the page, it should be fine to initialze all the sliders on page during page load.

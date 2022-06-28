@@ -35,6 +35,8 @@
   --ifm-card-background-color: var(--bg-slight-darker);
   --ifm-code-background: var(--bg-lighter) !important;
   --ifm-font-size-base: 18px;
+  --ifm-hr-background-color: var(--bg-lighter);
+  --ifm-hr-margin-vertical: 50px;
 }
 
 a.navbar__brand {
