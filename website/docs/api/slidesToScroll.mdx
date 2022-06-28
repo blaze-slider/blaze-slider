@@ -1,0 +1,151 @@
+---
+sidebar_position: 4
+---
+
+import { ExampleSlider } from '@site/src/components/ExampleSlider'
+
+# `slidesToScroll`
+
+Number of slides to scroll when user navigates to previous or next page by either swiping or dragging the slider or by using the previous and next navination buttons.
+
+## default
+
+```typescript
+slidesToScroll: 1
+```
+
+<br />
+
+In the examples below, pagination and navigation buttons are also added so you can see the impact of `slidesToScroll` on their behaviors
+
+### Example : `slidesToScroll: 1`
+
+```javascript
+new BlazeSlider(el, {
+  all: {
+    slidesToShow: 3,
+    slidesToScroll: 1, // ( default )
+  },
+})
+```
+
+<ExampleSlider
+  addNav={true}
+  config={{
+    all: {
+      slidesToShow: 3,
+      slidesToScroll: 1,
+    },
+  }}
+>
+  <div> 1 </div>
+  <div> 2 </div>
+  <div> 3 </div>
+  <div> 4 </div>
+  <div> 5 </div>
+  <div> 6 </div>
+</ExampleSlider>
+
+<br />
+
+### Example : `slidesToScroll: 3`
+
+Notice how the number of pages has also decreased compared to previous example, because now we are scrolling 3 slides at a time.
+
+```javascript
+new BlazeSlider(el, {
+  all: {
+    slidesToShow: 3,
+    slidesToScroll: 3,
+  },
+})
+```
+
+<ExampleSlider
+  addNav={true}
+  config={{
+    all: {
+      slidesToShow: 3,
+      slidesToScroll: 3,
+    },
+  }}
+>
+  <div> 1 </div>
+  <div> 2 </div>
+  <div> 3 </div>
+  <div> 4 </div>
+  <div> 5 </div>
+  <div> 6 </div>
+</ExampleSlider>
+
+## Edge Cases
+
+If there are not enough slides to scroll, blaze-slider will dynamically reduce the `slidesToScroll` value
+
+### Example (loop enabled)
+
+In this example, we have 7 slides in the slider.
+
+Now if you scroll next on the last page (to go to first page), you will notice that only 1 slide was scrolled
+
+```javascript
+new BlazeSlider(el, {
+  all: {
+    slidesToShow: 3,
+    slidesToScroll: 3,
+  },
+})
+```
+
+<ExampleSlider
+  addNav={true}
+  config={{
+    all: {
+      slidesToShow: 3,
+      slidesToScroll: 3,
+    },
+  }}
+>
+  <div> 1 </div>
+  <div> 2 </div>
+  <div> 3 </div>
+  <div> 4 </div>
+  <div> 5 </div>
+  <div> 6 </div>
+  <div> 7 </div>
+</ExampleSlider>
+
+### Example (loop disabled)
+
+In this example, we also have 7 slides like the previous example, but we have turned off looping
+
+Now if you scroll next on the second page, you will notice that only 1 slide was scrolled
+
+```javascript
+new BlazeSlider(el, {
+  all: {
+    loop: false,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+  },
+})
+```
+
+<ExampleSlider
+  addNav={true}
+  config={{
+    all: {
+      loop: false,
+      slidesToShow: 3,
+      slidesToScroll: 3,
+    },
+  }}
+>
+  <div> 1 </div>
+  <div> 2 </div>
+  <div> 3 </div>
+  <div> 4 </div>
+  <div> 5 </div>
+  <div> 6 </div>
+  <div> 7 </div>
+</ExampleSlider>

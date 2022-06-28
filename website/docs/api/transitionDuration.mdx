@@ -1,0 +1,116 @@
+---
+sidebar_position: 10
+---
+
+# `transitionDuration`
+
+import { ExampleSlider } from '@site/src/components/ExampleSlider'
+
+it indicates the amount of time in milliseconds the slide should take to transition from position A to position B during autoplay.
+
+## default
+
+```typescript
+transitionDuration: 500
+```
+
+<br />
+
+### Example `transitionDuration: 500` (default)
+
+```javascript
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    transitionDuration: 500, // (default)
+    slidesToShow: 3,
+    autoplayInterval: 2000,
+  },
+})
+```
+
+<ExampleSlider
+  config={{
+    all: {
+      enableAutoplay: true,
+      transitionDuration: 500,
+      slidesToShow: 3,
+      autoplayInterval: 2000,
+    },
+  }}
+>
+  <div> 1 </div>
+  <div> 2 </div>
+  <div> 3 </div>
+  <div> 4 </div>
+  <div> 5 </div>
+  <div> 6 </div>
+</ExampleSlider>
+
+<br />
+
+### Example `transitionDuration: 1000` (much slower)
+
+```javascript
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    transitionDuration: 1000,
+    slidesToShow: 3,
+    autoplayInterval: 2000,
+  },
+})
+```
+
+<ExampleSlider
+  config={{
+    all: {
+      enableAutoplay: true,
+      transitionDuration: 1000,
+      slidesToShow: 3,
+      autoplayInterval: 2000,
+    },
+  }}
+>
+  <div> 1 </div>
+  <div> 2 </div>
+  <div> 3 </div>
+  <div> 4 </div>
+  <div> 5 </div>
+  <div> 6 </div>
+</ExampleSlider>
+
+<br />
+
+### Example `transitionDuration: 200` (much faster)
+
+```javascript
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    transitionDuration: 200,
+    slidesToShow: 3,
+    autoplayInterval: 2000,
+  },
+})
+```
+
+<ExampleSlider
+  config={{
+    all: {
+      enableAutoplay: true,
+      transitionDuration: 200,
+      slidesToShow: 3,
+      autoplayInterval: 2000,
+    },
+  }}
+>
+  <div> 1 </div>
+  <div> 2 </div>
+  <div> 3 </div>
+  <div> 4 </div>
+  <div> 5 </div>
+  <div> 6 </div>
+</ExampleSlider>
+
+<br />
