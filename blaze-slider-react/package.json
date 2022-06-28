@@ -1,0 +1,31 @@
+{
+  "name": "react-blaze-slider",
+  "version": "0.1.0",
+  "description": "React Integration for Blaze Slider",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "keywords": [
+    "blaze slider",
+    "slider",
+    "carousel",
+    "UI hook",
+    "react"
+  ],
+  "author": "Manan Tank",
+  "license": "MIT",
+  "dependencies": {
+    "blaze-slider": ">=0.1.8"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "rollup": "^2.75.7",
+    "rollup-plugin-ts": "^3.0.2",
+    "typescript": "^4.7.4"
+  }
+}
