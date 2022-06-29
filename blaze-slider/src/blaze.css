@@ -27,7 +27,7 @@
 }
 
 .blaze-track {
-  touch-action: none; /* required for pointer move  to work properly */
+  touch-action: pan-y;
   display: flex;
   gap: var(--slide-gap);
   transform: translateX(
