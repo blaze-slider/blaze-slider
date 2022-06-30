@@ -6,11 +6,21 @@ type Track = HTMLElement & {
 }
 
 function swipe(slider: BlazeSlider, dir: 'next' | 'prev') {
-  slider.track.style.transitionDuration = '200ms'
+  const time = 90
+
+  // override the transition time to be faster
+  slider.currentTransitionDuration = time
+  slider.track.style.transitionDuration = time + 'ms'
+
   slider[dir]()
+
+  // reset the transition time
   setTimeout(() => {
+    slider.isTransitioning = false
+    // remove override
+    slider.currentTransitionDuration = slider.config.transitionDuration
     slider.track.style.transitionDuration = ''
-  }, 200)
+  }, time)
 }
 
 function handlePointerDown(this: Track, downEvent: PointerEvent) {

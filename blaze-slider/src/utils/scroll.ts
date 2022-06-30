@@ -62,6 +62,6 @@ export function scrollNext(slider: BlazeSlider, slideCount: number) {
           enableTransition(slider)
         })
       })
-    }, slider.config.transitionDuration)
+    }, slider.currentTransitionDuration)
   }
 }

@@ -12,9 +12,8 @@ const DEV = process.env.NODE_ENV !== 'production'
 
 function isTransitioning(
   slider: BlazeSlider,
-  time = slider.config.transitionDuration
+  time = slider.currentTransitionDuration
 ) {
-  if (slider.isTransitioning) return
   slider.isTransitioning = true
   setTimeout(() => {
     slider.isTransitioning = false
@@ -28,6 +27,7 @@ export class BlazeSlider extends Automata {
   isDragging: boolean
   config: MediaConfig
   paginationButtons: HTMLButtonElement[] | undefined
+  currentTransitionDuration: number
 
   constructor(blazeSliderEl: HTMLElement, blazeConfig?: BlazeConfig) {
     const config = blazeConfig
@@ -44,6 +44,8 @@ export class BlazeSlider extends Automata {
     this.track = track
     this.slides = slides
     this.isDragging = false
+
+    this.currentTransitionDuration = this.config.transitionDuration
 
     const slider = this
 
