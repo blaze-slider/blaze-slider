@@ -1,6 +1,8 @@
-# blaze-slider-react
+<img height='200' src='./logo.svg' />
 
-A lightweight hook to integration blaze-slider with react.
+# react-blaze-slider
+
+A lightweight hook to integrate [blaze-slider](https://github.com/blaze-slider/blaze-slider) with react
 
 <br/>
 
@@ -9,6 +11,8 @@ A lightweight hook to integration blaze-slider with react.
 ```bash
 npm i blaze-slider react-blaze-slider
 ```
+
+<br/>
 
 ## Usage
 
@@ -43,7 +47,9 @@ function Example() {
 }
 ```
 
-# Live Demo
+<br/>
+
+# Example
 
 Checkout this [sandbox](https://codesandbox.io/s/react-blaze-slider-3g6cw1?file=/src/App.tsx) to see the live demo
 
@@ -51,4 +57,17 @@ Checkout this [sandbox](https://codesandbox.io/s/react-blaze-slider-3g6cw1?file=
 
 ## Blaze Slider Documentation
 
-Checkout the Website [blaze-slider.dev](https://blaze-slider.dev/) for Documentation about the blaze-slider core library.
+check out the Website [blaze-slider.dev](https://blaze-slider.dev/) for Documentation about the blaze-slider core library.
+
+The documentation is divided into several sections:
+
+- [Getting Start](https://blaze-slider.dev/docs/intro)
+- [Installation](http://blaze-slider.dev/docs/installation)
+- [Tutorial](https://blaze-slider.dev/docs/category/tutorial)
+- [API Reference](https://blaze-slider.dev/docs/category/api)
+
+<br/>
+
+## License
+
+MIT

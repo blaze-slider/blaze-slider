@@ -2,19 +2,19 @@
 
 # Blaze Slider
 
-Blaze slider is a high performance JavaScript UI library for creating sliders.
+Blaze slider is a high-performance JavaScript UI library for creating sliders.
 
 ## The Problem
 
 Existing slider libraries are not designed with performance in mind. They block the main thread for a long time when initializing a slider which results in poor UX and poor [FID](https://web.dev/fid/) metric for your website.
 
-They also create layout shifts which negatively impacts the UX and [CLS](https://web.dev/cls/) metric of your website. These libraries don't provide any idiomatic way to reduce the layout shifts.
+They also create layout shifts that negatively impact the UX and [CLS](https://web.dev/cls/) metric of your website. These libraries don't provide any idiomatic way to reduce the layout shifts.
 
 ## The Solution
 
-Blaze slider is built to fix these issues. It can initialize the slider incredibly fast. It initializes the slider **30x faster** than Slick slider, and **15x faster** than Swiper slider.
+Blaze slider is built to fix these issues. It can initialize the slider incredibly fast. It initializes the slider **30x faster** than the Slick slider, and **15x faster** than the Swiper slider.
 
-Blaze Slider allows you to specify the layout configuration via css variables which enables slider initialization with <span className='wow'>zero layout shifts!</span> - so that your slider will look exactly same before and after javascript runs.
+Blaze Slider allows you to specify the layout configuration via CSS variables which enable slider initialization with <span className='wow'>zero layout shifts!</span> - so that your slider will look exactly the same before and after javascript runs.
 
 ## Benchmark
 
@@ -28,7 +28,7 @@ Blaze Slider allows you to specify the layout configuration via css variables wh
 
 Benchmark measures the time taken to create a slider with 10 slides by each slider. Benchmark is measured on Apple M1 Pro CPU with 6X slowdown on Google Chrome 103
 
-See Benchmark Repo to see how these libraries are tested
+See [Benchmark Repo](https://github.com/blaze-slider/blaze-slider/tree/main/benchmark) to see how these libraries are tested
 
 <br/>
 
@@ -38,7 +38,7 @@ See Benchmark Repo to see how these libraries are tested
 - Packed with Features
 - Zero Layout Shifts
 - Full TypeScript support
-- CSS Media-Query based Responsive configuration
+- CSS Media-Query-based Responsive configuration
 - No slide cloning
 - Extremely small bundle size (2kB)
 
@@ -46,7 +46,7 @@ See Benchmark Repo to see how these libraries are tested
 
 ## Documentation
 
-You can checkout the documentation on the website [blaze-slider.dev](https://blaze-slider.dev/)
+You can check out the documentation on the website [blaze-slider.dev](https://blaze-slider.dev/)
 
 The documentation is divided into several sections:
 
