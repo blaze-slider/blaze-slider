@@ -1,4 +1,4 @@
-<img height='200' src='./logo.svg' />
+<img height='200' src='https://raw.githubusercontent.com/blaze-slider/blaze-slider/main/blaze-slider-react/logo.svg' />
 
 # react-blaze-slider
 
