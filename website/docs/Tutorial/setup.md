@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Setup
 
-Refer to [Installation](docs/installation) section to learn how to the Blaze Slider's JS and CSS in your website.
+Refer to the [Installation](/docs/installation) section to learn how to add the Blaze Slider's JS and CSS files to your website.
 
 ## Required HTML markup
 
@@ -25,20 +25,20 @@ Blaze slider requires a specific HTML markup to work properly, which is shown be
 </div>
 ```
 
-Basically, you need to wrap the slides within these container elements `.blaze-slider > .blaze-container > .blaze-track-container > .blaze-track`
+Basically, you need to wrap the slides within this structure `.blaze-slider > .blaze-container > .blaze-track-container > .blaze-track`
 
 :::caution
-`div.blaze-track` container must only contain the slides and nothing else. You put anything inside other containers.
+`div.blaze-track` container must only contain the slides and nothing else. You can put anything inside other containers.
 
 :::
 
 ## Adding Navigation and Pagination
 
-To add navigation (previous and next buttons) functionality to slider, you must add buttons with class `blaze-next` and `blaze-prev`
+To add navigation (previous and next buttons) functionality to the slider, you must add buttons with class `blaze-next` and `blaze-prev`
 
-To add pagination functionality to slider, you must add div with class `blaze-pagination`. The pagination buttons will be created and added inside this element by the Blaze Slider library with appropriate text and aria-label
+To add pagination functionality to the slider, you must add div with class `blaze-pagination`. The pagination buttons will be created and added inside this element by the Blaze Slider library with appropriate text and aria-label
 
-Navigation buttons and Pagination container can be added anywhere inside the structure shown above ( except inside the `div.blaze-track` - because `div.blaze-track` can only contain the slides ) .
+Navigation buttons and Pagination container can be added anywhere inside the structure shown above ( except inside the `div.blaze-track` - because `div.blaze-track` can only contain the slides ).
 
 ### Example
 

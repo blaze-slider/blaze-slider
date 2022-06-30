@@ -7,8 +7,8 @@ export const FeatureList = [
     description: (
       <>
         Lightening fast slider initialization. Blaze slider is
-        <span className="wow"> 30x faster </span> than Slick slider,
-        <span className="wow"> 15x faster </span>than Swiper slider.
+        <span className="wow"> 30x faster </span> than the Slick slider,
+        <span className="wow"> 15x faster </span>than the Swiper slider.
       </>
     ),
   },
@@ -17,8 +17,8 @@ export const FeatureList = [
     title: 'Zero Layout Shifts',
     description: (
       <>
-        Blaze Slider creates layout using CSS variables, So you can configure
-        the css variables in CSS file to prevent layout shifts across all media
+        Blaze slider creates layout using CSS variables, you can configure the
+        css variables in CSS file to prevent layout shifts across all media
         devices
       </>
     ),

@@ -6,7 +6,7 @@ import { ExampleSlider } from '@site/src/components/ExampleSlider'
 
 # `slidesToScroll`
 
-Number of slides to scroll when user navigates to previous or next page by either swiping, dragging or by using the previous and next navination buttons.
+The number of slides to scroll when the user navigates to the previous or next page by either swiping, dragging or using the previous and next navigation buttons.
 
 ## default
 
@@ -75,7 +75,7 @@ new BlazeSlider(el, {
 </ExampleSlider>
 
 :::note
-Notice how the number of pages decreased compared to previous example, because this slider is scrolling 3 slides at a time.
+Notice how the number of pages decreased compared to the previous example, because this slider is scrolling 3 slides at a time.
 
 :::
 
@@ -83,12 +83,12 @@ Notice how the number of pages decreased compared to previous example, because t
 
 ## Edge Cases
 
-If there are not enough slides to scroll, Blaze slider will dynamically reduce the `slidesToScroll` value.
-Let's take a look at slider with 7 slides and slidesToShow: 3
+If there are not enough slides to scroll, the Blaze slider will dynamically reduce the `slidesToScroll` value.
+Let's take a look at the slider with 7 slides and `slidesToShow: 3`
 
 ### Example (loop enabled)
 
-if you scroll next on the last page (to go to first page), only 1 slide is scrolled instead of 3
+if you scroll next on the last page (to go to the first page), only 1 slide is scrolled instead of 3
 
 ```javascript
 new BlazeSlider(el, {

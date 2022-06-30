@@ -7,13 +7,13 @@ import { LayoutShiftSlider } from '@site/src/components/ExampleSlider/LayoutShif
 # Fix Layout shifts
 
 If you are not familiar with the term "layout shift", Refer to [web.dev/cls](https://web.dev/cls/) to understand what is layout shift,
-and how it effects the end user of your website and CLS metric of your website.
+and how it affects the end-user of your website and [CLS](https://web.dev/cls/) metric of your website.
 
 Unlike other libraries, blaze-slider provides an easy way to fix the layout shifts caused by slider initialization.
 
 Let's first understand what happens if you don't fix the layout shift.
 
-Let's say that you want to show 3 slides in slider on desktop and 1 slide on mobile view, and you are using the below shown code to initialize the slider
+Let's say that you want to show 3 slides in slider on desktop and 1 slide on mobile view, and you are using the below-shown code to initialize the slider
 
 ### Example
 
@@ -74,11 +74,11 @@ This happens because until JavaScript runs, the slider's layout is rendered usin
 
 To do this, the slider must "know" about the configuration before JavaScript runs. And we can achieve this by providing the layout configuration in using css variables in css file.
 
-BlazeSlider uses CSS variables, two of which are `--slides-to-show`, `--slides-gap` which is responsible for layout. So in order to avoid layout shift, you must configure these 2 css variables in CSS with same values you are configuring in JS.
+BlazeSlider uses CSS variables, two of which are `--slides-to-show`, `--slide-gap` which are responsible for the layout. So to avoid layout shift, you must configure these 2 css variables in CSS with same values you are configuring in JS.
 
 ### Example
 
-To target our slider in css, we have added one more class `foo-slider` in HTML above, so we can use that class for targetting the slider and configure the css variables.
+To target our slider in CSS, we have added one more class `foo-slider` in HTML above, so we can use that class for targetting the slider and configure the CSS variables.
 
 :::note
 CSS varibles must be configured on `.blaze-slider` selector.
@@ -98,7 +98,7 @@ CSS varibles must be configured on `.blaze-slider` selector.
 ```
 
 By adding this CSS, we have the successfully removed the layout shifts and created a
-stable UI that looks exactly same before and after JavaScript is executed
+stable UI that looks exactly the same before and after JavaScript is executed
 
 <LayoutShiftSlider
   className='cls-fix'

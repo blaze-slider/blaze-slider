@@ -12,7 +12,7 @@ type BlazeConfig = Record<string, MediaConfig>
 
 The key of this object can be any valid media query string and the value is the configuration object for that media.
 
-If the `BlazeSlider` is not given any configuration as the second argument, below show default configuration is used.
+If the `BlazeSlider` is not given any configuration as the second argument, the below-shown default configuration is used.
 
 ## Default Config
 
@@ -43,7 +43,7 @@ const defaultConfig = {
 }
 ```
 
-Notice the `all` key in configuration above, it is one of the 3 [media-types](https://developer.mozilla.org/en-US/docs/Web/CSS/@media#media_types). It targets all devices. You may have seen media types ( `all`, `print` and `screen` ) when writing media queries in css
+Notice the `all` key in the configuration above, it is one of the 3 [media-types](https://developer.mozilla.org/en-US/docs/Web/CSS/@media#media_types). It targets all devices. You may have seen media types ( `all`, `print` and `screen` ) when writing media queries in CSS
 
 The key can be any valid [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#syntax) string, which means that you can also combine different media queries using the [logical operators](https://developer.mozilla.org/en-US/docs/Web/CSS/@media#logical_operators) such as `only`, `not`, `and`, `,`
 
@@ -68,9 +68,9 @@ etc...
 
 ## Cascading Configurations
 
-Other Slider libraries force you write responsive configuration based on "width" of a media, and force you to write either a mobile first or desktop first config.
+Other Slider libraries force you to write responsive configuration based on the `width` of the media and force you to write either a mobile-first or desktop-first config.
 
-Blaze Slider has no such concept desktop first or mobile first config. You can write any kind of config and even mix and match - just like how you would write a css media query.
+Blaze Slider has no such concept desktop-first or mobile-first config. You can write any kind of config and even mix and match - just like how you would write a CSS media query.
 
 ### Example: A Desktop first Config
 
@@ -90,23 +90,23 @@ const exampleConfig = {
 }
 ```
 
-As you can see it looks a lot of like CSS and it works exactly like CSS, the properties cascade
+As you can see it looks a lot like CSS and it works exactly like CSS, the properties cascade
 
-So in the example above, blaze-slider will
+So in the example above, the blaze-slider will
 
 - show 3 slides on desktop, loop enabled
-- show 2 slides on tablet, loop enabled
-- show 1 slide on the mobile device, loop disabled
+- show 2 slides on a tablet, loop enabled
+- show 1 slide on a mobile device, loop disabled
 
 Because
 
-- In desktop device, only the first media query matches, so desktop gets the first media query's configuration as is.
-- In tablet device, first and second media query matches, but because the second one comes after first one, it overrides the first one's value of `slidesToShow` and inherits the value of `loop`.
-- In Mobile device, first and third media query matches, but both values of first media queries get overridden by the third media query confuration
+- On a desktop device, only the first media query matches, so the desktop gets the first media query's configuration as is.
+- On a tablet device, the first and second media query match, but because the second one comes after the first one, it overrides the first one's value of `slidesToShow` and inherits the value of `loop`.
+- On a mobile device, the first and third media query match, but both values of the first media queries get overridden by the third media query config
 
-This configuration above is written in a desktop-first style. But you can just as well write a mobile first config using `min-width` instead as shown below, just like how you do it in css.
+This configuration above is written in a desktop-first style. But you can just as well write a mobile-first config using `min-width` instead as shown below, just like how you do it in CSS.
 
-### Example: Same config written in mobile-first style
+### Example: Same config written in the mobile-first style
 
 ```javascript
 const exampleConfig = {
@@ -124,9 +124,9 @@ const exampleConfig = {
 }
 ```
 
-As you can see, This allows you to write the Responsive configuration in very intuitive way.
+As you can see, This allows you to write the Responsive configuration in a very intuitive way.
 
-But if you rather be explicit than relying on the cascade, you can target a specific media in a media-query configuration
+But if you rather be explicit than rely on the cascade, you can target a specific media in a media-query configuration
 
 ```javascript
 const exampleConfig = {
@@ -150,16 +150,17 @@ const exampleConfig = {
 
 <hr/>
 
-## Going beyond the width based configuration
+## Going beyond the width-based configuration
 
 Because blaze-slider allows you to use any valid media-queries, rather than just width.
 
-you can target all kinds of media that is simply not possible with other libraries.
+you can target all kinds of media that's simply not possible with other libraries.
 
 such as targeting:
 
 - a phone in landscape orientation
-- a device where use prefers reduce motion
-- a device based on it's height
-- a device where a user has capability to hover
-  etc...
+- a device where use prefers a reduced motion
+- a device based on its height
+- a device where a user can hover
+
+etc...

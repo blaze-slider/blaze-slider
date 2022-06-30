@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # BlazeSlider
 
-BlazeSlider is a constructor function which is used for initializing the slider on a `div.blaze-slider` element
+BlazeSlider is a constructor function that is used for initializing the slider on a `div.blaze-slider` element
 
 ```typescript
 new BlazeSlider(
@@ -13,9 +13,7 @@ new BlazeSlider(
 )
 ```
 
-First argument is the `div.blaze-slider` element on which you want to initialize the slider
-
-Second argument is the blaze-slider [configuration](/docs/api/BlazeConfig)
+The first argument is the `div.blaze-slider` element on which you want to initialize the slider and the second argument is the blaze-slider [configuration](/docs/api/BlazeConfig)
 
 <br/>
 

@@ -4,26 +4,26 @@ sidebar_position: 1
 
 # Introduction
 
-Blaze slider is a high performance JavaScript UI library for creating sliders.
+Blaze slider is a high-performance JavaScript UI library for creating sliders.
 
 ## The Problem
 
 Existing slider libraries are not designed with performance in mind. They block the main thread for a long time when initializing a slider which results in poor UX and poor [FID](https://web.dev/fid/) metric for your website.
 
-They also create layout shifts which negatively impacts the UX and [CLS](https://web.dev/cls/) metric of your website. These libraries don't provide any idiomatic way to reduce the layout shifts.
+They also create layout shifts that negatively impact the UX and [CLS](https://web.dev/cls/) metric of your website. These libraries don't provide any idiomatic way to reduce the layout shifts.
 
 ## The Solution
 
-Blaze slider is built to fix these issues. It can initialize the slider incredibly fast. It initializes the slider <span className='wow'>30x faster</span> than Slick slider, and <span className='wow'>15x faster</span> than Swiper slider.
+Blaze slider is built to fix these issues. It can initialize the slider incredibly fast. It initializes the slider <span className='wow'>30x faster</span> than the Slick slider, and <span className='wow'>15x faster</span> than the Swiper slider.
 
-Blaze Slider allows you to specify the layout configuration via css variables which enables slider initialization with <span className='wow'>zero layout shifts!</span> - so that your slider will look exactly same before and after javascript runs.
+Blaze Slider allows you to specify the layout configuration via CSS variables which enable slider initialization with <span className='wow'>zero layout shifts!</span> - so that your slider will look exactly the same before and after javascript runs.
 
 ## Highlights ✨
 
 - The Fastest Slider Library
-- Zero layout shifts by providing a css config
+- Zero layout shifts by providing a CSS config
 - Tons of features and fully customizable
-- Powerful CSS Media Query based responsive configuration
+- Powerful CSS Media Query-based responsive configuration
 - No slide cloning
 - Full TypeScript support
 - Extremely small bundle size (~2KB)
@@ -42,7 +42,7 @@ Blaze Slider allows you to specify the layout configuration via css variables wh
 
 <br/>
 
-Benchmark measures the time taken to create a slider with 10 slides by each slider, which is reported in above table as "Time to initialize" ( all libraries configured with same configuration, content and style )
+Benchmark measures the time taken to create a slider with 10 slides by each slider, which is reported in the above table as "Time to initialize" ( all libraries configured with the same configuration, content and style )
 
 Benchmark is measured on Apple M1 Pro CPU with 6X slowdown on Google Chrome 103
 

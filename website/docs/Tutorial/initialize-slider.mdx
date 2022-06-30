@@ -6,7 +6,7 @@ import { ExampleSlider } from '@site/src/components/ExampleSlider'
 
 # Initialize Slider
 
-To initialize the slider, you need to instantiate the `BlazeSlider` constructor with first argument as the `div.blaze-slider` element in DOM you want to initialize slider on and optional configuration as the second argument
+To initialize the slider, you need to instantiate the `BlazeSlider` constructor with the first argument as the `div.blaze-slider` element in DOM you want to initialize the slider on and optional configuration as the second argument
 
 ```javascript
 new BlazeSlider(el, config?)
@@ -49,7 +49,7 @@ new BlazeSlider(el)
 
 :::note
 
-Styles you see on the above slider is NOT the default style provided by blaze-slider from `blaze.css`
+The styles you see on the above slider are NOT the default style provided by blaze-slider from `blaze.css`
 
 blaze.css does not come with any "theme", it only contains just enough styles to make the slider work, so you don't have to override the default styles
 
@@ -96,7 +96,7 @@ new BlazeSlider(el)
   <div>4</div>
 </ExampleSlider>
 
-## More than one sliders
+## initialize Multiple Sliders
 
 Note that the examples above only show initializing only one slider, but if you have more than 1 sliders on the page, you will need to initialize all of them, as shown below:
 
@@ -107,5 +107,5 @@ document.querySelectorAll('.blaze-slider').forEach(el => {
 ```
 
 You can also initialize the slider lazily when it is about to come into viewport using [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API).
-This is a pretty common optimization for sliders. Though it is not really worth doing such kind of optimization for blaze-slider because blaze-slider initializes the slider extremly fast
-and unless you have a ton of sliders on the page, it should be fine to initialze all the sliders on page during page load.
+This is a pretty common optimization for sliders. Though it is not worth doing such kind of optimization for blaze-slider because blaze-slider initializes the slider extremely fast
+and unless you have a ton of sliders on the page, it should be fine to initialize all the sliders on the page during page load.
