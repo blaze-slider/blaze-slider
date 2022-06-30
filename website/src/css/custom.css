@@ -141,3 +141,7 @@ img.hero-logo {
 body pre.prism-code {
   --prism-background-color: var(--bg-darker) !important;
 }
+
+.footer__copyright {
+  font-size: 14px !important;
+}

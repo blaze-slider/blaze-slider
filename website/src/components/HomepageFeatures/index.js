@@ -12,6 +12,7 @@ export default function HomepageFeatures() {
       slidesToShow: 3,
       slideGap: '0px',
       loop: false,
+      transitionDuration: 300,
     },
     '(max-width: 991px)': {
       slidesToShow: 2,
