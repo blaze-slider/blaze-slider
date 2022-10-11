@@ -74,6 +74,7 @@ function handlePointerDown(this: Track, downEvent: PointerEvent | TouchEvent) {
     track.ontouchmove = handlePointerMove
   } else {
     track.onpointerup = handlePointerUp
+    track.oncontextmenu = handlePointerUp
     track.onpointermove = handlePointerMove
   }
 }
