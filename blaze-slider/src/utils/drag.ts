@@ -5,7 +5,7 @@ type Track = HTMLElement & {
   slider: BlazeSlider
 }
 
-export const isTouch = 'ontouchstart' in window
+export const isTouch = () => 'ontouchstart' in window
 
 function swipe(slider: BlazeSlider, dir: 'next' | 'prev') {
   slider[dir]()
@@ -69,7 +69,7 @@ function handlePointerDown(this: Track, downEvent: PointerEvent | TouchEvent) {
     }
   }
 
-  if (isTouch) {
+  if (isTouch()) {
     track.ontouchend = handlePointerUp
     track.ontouchmove = handlePointerMove
   } else {
@@ -86,7 +86,7 @@ export function dragSupport(slider: BlazeSlider) {
   const track: Track = slider.track
   track.slider = slider
 
-  const event = isTouch ? 'touchstart' : 'pointerdown'
+  const event = isTouch() ? 'touchstart' : 'pointerdown'
 
   // @ts-expect-error
   track.addEventListener(event, handlePointerDown)
