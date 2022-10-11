@@ -1,6 +1,6 @@
 .feature {
   background: var(--gradient-1) !important;
-  box-shadow: 12px 12px 24px var(--bg-darker);
+  box-shadow: 6px 6px 12px var(--bg-darker);
   border-radius: 20px;
   height: 100%;
   padding: 30px;
