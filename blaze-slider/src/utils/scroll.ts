@@ -1,4 +1,5 @@
 import { BlazeSlider } from '../slider'
+import { isTouch } from './drag'
 import {
   noLoopScroll,
   disableTransition,
@@ -31,7 +32,11 @@ export function scrollPrev(slider: BlazeSlider, slideCount: number) {
     // if the scroll was done as part of dragging
     // reset should be done after the dragging is completed
     if (slider.isDragging) {
-      slider.track.addEventListener('pointerup', reset, { once: true })
+      if (isTouch) {
+        slider.track.addEventListener('touchend', reset, { once: true })
+      } else {
+        slider.track.addEventListener('pointerup', reset, { once: true })
+      }
     } else {
       rAf(reset)
     }
@@ -62,6 +67,6 @@ export function scrollNext(slider: BlazeSlider, slideCount: number) {
           enableTransition(slider)
         })
       })
-    }, slider.currentTransitionDuration)
+    }, slider.config.transitionDuration)
   }
 }

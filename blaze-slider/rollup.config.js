@@ -2,7 +2,6 @@ import replace from '@rollup/plugin-replace'
 import banner from 'rollup-plugin-banner'
 import { terser } from 'rollup-plugin-terser'
 import typescript from 'rollup-plugin-ts'
-import fs from 'fs'
 
 const bannerPlugin = banner(
   'blaze-slider v<%= pkg.version %> by <%= pkg.author %>'
@@ -85,22 +84,5 @@ const esmBuild = {
     format: 'esm',
   },
 }
-
-const createCjsFile = () => {
-  const code = `\
-if (process.env.NODE_ENV !== 'production') {
-  module.exports = require('./blaze-slider.cjs.dev.js');
-} else {
-  module.exports = require('./blaze-slider.cjs.prod.js');
-};`
-
-  fs.mkdirSync('./dist', { recursive: true })
-
-  fs.writeFile('./dist/blaze-slider.cjs.js', code, (err) => {
-    if (err) console.error(err)
-  })
-}
-
-createCjsFile()
 
 export default [devBuilds, prodBuilds, esmBuild]

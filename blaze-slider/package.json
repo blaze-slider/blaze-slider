@@ -1,16 +1,44 @@
 {
   "name": "blaze-slider",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Blazing Fast Slider For High Performance Web",
   "main": "dist/blaze-slider.cjs.js",
   "module": "dist/blaze-slider.esm.js",
+  "exports": {
+    ".": {
+      "browser": {
+        "development": {
+          "import": "./dist/blaze-slider.esm.js",
+          "require": "./dist/blaze-slider.cjs.dev.js"
+        },
+        "import": "./dist/blaze-slider.esm.js",
+        "require": "./dist/blaze-slider.cjs.prod.js"
+      },
+      "node": {
+        "development": {
+          "import": "./dist/blaze-slider.esm.js",
+          "require": "./dist/blaze-slider.cjs.dev.js"
+        },
+        "import": "./dist/blaze-slider.esm.js",
+        "require": "./dist/blaze-slider.cjs.prod.js"
+      },
+      "development": {
+        "import": "./dist/blaze-slider.esm.js",
+        "require": "./dist/blaze-slider.cjs.dev.js"
+      },
+      "import": "./dist/blaze-slider.esm.js",
+      "require": "./dist/blaze-slider.cjs.prod.js"
+    },
+    "./dist/*": {
+      "import": "./dist/*",
+      "require": "./dist/*"
+    }
+  },
   "types": "dist/blaze-slider.esm.d.ts",
   "scripts": {
-    "publish:patch": "npm version patch && npm run build && npm publish --public",
     "test": "jest",
     "build:css": "csso src/blaze.css --output dist/blaze.css",
-    "build:js": "rollup -c",
-    "build": "npm run build:js && npm run build:css"
+    "build": "rimraf dist && rollup -c && npm run build:css"
   },
   "keywords": [
     "blaze-slider",
@@ -27,6 +55,7 @@
     "@types/node": "^17.0.33",
     "csso-cli": "^3.0.0",
     "jest": "^27.4.5",
+    "rimraf": "^3.0.2",
     "rollup": "^2.62.0",
     "rollup-plugin-banner": "^0.2.1",
     "rollup-plugin-delete": "^2.0.0",

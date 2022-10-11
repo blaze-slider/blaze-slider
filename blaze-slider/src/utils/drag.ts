@@ -5,43 +5,41 @@ type Track = HTMLElement & {
   slider: BlazeSlider
 }
 
+export const isTouch = 'ontouchstart' in window
+
 function swipe(slider: BlazeSlider, dir: 'next' | 'prev') {
-  const time = 90
-
-  // override the transition time to be faster
-  slider.currentTransitionDuration = time
-  slider.track.style.transitionDuration = time + 'ms'
-
   slider[dir]()
-
-  // reset the transition time
-  setTimeout(() => {
-    slider.isTransitioning = false
-    // remove override
-    slider.currentTransitionDuration = slider.config.transitionDuration
-    slider.track.style.transitionDuration = ''
-  }, time)
 }
 
-function handlePointerDown(this: Track, downEvent: PointerEvent) {
+function handlePointerDown(this: Track, downEvent: PointerEvent | TouchEvent) {
+  downEvent.stopPropagation()
+  downEvent.preventDefault()
+
   const track = this
   const slider = track.slider
   if (slider.isTransitioning) return
 
-  // bind the pointer event to slider track to allow dragging outside the track as well
-  track.setPointerCapture(downEvent.pointerId)
-  downEvent.preventDefault()
-
   let dragAmount = 0
   let isScrolled = false
 
-  const startMouseClientX = downEvent.clientX
+  const startMouseClientX =
+    'touches' in downEvent ? downEvent.touches[0].clientX : downEvent.clientX
+
+  if (!('touches' in downEvent)) {
+    track.setPointerCapture(downEvent.pointerId)
+  }
+
   slider.el.classList.add('dragging')
   slider.isDragging = true
 
-  function handlePointerMove(moveEvent: MouseEvent) {
+  function handlePointerMove(moveEvent: PointerEvent | TouchEvent) {
+    moveEvent.stopPropagation()
     moveEvent.preventDefault()
-    dragAmount = moveEvent.clientX - startMouseClientX
+
+    const x =
+      'touches' in moveEvent ? moveEvent.touches[0].clientX : moveEvent.clientX
+
+    dragAmount = x - startMouseClientX
     setDrag(slider, dragAmount)
 
     if (!isScrolled && slider.config.loop) {
@@ -71,8 +69,13 @@ function handlePointerDown(this: Track, downEvent: PointerEvent) {
     }
   }
 
-  track.onpointerup = handlePointerUp
-  track.onpointermove = handlePointerMove
+  if (isTouch) {
+    track.ontouchend = handlePointerUp
+    track.ontouchmove = handlePointerMove
+  } else {
+    track.onpointerup = handlePointerUp
+    track.onpointermove = handlePointerMove
+  }
 }
 
 /**
@@ -82,6 +85,9 @@ export function dragSupport(slider: BlazeSlider) {
   // @ts-expect-error
   const track: Track = slider.track
   track.slider = slider
+
+  const event = isTouch ? 'touchstart' : 'pointerdown'
+
   // @ts-expect-error
-  track.onpointerdown = handlePointerDown
+  track.addEventListener(event, handlePointerDown)
 }
