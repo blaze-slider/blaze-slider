@@ -34,7 +34,7 @@
   --ifm-table-stripe-background: var(--bg-slight-lighter) !important;
   --ifm-card-background-color: var(--bg-slight-darker);
   --ifm-code-background: var(--bg-lighter) !important;
-  --ifm-font-size-base: 18px;
+  --ifm-font-size-base: 16px;
   --ifm-hr-background-color: var(--bg-lighter);
   --ifm-hr-margin-vertical: 50px;
 }
@@ -140,6 +140,7 @@ img.hero-logo {
 
 body pre.prism-code {
   --prism-background-color: var(--bg-darker) !important;
+  font-size: 14px !important;
 }
 
 .footer__copyright {
