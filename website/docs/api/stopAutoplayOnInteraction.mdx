@@ -51,3 +51,35 @@ new BlazeSlider(el, {
 </ExampleSlider>
 
 <br />
+
+### Example `stopAutoplayOnInteraction: false`
+
+See how the autoplay is enabled, but now try to interact with the slider in any way and the autoplay will be disabled.
+
+```javascript
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    slidesToShow: 3,
+    stopAutoplayOnInteraction: false, // default
+  },
+})
+```
+
+<ExampleSlider
+  addNav={true}
+  config={{
+    all: {
+      slidesToShow: 3,
+      enableAutoplay: true,
+      stopAutoplayOnInteraction: false,
+    },
+  }}
+>
+  <div> 1 </div>
+  <div> 2 </div>
+  <div> 3 </div>
+  <div> 4 </div>
+  <div> 5 </div>
+  <div> 6 </div>
+</ExampleSlider>
