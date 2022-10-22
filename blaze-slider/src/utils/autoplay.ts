@@ -1,4 +1,5 @@
 import { BlazeSlider } from '../slider'
+import { isTouch } from './drag'
 
 export function handleAutoplay(slider: BlazeSlider) {
   const config = slider.config
@@ -11,7 +12,7 @@ export function handleAutoplay(slider: BlazeSlider) {
 
   if (config.stopAutoplayOnInteraction) {
     slider.el.addEventListener(
-      'click',
+      isTouch() ? 'touchstart' : 'mousedown',
       () => {
         clearInterval(interval)
       },
