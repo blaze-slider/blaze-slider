@@ -9,9 +9,9 @@ export function handleAutoplay(slider: BlazeSlider) {
     slider[dir]()
   }, config.autoplayInterval)
 
-  if (config.stopAutoplayOnInteraction !== false) {
+  if (config.stopAutoplayOnInteraction) {
     slider.el.addEventListener(
-      'pointerdown',
+      'click',
       () => {
         clearInterval(interval)
       },
