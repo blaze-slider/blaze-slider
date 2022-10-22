@@ -56,7 +56,7 @@ Navigation buttons and Pagination container can be added anywhere inside the str
 
     <!-- navigation buttons -->
     <button class="blaze-prev">previous</button>
-    <button class="blaze-next">previous</button>
+    <button class="blaze-next">next</button>
 
     <!-- pagination container -->
     <div class="pagination"></div>
@@ -88,7 +88,7 @@ You are not limited to just adding the navigation buttons and pagination, you ca
     <!-- navigation buttons -->
     <div class="my-nav-container">
       <button class="blaze-prev">previous</button>
-      <button class="blaze-next">previous</button>
+      <button class="blaze-next">next</button>
     </div>
   </div>
 </div>
