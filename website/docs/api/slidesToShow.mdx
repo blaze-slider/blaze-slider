@@ -24,7 +24,35 @@ Remember to also configure the `--slides-to-show` in your CSS file to avoid layo
 
 <br />
 
-### Example
+### Example: `slidesToShow: 1` (default)
+
+```javascript
+new BlazeSlider(el, {
+  all: {
+    slidesToShow: 1,
+  },
+})
+```
+
+<ExampleSlider
+  addNav={true}
+  config={{
+    all: {
+      slidesToShow: 1,
+    },
+  }}
+>
+  <div> 1 </div>
+  <div> 2 </div>
+  <div> 3 </div>
+  <div> 4 </div>
+  <div> 5 </div>
+  <div> 6 </div>
+</ExampleSlider>
+
+<br />
+
+### Example: `slidesToShow: 3`
 
 ```javascript
 new BlazeSlider(el, {

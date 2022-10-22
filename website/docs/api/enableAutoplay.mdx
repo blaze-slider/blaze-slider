@@ -25,10 +25,10 @@ In this example, pagination and navigation buttons are also added, so that you c
 ```javascript
 new BlazeSlider(el, {
   all: {
-    enableAutoplay: true,
+    enableAutoplay: true, // <--
     slidesToShow: 3,
-    // keep the autoplay on even if user interacts with it
     stopAutoplayOnInteraction: false,
+    autoplayInterval: 1500,
   },
 })
 ```
@@ -40,7 +40,41 @@ new BlazeSlider(el, {
       slidesToShow: 3,
       enableAutoplay: true,
       stopAutoplayOnInteraction: false,
-      autoplayInterval: 1000,
+      autoplayInterval: 1500,
+    },
+  }}
+>
+  <div> 1 </div>
+  <div> 2 </div>
+  <div> 3 </div>
+  <div> 4 </div>
+  <div> 5 </div>
+  <div> 6 </div>
+</ExampleSlider>
+
+<br />
+
+### Example `enableAutoplay: false` (default)
+
+```javascript
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: false, // <--
+    slidesToShow: 3,
+    stopAutoplayOnInteraction: false,
+    autoplayInterval: 1500,
+  },
+})
+```
+
+<ExampleSlider
+  addNav={true}
+  config={{
+    all: {
+      slidesToShow: 3,
+      enableAutoplay: false,
+      stopAutoplayOnInteraction: false,
+      autoplayInterval: 1500,
     },
   }}
 >
