@@ -64,6 +64,7 @@ Blaze Slider is framework agnostic - it can work with all frameworks, all it req
 Here are some prebuilt integrations:
 
 - React - [react-blaze-slider](https://github.com/blaze-slider/blaze-slider/tree/main/blaze-slider-react)
+- Vue 3 - [vue-blaze-slider](https://github.com/TotomInc/vue-blaze-slider)
 
 ## License
 
