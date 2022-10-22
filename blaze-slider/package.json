@@ -38,7 +38,8 @@
   "scripts": {
     "test": "jest",
     "build:css": "csso src/blaze.css --output dist/blaze.css",
-    "build": "rimraf dist && rollup -c && npm run build:css"
+    "build": "rimraf dist && rollup -c && npm run build:css",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "blaze-slider",
