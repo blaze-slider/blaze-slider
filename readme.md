@@ -57,6 +57,14 @@ The documentation is divided into several sections:
 
 <br/>
 
+## Framework Integrations
+
+Blaze Slider is framework agnostic - it can work with all frameworks, all it requires is the DOM element on which you want to initialize the slider and configuration object. [Learn More](https://blaze-slider.dev/docs/framework)
+
+Here are some prebuilt integrations:
+
+- React - [react-blaze-slider](https://github.com/blaze-slider/blaze-slider/tree/main/blaze-slider-react)
+
 ## License
 
 Blaze-slider is MIT licensed.
