@@ -8,7 +8,7 @@ Blaze slider is a high-performance JavaScript UI library for creating sliders.
 
 ## The Problem
 
-Existing slider libraries are not designed with performance in mind. They block the main thread for a long time when initializing a slider which results in poor UX and poor [FID](https://web.dev/fid/) metric for your website.
+Existing slider libraries are not designed with performance in mind. They block the main thread for a long time when initializing a slider which results in poor UX and poor [FID](https://web.dev/fid/) metrics for your website.
 
 They also create layout shifts that negatively impact the UX and [CLS](https://web.dev/cls/) metric of your website. These libraries don't provide any idiomatic way to reduce the layout shifts.
 

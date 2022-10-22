@@ -14,7 +14,7 @@ Install the blaze-slider as a dependency in your project
 npm i blaze-slider
 ```
 
-### Using library via NPM module
+### Using the library via NPM module
 
 ```javascript
 import BlazeSlider from 'blaze-slider'
@@ -33,7 +33,7 @@ See [this sandbox](https://codesandbox.io/s/blaze-slider-npm-playground-hm60ip?f
 
 ## Using JS and CSS files directly
 
-You can get the latest JS and CSS files of blaze slider from [unpkg.com](https://unpkg.com/) as shown below:
+You can get the latest JS and CSS files of Blaze Slider from [unpkg.com](https://unpkg.com/) as shown below:
 
 | Asset               | Link                                                           |
 | ------------------- | -------------------------------------------------------------- |

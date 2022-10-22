@@ -152,7 +152,7 @@ const exampleConfig = {
 
 ## Going beyond the width-based configuration
 
-Because blaze-slider allows you to use any valid media-queries, rather than just width.
+Because blaze-slider allows you to use any valid media queries, rather than just width.
 
 you can target all kinds of media that's simply not possible with other libraries.
 

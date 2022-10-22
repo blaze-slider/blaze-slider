@@ -51,7 +51,7 @@ function useBlazeSlider(config) {
 
 The above function is also available on NPM via [react-blaze-react](https://www.npmjs.com/package/react-blaze-slider) package. You can use this package if you like, or create a custom hook or component - whatever you prefer.
 
-### Using in React Components
+### Usage in React Components
 
 ```jsx
 function App() {
