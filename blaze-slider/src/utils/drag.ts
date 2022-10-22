@@ -12,9 +12,6 @@ function swipe(slider: BlazeSlider, dir: 'next' | 'prev') {
 }
 
 function handlePointerDown(this: Track, downEvent: PointerEvent | TouchEvent) {
-  downEvent.stopPropagation()
-  downEvent.preventDefault()
-
   const track = this
   const slider = track.slider
   if (slider.isTransitioning) return
@@ -33,9 +30,6 @@ function handlePointerDown(this: Track, downEvent: PointerEvent | TouchEvent) {
   slider.isDragging = true
 
   function handlePointerMove(moveEvent: PointerEvent | TouchEvent) {
-    moveEvent.stopPropagation()
-    moveEvent.preventDefault()
-
     const x =
       'touches' in moveEvent ? moveEvent.touches[0].clientX : moveEvent.clientX
 
