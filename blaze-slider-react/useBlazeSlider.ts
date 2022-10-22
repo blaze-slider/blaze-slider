@@ -9,7 +9,7 @@ export function useBlazeSlider(config?: BlazeConfig) {
   React.useEffect(() => {
     // if not already initialized
     if (!sliderRef.current) {
-      new BlazeSlider(elRef.current!, config)
+      sliderRef.current = new BlazeSlider(elRef.current!, config)
     }
     // eslint-disable-next-line
   }, [])
