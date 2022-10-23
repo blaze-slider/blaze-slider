@@ -49,7 +49,7 @@
     "gallery"
   ],
   "author": "Manan Tank",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-replace": "^4.0.0",
     "@types/jest": "^27.0.3",
