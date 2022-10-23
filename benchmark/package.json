@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "bench": "npm run build && npm run preview"
   },
   "dependencies": {
     "@glidejs/glide": "^3.5.2",

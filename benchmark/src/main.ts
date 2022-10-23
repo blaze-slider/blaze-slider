@@ -1,170 +1,158 @@
-// glide
-// @ts-ignore
+// Glide
+// @ts-ignore - No Types Available
 import Glide from '@glidejs/glide'
 import '@glidejs/glide/dist/css/glide.core.min.css'
-// flickity
-// @ts-ignore
+// Flickity
+// @ts-ignore - No Types Available
 import Flickity from 'flickity'
 import 'flickity/css/flickity.css'
-// swiper
+// Swiper
 import { Swiper } from 'swiper'
 import 'swiper/css'
 import BlazeSlider from 'blaze-slider'
 import 'blaze-slider/dist/blaze.css'
 // Embla
 import EmblaCarousel from 'embla-carousel'
-// KeenSlider
+// Keen
 import 'keen-slider/keen-slider.min.css'
 import KeenSlider from 'keen-slider'
 
 // page styles
 import './style.css'
+import './layout-shift-fixes.css'
 
 async function sleep(time: number) {
   return new Promise((resolve) => setTimeout(resolve, time))
 }
 
-async function tester() {
-  await sleep(300)
-  let start: number, end: number
+// if you change config,
+// you will also have to make changes in layout-shift-fixes.css accordingly
+const CONFIG = {
+  TRANSITION_DURATION: 300,
+  SLIDES_TO_SHOW: 3,
+  SLIDES_TO_SCROLL: 3,
+  LOOP: true,
+  SLIDE_GAP: 20, // in pixels
+}
 
-  // blaze slider -----------------------------
-
+async function initTest() {
+  // get refs to elements
   const blazeTarget = document.querySelector('.blaze-slider') as HTMLElement
   const swiperTarget = document.querySelector('.swiper') as HTMLElement
   const flickityTarget = document.querySelector('.main-carousel')
-  const wrap = document.querySelector('.embla') as HTMLElement
-  const viewPort = wrap.querySelector('.embla__viewport') as HTMLElement
+  const emblaWrap = document.querySelector('.embla') as HTMLElement
+  const emblaViewport = emblaWrap.querySelector(
+    '.embla__viewport'
+  ) as HTMLElement
   const KeenSliderTarget = document.getElementById(
     'my-keen-slider'
   ) as HTMLElement
 
-  performance.mark('blaze-slider-start')
-  start = performance.now()
-  new BlazeSlider(blazeTarget, {
-    screen: {
-      slidesToShow: 3,
-      slidesToScroll: 3,
-      slideGap: '20px',
-    },
-  })
-  end = performance.now()
-  console.log('blaze', end - start)
-  performance.mark('blaze-slider-end')
-  performance.measure('blaze-slider', 'blaze-slider-start', 'blaze-slider-end')
+  const results: Record<string, number> = {}
 
-  await sleep(20)
+  async function test(name: string, cb: () => void) {
+    await sleep(50)
 
-  // glide slider -----------------------------
-  performance.mark('glide-slider-start')
-  start = performance.now()
-  new Glide('.glide', {
-    startAt: 0,
-    perView: 3,
-    gap: 20,
-    swipeThreshold: 0,
-    rewind: true,
-  }).mount()
-  end = performance.now()
-  console.log('glide', end - start)
-  performance.mark('glide-slider-end')
-  performance.measure('glide-slider', 'glide-slider-start', 'glide-slider-end')
+    performance.mark(`${name}-start`)
+    const start = performance.now()
+    cb()
+    const end = performance.now()
+    results[name] = end - start
+    performance.mark(`${name}-end`)
+    performance.measure(name, `${name}-start`, `${name}-end`)
+  }
 
-  await sleep(20)
+  // start tests after 1 second
+  console.log('%c BENCHMARK STARTED ', 'color: yellow; font-size: 20px;')
+  await sleep(1000)
 
-  // swiper slider -----------------------------
-  start = performance.now()
-  performance.mark('swiper-slider-start')
-  new Swiper(swiperTarget, {
-    slidesPerView: 3,
-    slidesPerGroup: 3,
-    loop: true,
-    spaceBetween: 20,
-    resizeObserver: false,
-  })
-  end = performance.now()
-  console.log('swiper', end - start)
-  performance.mark('swiper-slider-end')
-  performance.measure(
-    'swiper-slider',
-    'swiper-slider-start',
-    'swiper-slider-end'
-  )
-
-  await sleep(20)
-
-  // slick slider -----------------------------
-  performance.mark('slick-slider-start')
-  start = performance.now()
-
-  // @ts-ignore
-  // eslint-disable-next-line no-undef
-  jQuery('.my-slick-slider').slick({
-    arrows: false,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-  })
-  end = performance.now()
-  console.log('slick', end - start)
-  performance.mark('slick-slider-end')
-  performance.measure('slick-slider', 'slick-slider-start', 'slick-slider-end')
-
-  await sleep(20)
-
-  // flickity slider -----------------------------
-  performance.mark('flickity-slider-start')
-  start = performance.now()
-  new Flickity(flickityTarget, {
-    // options
-    cellAlign: 'left',
-    contain: true,
-    wrapAround: true,
-    groupCells: 3,
-    dragThreshold: 0,
-    pageDots: false,
-    prevNextButtons: false,
+  // Note: buggy behavior when slidesToShow = 5, slidesToScroll = 2
+  await test('slick', () => {
+    // @ts-ignore
+    // eslint-disable-next-line no-undef
+    jQuery('.my-slick-slider').slick({
+      arrows: false,
+      speed: CONFIG.TRANSITION_DURATION,
+      infinite: CONFIG.LOOP,
+      slidesToShow: CONFIG.SLIDES_TO_SHOW,
+      touchThreshold: 100, // 1/100 of the slider width
+      slidesToScroll: CONFIG.SLIDES_TO_SCROLL,
+    })
   })
 
-  end = performance.now()
-  console.log('flickity', end - start)
-  performance.mark('flickity-slider-end')
-  performance.measure(
-    'flickity-slider',
-    'flickity-slider-start',
-    'flickity-slider-end'
-  )
-
-  // Embla Carousel -----------------------------
-  performance.mark('embla-carousel-start')
-  start = performance.now()
-  const embla = EmblaCarousel(viewPort, {
-    // options
-    slidesToScroll: 3,
-    loop: true,
+  // Note: buggy behavior when slidesToShow = 5, slidesToScroll = 2
+  await test('swiper', () => {
+    new Swiper(swiperTarget, {
+      slidesPerView: CONFIG.SLIDES_TO_SHOW,
+      slidesPerGroup: CONFIG.SLIDES_TO_SCROLL,
+      loop: CONFIG.LOOP,
+      spaceBetween: CONFIG.SLIDE_GAP,
+      resizeObserver: false,
+      centeredSlides: false,
+    })
   })
-  end = performance.now()
-  console.log('embla-carousel', end - start)
-  performance.mark('embla-carousel-end')
-  performance.measure(
-    'embla-carousel',
-    'embla-carousel-start',
-    'embla-carousel-end'
-  )
 
-  // kee Carousel -----------------------------
-  performance.mark('keen-slider-start')
-  start = performance.now()
-  const slider = new KeenSlider(KeenSliderTarget, {
-    slides: {
-      perView: 3,
-      spacing: 20,
-    },
-    loop: true,
+  await test('blaze', () => {
+    new BlazeSlider(blazeTarget, {
+      screen: {
+        loop: CONFIG.LOOP,
+        slidesToShow: CONFIG.SLIDES_TO_SHOW,
+        slidesToScroll: CONFIG.SLIDES_TO_SCROLL,
+        transitionDuration: CONFIG.TRANSITION_DURATION,
+        slideGap: `${CONFIG.SLIDE_GAP}px`,
+      },
+    })
   })
-  end = performance.now()
-  console.log('keen-slider', end - start)
-  performance.mark('keen-slider-end')
-  performance.measure('keen-slider', 'keen-slider-start', 'keen-slider-end')
+
+  // Note: No option to specify slides to scroll
+  // Does not support "real" infinite loop - it scrolls back to first position
+  await test('glide', () => {
+    new Glide('.glide', {
+      startAt: 0,
+      perView: CONFIG.SLIDES_TO_SHOW,
+      animationDuration: CONFIG.TRANSITION_DURATION,
+      gap: CONFIG.SLIDE_GAP,
+      swipeThreshold: 10,
+      rewind: CONFIG.LOOP,
+    }).mount()
+  })
+
+  // Note: No option to configure transition duration
+  // No option to specify gap - we create gap with css
+  await test('flickity', () => {
+    new Flickity(flickityTarget, {
+      cellAlign: 'left',
+      contain: true,
+      wrapAround: true,
+      resize: false,
+      groupCells: CONFIG.SLIDES_TO_SHOW,
+      dragThreshold: 0,
+      pageDots: false,
+      prevNextButtons: false,
+    })
+  })
+
+  // Note: keeping the default "speed" for transition duration of 300
+  // Note: Slides are not given proper width from JavaScript - we have to set it with CSS
+  await test('Embla', () => {
+    EmblaCarousel(emblaViewport, {
+      slidesToScroll: CONFIG.SLIDES_TO_SHOW,
+      loop: CONFIG.LOOP,
+    })
+  })
+
+  await test('Keen', () => {
+    new KeenSlider(KeenSliderTarget, {
+      slides: {
+        perView: CONFIG.SLIDES_TO_SHOW,
+        spacing: CONFIG.SLIDE_GAP,
+      },
+      loop: CONFIG.LOOP,
+    })
+  })
+
+  console.log('%c BENCHMARK COMPLETE ', 'color: green; font-size: 20px;')
+  console.table(results)
 }
 
-tester()
+initTest()

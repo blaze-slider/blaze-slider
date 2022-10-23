@@ -16,14 +16,18 @@ body {
 .my-slick-slide,
 .glide__slide,
 .carousel-cell,
+.embla__slide,
 .keen-slider__slide {
   height: 400px;
   background: white;
   font-size: 50px;
   display: flex !important;
   align-items: center;
+  box-sizing: border-box;
   justify-content: center;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15); */
+  border: 4px solid #ddd;
+  border-radius: 4px;
 }
 
 /* blaze-slider: add margin to prevent slide shadow being clipped */
@@ -34,27 +38,6 @@ body {
 /* slick-slider set gap */
 .slick-slide {
   margin: 0 10px;
-}
-
-.slick-slider {
-  margin: 0 -10px;
-}
-
-/* prevent slick slider layout shift */
-.my-slick-slider {
-  display: flex;
-  overflow: hidden;
-}
-
-.my-slick-slide {
-  flex-shrink: 0;
-  width: 100%;
-}
-
-/* reduce layout shift in flickity */
-.main-carousel:not(.flickity-enabled) {
-  overflow: hidden;
-  display: flex;
 }
 
 /* flickity cell width */
@@ -72,30 +55,17 @@ body {
   margin-right: auto;
 }
 
+.embla__container {
+  display: flex;
+  user-select: none;
+}
+
 .embla__viewport {
   overflow: hidden;
   width: 100%;
 }
 
-.embla__container {
-  display: flex;
-  user-select: none;
-  -webkit-touch-callout: none;
-  -khtml-user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  /* margin-left: -15px; */
-}
-
 .embla__slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  min-width: 32.5%;
-  /* padding-left: 10px; */
-  height: 400px;
-  background: white;
-  font-size: 50px;
   margin-right: 20px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+  min-width: calc((100% - 40px) / 3);
 }
