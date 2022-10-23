@@ -61,5 +61,5 @@ body {
   flex-shrink: 0;
   display: inline-block;
   margin: 0 10px;
-  width: calc((100% -40px) / 3);
+  width: calc((100% - 40px) / 3);
 }

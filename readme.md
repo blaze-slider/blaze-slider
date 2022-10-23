@@ -26,6 +26,12 @@ Blaze Slider allows you to specify the layout configuration via CSS variables wh
 | 4    | Swiper    | 29.8ms  | **14.2**x _slower_ |
 | 5    | Slick     | 60.0ms  | **28.5**x _slower_ |
 
+<br/>
+
+<img src='https://raw.githubusercontent.com/blaze-slider/blaze-slider/main/assets/blocking.png'/>
+
+<br/>
+
 Benchmark measures the time taken to create a slider with 10 slides by each slider. Benchmark is measured on Apple M1 Pro CPU with 6X slowdown on Google Chrome 103
 
 See [Benchmark Repo](https://github.com/blaze-slider/blaze-slider/tree/main/benchmark) to see how these libraries are tested
