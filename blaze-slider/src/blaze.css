@@ -30,11 +30,13 @@
   touch-action: pan-y;
   display: flex;
   gap: var(--slide-gap);
-  transform: translateX(
+  transform: translate3d(
     calc(
       var(--offset) * (var(--slide-gap) + var(--slide-width)) +
         calc(1px * var(--dragged))
-    )
+    ),
+    0px,
+    0px
   );
   transition: transform var(--transition-duration)
     var(--transition-timing-function);
