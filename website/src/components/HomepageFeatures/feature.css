@@ -1,10 +1,10 @@
 .feature {
   background: var(--gradient-1) !important;
-  box-shadow: 6px 6px 12px var(--bg-darker);
-  border-radius: 20px;
+  box-shadow: 4px 4px 12px var(--bg-darker);
+  border-radius: 10px;
   height: 100%;
   padding: 30px;
-  border: 4px solid var(--bg-lighter);
+  border: 2px solid var(--bg-lighter);
   position: relative;
 }
 
@@ -20,6 +20,7 @@
 
 .feature h3 {
   font-size: 40px;
+  line-height: 1.1;
   text-align: left;
   margin-bottom: 30px;
 }
@@ -34,6 +35,10 @@
   .feature h3 {
     font-size: 30px;
   }
+}
+
+.feature-section .container {
+  padding: 0;
 }
 
 @media (min-width: 991px) {
@@ -56,5 +61,15 @@
 
   .feature-section .blaze-track-container {
     overflow: visible !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .feature-section {
+    margin-top: 50px;
+  }
+
+  .feature-container {
+    padding: 20px 20px;
   }
 }
