@@ -37,7 +37,7 @@ Refer to [this CSS file](https://github.com/blaze-slider/blaze-slider/tree/main/
 
 ### Main Thread Profile comparison
 
-<img src='https://raw.githubusercontent.com/blaze-slider/blaze-slider/main/assets/blocking.png'/>
+<img src='https://raw.githubusercontent.com/blaze-slider/blaze-slider/main/assets/profile.png'/>
 
 ### Test details
 

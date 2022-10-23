@@ -32,7 +32,7 @@ Manually\* means that the slider library itself does not provide an idiomatic wa
 
 <br/>
 
-<img src='https://raw.githubusercontent.com/blaze-slider/blaze-slider/main/assets/blocking.png'/>
+<img src='https://raw.githubusercontent.com/blaze-slider/blaze-slider/main/assets/profile.png'/>
 
 <br/>
 
