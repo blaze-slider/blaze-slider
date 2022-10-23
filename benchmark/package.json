@@ -10,7 +10,9 @@
   "dependencies": {
     "@glidejs/glide": "^3.5.2",
     "blaze-slider": "^0.1.1",
+    "embla-carousel": "^7.0.3",
     "flickity": "^2.3.0",
+    "keen-slider": "^6.8.3",
     "swiper": "^7.4.1"
   },
   "devDependencies": {

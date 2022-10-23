@@ -15,7 +15,8 @@ body {
 .swiper-slide,
 .my-slick-slide,
 .glide__slide,
-.carousel-cell {
+.carousel-cell,
+.keen-slider__slide {
   height: 400px;
   background: white;
   font-size: 50px;
@@ -62,4 +63,39 @@ body {
   display: inline-block;
   margin: 0 10px;
   width: calc((100% -40px) / 3);
+}
+
+/* embla */
+.embla {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.embla__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.embla__container {
+  display: flex;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  /* margin-left: -15px; */
+}
+
+.embla__slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-width: 32.5%;
+  /* padding-left: 10px; */
+  height: 400px;
+  background: white;
+  font-size: 50px;
+  margin-right: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
 }

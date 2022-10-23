@@ -9,9 +9,14 @@ import 'flickity/css/flickity.css'
 // swiper
 import { Swiper } from 'swiper'
 import 'swiper/css'
-// blaze
 import BlazeSlider from 'blaze-slider'
 import 'blaze-slider/dist/blaze.css'
+// Embla
+import EmblaCarousel from 'embla-carousel'
+// KeenSlider
+import 'keen-slider/keen-slider.min.css'
+import KeenSlider from 'keen-slider'
+
 // page styles
 import './style.css'
 
@@ -28,6 +33,11 @@ async function tester() {
   const blazeTarget = document.querySelector('.blaze-slider') as HTMLElement
   const swiperTarget = document.querySelector('.swiper') as HTMLElement
   const flickityTarget = document.querySelector('.main-carousel')
+  const wrap = document.querySelector('.embla') as HTMLElement
+  const viewPort = wrap.querySelector('.embla__viewport') as HTMLElement
+  const KeenSliderTarget = document.getElementById(
+    'my-keen-slider'
+  ) as HTMLElement
 
   performance.mark('blaze-slider-start')
   start = performance.now()
@@ -123,6 +133,38 @@ async function tester() {
     'flickity-slider-start',
     'flickity-slider-end'
   )
+
+  // Embla Carousel -----------------------------
+  performance.mark('embla-carousel-start')
+  start = performance.now()
+  const embla = EmblaCarousel(viewPort, {
+    // options
+    slidesToScroll: 3,
+    loop: true,
+  })
+  end = performance.now()
+  console.log('embla-carousel', end - start)
+  performance.mark('embla-carousel-end')
+  performance.measure(
+    'embla-carousel',
+    'embla-carousel-start',
+    'embla-carousel-end'
+  )
+
+  // kee Carousel -----------------------------
+  performance.mark('keen-slider-start')
+  start = performance.now()
+  const slider = new KeenSlider(KeenSliderTarget, {
+    slides: {
+      perView: 3,
+      spacing: 20,
+    },
+    loop: true,
+  })
+  end = performance.now()
+  console.log('keen-slider', end - start)
+  performance.mark('keen-slider-end')
+  performance.measure('keen-slider', 'keen-slider-start', 'keen-slider-end')
 }
 
 tester()
