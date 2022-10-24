@@ -60,7 +60,7 @@ You can check out the documentation on the website [blaze-slider.dev](https://bl
 
 The documentation is divided into several sections:
 
-- [Getting Start](https://blaze-slider.dev/docs/intro)
+- [Getting Started](https://blaze-slider.dev/docs/intro)
 - [Installation](http://blaze-slider.dev/docs/installation)
 - [Tutorial](https://blaze-slider.dev/docs/category/tutorial)
 - [API Reference](https://blaze-slider.dev/docs/category/api)
