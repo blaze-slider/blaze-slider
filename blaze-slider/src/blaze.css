@@ -14,10 +14,6 @@
   box-sizing: border-box;
 }
 
-.blaze-slider:not(.static) .blaze-track {
-  cursor: grab;
-}
-
 .blaze-container {
   position: relative;
 }
@@ -57,5 +53,4 @@
 /* grab cursor when dragging */
 .blaze-slider.dragging {
   user-select: none;
-  cursor: grabbing;
 }
