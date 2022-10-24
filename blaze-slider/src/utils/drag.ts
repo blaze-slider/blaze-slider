@@ -1,75 +1,72 @@
 import { BlazeSlider } from '../slider'
-import { enableTransition, setDrag } from './methods'
+import { Track } from '../types'
+import { disableTransition, enableTransition, updateTransform } from './methods'
 
-type Track = HTMLElement & {
-  slider: BlazeSlider
-}
+const swiperThreshold = 10
 
 export const isTouch = () => 'ontouchstart' in window
-
-function swipe(slider: BlazeSlider, dir: 'next' | 'prev') {
-  slider[dir]()
-}
 
 function handlePointerDown(this: Track, downEvent: PointerEvent | TouchEvent) {
   const track = this
   const slider = track.slider
   if (slider.isTransitioning) return
 
-  let dragAmount = 0
-  let isScrolled = false
-
-  const startMouseClientX =
+  slider.dragged = 0
+  track.isScrolled = false
+  track.startMouseClientX =
     'touches' in downEvent ? downEvent.touches[0].clientX : downEvent.clientX
 
   if (!('touches' in downEvent)) {
     track.setPointerCapture(downEvent.pointerId)
   }
 
-  slider.el.classList.add('dragging')
-  slider.isDragging = true
+  track.slider.isDragging = true
+  disableTransition(slider)
+  updateEventListener(track, 'addEventListener')
+}
 
-  function handlePointerMove(moveEvent: PointerEvent | TouchEvent) {
-    const x =
-      'touches' in moveEvent ? moveEvent.touches[0].clientX : moveEvent.clientX
+function handlePointerMove(this: Track, moveEvent: PointerEvent | TouchEvent) {
+  const track = this
+  const x =
+    'touches' in moveEvent ? moveEvent.touches[0].clientX : moveEvent.clientX
 
-    dragAmount = x - startMouseClientX
-    setDrag(slider, dragAmount)
+  const dragged = (track.slider.dragged = x - track.startMouseClientX)
 
-    if (!isScrolled && slider.config.loop) {
-      if (dragAmount > 10) {
-        isScrolled = true
-        swipe(slider, 'prev')
-      }
-    }
+  // prevent vertical scrolling if horizontal scrolling is happening
+  if (Math.abs(dragged) > 15) {
+    moveEvent.preventDefault()
   }
 
-  const handlePointerUp = () => {
-    track.onpointerup = null
-    track.onpointermove = null
+  track.slider.dragged = dragged
+  updateTransform(track.slider)
 
-    slider.el.classList.remove('dragging')
-    slider.isDragging = false
-
-    setDrag(slider, 0)
-    enableTransition(slider)
-
-    if (!isScrolled) {
-      if (dragAmount < -10) {
-        swipe(slider, 'next')
-      } else if (dragAmount > 10) {
-        swipe(slider, 'prev')
-      }
+  if (!track.isScrolled && track.slider.config.loop) {
+    if (dragged > swiperThreshold) {
+      track.isScrolled = true
+      track.slider.prev()
     }
   }
+}
 
-  if (isTouch()) {
-    track.ontouchend = handlePointerUp
-    track.ontouchmove = handlePointerMove
-  } else {
-    track.onpointerup = handlePointerUp
-    track.oncontextmenu = handlePointerUp
-    track.onpointermove = handlePointerMove
+function handlePointerUp(this: Track) {
+  const track = this
+  const dragged = track.slider.dragged
+  track.slider.isDragging = false
+
+  updateEventListener(track, 'removeEventListener')
+
+  // reset drag
+  track.slider.dragged = 0
+  updateTransform(track.slider)
+
+  enableTransition(track.slider)
+
+  if (!track.isScrolled) {
+    if (dragged < -1 * swiperThreshold) {
+      track.slider.next()
+    } else if (dragged > swiperThreshold) {
+      track.slider.prev()
+    }
   }
 }
 
@@ -85,4 +82,21 @@ export function dragSupport(slider: BlazeSlider) {
 
   // @ts-expect-error
   track.addEventListener(event, handlePointerDown)
+}
+
+function updateEventListener(
+  track: Track,
+  method: 'addEventListener' | 'removeEventListener'
+) {
+  track[method]('contextmenu', handlePointerUp)
+
+  if (isTouch()) {
+    track[method]('touchend', handlePointerUp)
+    // @ts-expect-error
+    track[method]('touchmove', handlePointerMove)
+  } else {
+    track[method]('pointerup', handlePointerUp)
+    // @ts-expect-error
+    track[method]('pointermove', handlePointerMove)
+  }
 }

@@ -37,10 +37,6 @@
   opacity: 0.1;
 }
 
-.blaze-slider.dragging .blaze-track {
-  cursor: grabbing !important;
-}
-
 .blaze-slider {
   user-select: none;
 }

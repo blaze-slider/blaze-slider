@@ -1,24 +1,9 @@
-import { NO_TRANSITION, __OFFSET } from '../constants'
 import { BlazeSlider } from '../slider'
 
-export function disableTransition(slider: BlazeSlider) {
-  slider.el.classList.add(NO_TRANSITION)
-}
-
-export function enableTransition(slider: BlazeSlider) {
-  slider.el.classList.remove(NO_TRANSITION)
-}
-
-export function resetOffset(slider: BlazeSlider) {
-  slider.el.style.setProperty(__OFFSET, '0')
-}
-
+// when loop is disabled, we must update the offset
 export function noLoopScroll(slider: BlazeSlider) {
-  setOffset(slider, -1 * slider.states[slider.stateIndex].page[0])
-}
-
-export function setOffset(slider: BlazeSlider, offset: number) {
-  slider.el.style.setProperty(__OFFSET, offset + '')
+  slider.offset = -1 * slider.states[slider.stateIndex].page[0]
+  updateTransform(slider)
 }
 
 export function wrapPrev(slider: BlazeSlider, count: number) {
@@ -37,6 +22,20 @@ export function wrapNext(slider: BlazeSlider, count: number) {
   }
 }
 
-export function setDrag(slider: BlazeSlider, amount: number) {
-  slider.el.style.setProperty('--dragged', amount + '')
+export function updateTransform(slider: BlazeSlider) {
+  const { track, offset, dragged } = slider
+
+  if (offset === 0) {
+    track.style.transform = `translate3d(${dragged}px,0px,0px)`
+  } else {
+    track.style.transform = `translate3d(  calc( ${dragged}px + ${offset} * (var(--slide-width) + ${slider.config.slideGap})),0px,0px)`
+  }
+}
+
+export function enableTransition(slider: BlazeSlider) {
+  slider.track.style.transitionDuration = `${slider.config.transitionDuration}ms`
+}
+
+export function disableTransition(slider: BlazeSlider) {
+  slider.track.style.transitionDuration = `0ms`
 }

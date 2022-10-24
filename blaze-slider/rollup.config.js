@@ -10,7 +10,7 @@ const bannerPlugin = banner(
 // use this tsconfig to prevent declaration files from being emitted
 // don't emit declaration files for each build - emit just one time when building the ESM bundle
 // so that we don't have the same file 5 times in the dist folder
-const tsDontEmitDeclaration = typescript({
+const tsNoTypeEmit = typescript({
   tsconfig: 'tsconfig.nodecl.json',
 })
 
@@ -40,7 +40,7 @@ const devBuilds = {
     },
   ],
   plugins: [
-    tsDontEmitDeclaration,
+    tsNoTypeEmit,
     replace({
       preventAssignment: true,
       'process.env.NODE_ENV': '"development"',
@@ -66,7 +66,7 @@ const prodBuilds = {
     },
   ],
   plugins: [
-    tsDontEmitDeclaration,
+    tsNoTypeEmit,
     replace({
       preventAssignment: true,
       'process.env.NODE_ENV': '"production"',

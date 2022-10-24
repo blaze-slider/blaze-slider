@@ -1,6 +1,5 @@
 import { Automata } from '../automata/automata'
-
-const DEV = process.env.NODE_ENV !== 'production'
+import { DEV } from '../constants'
 
 /**
  * it fixes below scenarios which are wrong (and adds a warning in console in development)

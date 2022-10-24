@@ -2,12 +2,11 @@ import { BlazeSlider } from '../slider'
 import { isTouch } from './drag'
 import {
   noLoopScroll,
-  disableTransition,
-  setOffset,
   wrapPrev,
-  enableTransition,
-  resetOffset,
   wrapNext,
+  updateTransform,
+  disableTransition,
+  enableTransition,
 } from './methods'
 
 export function scrollPrev(slider: BlazeSlider, slideCount: number) {
@@ -16,19 +15,26 @@ export function scrollPrev(slider: BlazeSlider, slideCount: number) {
   if (!slider.config.loop) {
     noLoopScroll(slider)
   } else {
-    disableTransition(slider)
-    setOffset(slider, -1 * slideCount) // move the elements to start
+    // shift elements and apply negative transform to make it look like nothing changed
 
-    wrapPrev(slider, slideCount) // move the track so it looks like nothing is changed
+    // disable transition
+    disableTransition(slider)
+    // apply negative transform
+    slider.offset = -1 * slideCount
+    updateTransform(slider)
+    // and move the elements
+    wrapPrev(slider, slideCount)
 
     const reset = () => {
       rAf(() => {
         enableTransition(slider)
         rAf(() => {
-          resetOffset(slider) // reset the offset to move the slider to new position
+          slider.offset = 0
+          updateTransform(slider)
         })
       })
     }
+
     // if the scroll was done as part of dragging
     // reset should be done after the dragging is completed
     if (slider.isDragging) {
@@ -51,7 +57,8 @@ export function scrollNext(slider: BlazeSlider, slideCount: number) {
     noLoopScroll(slider)
   } else {
     // apply offset and let the slider scroll from  <- (right to left)
-    setOffset(slider, -1 * slideCount)
+    slider.offset = -1 * slideCount
+    updateTransform(slider)
 
     // once the transition is done
     setTimeout(() => {
@@ -59,10 +66,11 @@ export function scrollNext(slider: BlazeSlider, slideCount: number) {
       wrapNext(slider, slideCount)
       disableTransition(slider)
 
-      // disable transition and reset offset to prevent jumping
+      // apply transform where the slider should go
+      slider.offset = 0
+      updateTransform(slider)
+
       rAf(() => {
-        resetOffset(slider)
-        // after that, enable transition again
         rAf(() => {
           enableTransition(slider)
         })

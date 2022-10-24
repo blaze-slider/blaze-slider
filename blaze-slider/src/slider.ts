@@ -1,14 +1,12 @@
 import { Automata } from './automata/automata'
-import { END, START } from './constants'
-import { BlazeConfig, MediaConfig } from './types'
+import { DEV, END, START } from './constants'
+import { BlazeConfig, MediaConfig, Track } from './types'
 import { handleAutoplay } from './utils/autoplay'
 import { createConfig, defaultConfig } from './utils/config'
 import { dragSupport } from './utils/drag'
 import { handleNavigation } from './utils/navigation'
 import { handlePagination } from './utils/pagination'
 import { scrollNext, scrollPrev } from './utils/scroll'
-
-const DEV = process.env.NODE_ENV !== 'production'
 
 function isTransitioning(
   slider: BlazeSlider,
@@ -24,8 +22,10 @@ export class BlazeSlider extends Automata {
   el: HTMLElement
   slides: HTMLCollection
   track: HTMLElement
-  isDragging: boolean
+  offset: number
+  dragged: number
   config: MediaConfig
+  isDragging: boolean
   paginationButtons: HTMLButtonElement[] | undefined
 
   constructor(blazeSliderEl: HTMLElement, blazeConfig?: BlazeConfig) {
@@ -33,7 +33,7 @@ export class BlazeSlider extends Automata {
       ? createConfig(blazeConfig)
       : { ...defaultConfig }
 
-    const track = blazeSliderEl.querySelector('.blaze-track') as HTMLElement
+    const track = blazeSliderEl.querySelector('.blaze-track') as Track
     const slides = track.children
 
     super(slides.length, config)
@@ -42,9 +42,12 @@ export class BlazeSlider extends Automata {
     this.el = blazeSliderEl
     this.track = track
     this.slides = slides
+    this.offset = 0
+    this.dragged = 0
     this.isDragging = false
 
     const slider = this
+    track.slider = slider
 
     if (!config.loop) {
       slider.el.classList.add(START)
@@ -59,7 +62,14 @@ export class BlazeSlider extends Automata {
       config.enableAutoplay = false
     }
 
-    setCSS(slider)
+    track.style.transitionProperty = 'transform'
+    track.style.transitionTimingFunction =
+      slider.config.transitionTimingFunction
+    track.style.transitionDuration = `${slider.config.transitionDuration}ms`
+
+    const { slidesToShow, slideGap } = slider.config
+    slider.el.style.setProperty('--slides-to-show', slidesToShow + '')
+    slider.el.style.setProperty('--slide-gap', slideGap)
 
     if (!slider.isStatic) {
       dragSupport(slider)
@@ -73,6 +83,7 @@ export class BlazeSlider extends Automata {
   }
 
   next(count?: number) {
+    if (this.isTransitioning) return
     const transition = super.next(count)
     if (!transition) return
     const [prevStateIndex, slideCount] = transition
@@ -82,6 +93,7 @@ export class BlazeSlider extends Automata {
   }
 
   prev(count?: number) {
+    if (this.isTransitioning) return
     const transition = super.prev(count)
     if (!transition) return
     const [prevStateIndex, slideCount] = transition
@@ -94,6 +106,7 @@ export class BlazeSlider extends Automata {
 function handleStateChange(slider: BlazeSlider, prevStateIndex: number) {
   const classList = slider.el.classList
   const stateIndex = slider.stateIndex
+  const buttons = slider.paginationButtons
 
   if (!slider.config.loop) {
     if (stateIndex === 0) {
@@ -109,33 +122,8 @@ function handleStateChange(slider: BlazeSlider, prevStateIndex: number) {
     }
   }
 
-  const buttons = slider.paginationButtons
   if (buttons) {
     buttons[prevStateIndex].classList.remove('active')
     buttons[stateIndex].classList.add('active')
   }
-}
-
-function setCSS(slider: BlazeSlider) {
-  const {
-    slidesToShow,
-    transitionDuration,
-    slideGap,
-    transitionTimingFunction,
-  } = slider.config
-
-  // layout
-  slider.el.style.setProperty('--slides-to-show', slidesToShow + '')
-  slider.el.style.setProperty('--slide-gap', slideGap)
-
-  // transition
-  slider.el.style.setProperty(
-    '--transition-duration',
-    transitionDuration + 'ms'
-  )
-
-  slider.el.style.setProperty(
-    '--transition-timing-function',
-    transitionTimingFunction + ''
-  )
 }

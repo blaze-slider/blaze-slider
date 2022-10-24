@@ -1,3 +1,5 @@
+import { BlazeSlider } from './slider'
+
 export type AutomataConfig = {
   loop: boolean
   slidesToShow: number
@@ -90,4 +92,10 @@ export type State = {
     /** number of slides need to be moved to go to prev state */
     moveSlides: number
   }
+}
+
+export type Track = HTMLElement & {
+  isScrolled: boolean
+  startMouseClientX: number
+  slider: BlazeSlider
 }

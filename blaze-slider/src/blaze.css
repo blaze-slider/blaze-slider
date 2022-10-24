@@ -1,17 +1,9 @@
 .blaze-slider {
-  --dragged: 0;
-  --slides-to-show: 1; /* default, final will be set by js */
-  --offset: 0;
+  /* default config */
+  --slides-to-show: 1;
   --slide-gap: 20px;
-  --total-gap: (var(--slides-to-show) - 1) * var(--slide-gap);
-  --slide-width: calc((100% - var(--total-gap)) / var(--slides-to-show));
-  --transition-duration: 200ms;
-  --transition-timing-function: ease;
+  /* force ltr - slider does not work in rtl mode */
   direction: ltr;
-}
-
-.blaze-track > * {
-  box-sizing: border-box;
 }
 
 .blaze-container {
@@ -23,34 +15,22 @@
 }
 
 .blaze-track {
+  will-change: transform;
   touch-action: pan-y;
   display: flex;
   gap: var(--slide-gap);
-  transform: translate3d(
-    calc(
-      var(--offset) * (var(--slide-gap) + var(--slide-width)) +
-        calc(1px * var(--dragged))
-    ),
-    0px,
-    0px
+  --slide-width: calc(
+    (100% - (var(--slides-to-show) - 1) * var(--slide-gap)) /
+      var(--slides-to-show)
   );
-  transition: transform var(--transition-duration)
-    var(--transition-timing-function);
 }
 
-/* disabling transition */
-.blaze-slider.no-transition .blaze-track,
-.blaze-slider.dragging .blaze-track {
-  transition: none !important;
+.blaze-track,
+.blaze-track > * {
+  box-sizing: border-box;
 }
 
-/* setting with on slides */
 .blaze-track > * {
   width: var(--slide-width);
   flex-shrink: 0;
-}
-
-/* grab cursor when dragging */
-.blaze-slider.dragging {
-  user-select: none;
 }

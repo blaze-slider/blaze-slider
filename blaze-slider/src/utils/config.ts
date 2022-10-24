@@ -15,7 +15,7 @@ export const defaultConfig: MediaConfig = {
   // pagination
   enablePagination: true,
   // transition
-  transitionDuration: 500,
+  transitionDuration: 300,
   transitionTimingFunction: 'ease',
 }
 

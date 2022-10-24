@@ -9,8 +9,9 @@ import 'flickity/css/flickity.css'
 // Swiper
 import { Swiper } from 'swiper'
 import 'swiper/css'
-import BlazeSlider from 'blaze-slider'
-import 'blaze-slider/dist/blaze.css'
+// Blaze ( use source directly for live benchmarking )
+import BlazeSlider from '../../blaze-slider/src/index'
+import '../../blaze-slider/src/blaze.css'
 // Embla
 import EmblaCarousel from 'embla-carousel'
 // Keen
