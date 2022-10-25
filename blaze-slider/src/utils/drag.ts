@@ -17,7 +17,10 @@ function handlePointerDown(this: Track, downEvent: PointerEvent | TouchEvent) {
     'touches' in downEvent ? downEvent.touches[0].clientX : downEvent.clientX
 
   if (!('touches' in downEvent)) {
-    track.setPointerCapture(downEvent.pointerId)
+    // do not directly setPointerCapture on track - it blocks the click events
+    // https://github.com/GoogleChromeLabs/pointer-tracker/issues/4
+    const el = (downEvent.target || track) as Element
+    el.setPointerCapture(downEvent.pointerId)
   }
 
   track.slider.isDragging = true
