@@ -72,7 +72,9 @@ export class BlazeSlider extends Automata {
     slider.el.style.setProperty('--slide-gap', slideGap)
 
     if (!slider.isStatic) {
-      dragSupport(slider)
+      if (config.draggable) {
+        dragSupport(slider)
+      }
     } else {
       slider.el.classList.add('static')
     }

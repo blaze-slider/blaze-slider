@@ -68,6 +68,14 @@ export interface MediaConfig extends AutomataConfig {
    *
    *  */
   transitionTimingFunction: string
+
+  /**
+   * Allow dragging the slider via mouse or touch
+   *
+   *
+   * default: `true`
+   */
+  draggable: boolean
 }
 
 /** blaze slider configuration */

@@ -17,6 +17,7 @@ export const defaultConfig: MediaConfig = {
   // transition
   transitionDuration: 300,
   transitionTimingFunction: 'ease',
+  draggable: true,
 }
 
 export function createConfig(blazeConfig: BlazeConfig) {
