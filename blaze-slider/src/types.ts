@@ -76,6 +76,14 @@ export interface MediaConfig extends AutomataConfig {
    * default: `true`
    */
   draggable: boolean
+
+  /**
+   * Go to next slide when user uses their mouse wheel whilst
+   * hovering over the slider
+   *
+   * default: `false`
+   */
+  slideOnScroll: boolean
 }
 
 /** blaze slider configuration */

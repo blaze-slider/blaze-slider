@@ -1,4 +1,5 @@
 import { BlazeSlider } from '../slider'
+import { DEV } from '../constants'
 
 export function handleNavigation(slider: BlazeSlider) {
   const prev = slider.el.querySelector(
@@ -19,5 +20,13 @@ export function handleNavigation(slider: BlazeSlider) {
     next.onclick = () => {
       slider.next()
     }
+  }
+
+  if (slider.config.slideOnScroll) {
+    if (DEV) console.info('Enabling slide on scroll.')
+    slider.el.addEventListener('wheel', (ev) => {
+      if (ev.deltaY > 0) slider.next()
+      else slider.prev()
+    })
   }
 }

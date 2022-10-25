@@ -7,6 +7,7 @@ export const defaultConfig: MediaConfig = {
   slidesToShow: 1,
   // behavior
   loop: true,
+  slideOnScroll: false,
   // autoplay
   enableAutoplay: false,
   stopAutoplayOnInteraction: true,
