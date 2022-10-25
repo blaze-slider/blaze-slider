@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import './example-slider.css'
 import '../../css/blaze-custom.css'
 
-export const ExampleSlider = ({ children, config, addNav, getRef }) => {
+export const ExampleSlider = ({ children, config, addNav, getRef, small }) => {
   const ref = useBlazeSlider(config)
   useEffect(() => {
     if (getRef) {
@@ -12,7 +12,11 @@ export const ExampleSlider = ({ children, config, addNav, getRef }) => {
   })
 
   return (
-    <div className="example-slider">
+    <div
+      className={`example-slider ${small ? 'small' : ''} ${
+        config?.all?.slidesToShow === 3 ? 'slides-to-show-3' : ''
+      }`}
+    >
       <div className="blaze-slider" ref={ref}>
         <div className="blaze-container">
           <div className="blaze-track-container">

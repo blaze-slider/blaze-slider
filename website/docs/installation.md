@@ -14,7 +14,7 @@ Install the blaze-slider as a dependency in your project
 npm i blaze-slider
 ```
 
-### Using the library via NPM module
+### Using the library via an NPM module
 
 ```javascript
 import BlazeSlider from 'blaze-slider'

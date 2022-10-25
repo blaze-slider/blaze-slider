@@ -91,6 +91,12 @@ const config = {
             label: 'Playground',
           },
           {
+            type: 'doc',
+            docId: 'demos',
+            label: 'Demos',
+            position: 'left',
+          },
+          {
             href: 'https://github.com/blaze-slider/blaze-slider',
             label: 'GitHub',
             position: 'right',

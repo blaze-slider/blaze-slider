@@ -10,6 +10,15 @@
   color: white;
 }
 
+.small.example-slider .blaze-track > * {
+  height: 120px;
+  font-size: 20px;
+}
+
+.slides-to-show-3 {
+  --slides-to-show: 3;
+}
+
 .example-slider {
   margin-bottom: 30px;
 }
