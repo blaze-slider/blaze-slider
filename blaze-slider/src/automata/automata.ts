@@ -7,24 +7,21 @@ export type Transition = [oldStateIndex: number, slideCount: number]
 export class Automata {
   config: AutomataConfig
   // state
-  stateIndex: number
+  stateIndex!: number
   // states
-  states: State[]
+  states!: State[]
   // data
   totalSlides: number
   isTransitioning: boolean
 
   // slider is static if number of slides are less than config.slidesToShow
-  isStatic: boolean
+  isStatic!: boolean
 
   constructor(totalSlides: number, config: AutomataConfig) {
     this.config = config
     this.totalSlides = totalSlides
-    this.stateIndex = 0
     this.isTransitioning = false
-    fixSliderConfig(this)
-    this.isStatic = totalSlides <= config.slidesToShow
-    this.states = calculateStates(this)
+    constructAutomata(this, totalSlides, config)
   }
 
   next(pages = 1): Transition | void {
@@ -61,4 +58,16 @@ export class Automata {
 
     return [stateIndex, slidesMoved]
   }
+}
+
+// this will be called when slider is refreshed
+export function constructAutomata(
+  automata: Automata,
+  totalSlides: number,
+  config: AutomataConfig
+) {
+  automata.stateIndex = 0
+  fixSliderConfig(automata)
+  automata.isStatic = totalSlides <= config.slidesToShow
+  automata.states = calculateStates(automata)
 }

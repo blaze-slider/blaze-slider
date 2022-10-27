@@ -6,7 +6,7 @@ export function handleAutoplay(slider: BlazeSlider) {
   if (!config.enableAutoplay) return
   const dir = config.autoplayDirection === 'to left' ? 'next' : 'prev'
 
-  const interval = setInterval(() => {
+  slider.autoplayTimer = setInterval(() => {
     slider[dir]()
   }, config.autoplayInterval)
 
@@ -14,7 +14,7 @@ export function handleAutoplay(slider: BlazeSlider) {
     slider.el.addEventListener(
       isTouch() ? 'touchstart' : 'mousedown',
       () => {
-        clearInterval(interval)
+        clearInterval(slider.autoplayTimer)
       },
       { once: true }
     )

@@ -6,7 +6,10 @@ const swiperThreshold = 10
 
 export const isTouch = () => 'ontouchstart' in window
 
-function handlePointerDown(this: Track, downEvent: PointerEvent | TouchEvent) {
+export function handlePointerDown(
+  this: Track,
+  downEvent: PointerEvent | TouchEvent
+) {
   const track = this
   const slider = track.slider
   if (slider.isTransitioning) return
