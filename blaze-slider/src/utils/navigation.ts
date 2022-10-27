@@ -25,6 +25,10 @@ export function handleNavigation(slider: BlazeSlider) {
   if (slider.config.slideOnScroll) {
     if (DEV) console.info('Enabling slide on scroll.')
     slider.el.addEventListener('wheel', (ev) => {
+      // Prevent page from scrolling down
+      ev.preventDefault()
+
+      // Next/previous slide on mousedown/up
       if (ev.deltaY > 0) slider.next()
       else slider.prev()
     })
