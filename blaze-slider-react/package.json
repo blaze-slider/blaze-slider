@@ -1,6 +1,6 @@
 {
   "name": "react-blaze-slider",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "React Integration for Blaze Slider",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
   "author": "Manan Tank",
   "license": "MIT",
   "dependencies": {
-    "blaze-slider": "^1.7.1"
+    "blaze-slider": "^1.8.0"
   },
   "peerDependencies": {
     "react": ">=16"
