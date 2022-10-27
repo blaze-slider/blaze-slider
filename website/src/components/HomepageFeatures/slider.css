@@ -4,13 +4,13 @@
   --slide-gap: 0px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1050px) {
   .feature-section .blaze-slider {
     --slides-to-show: 2;
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   .feature-section .blaze-slider {
     --slides-to-show: 1;
   }

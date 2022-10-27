@@ -14,10 +14,10 @@ export default function HomepageFeatures() {
       loop: false,
       transitionDuration: 300,
     },
-    '(max-width: 991px)': {
+    '(max-width: 1050px)': {
       slidesToShow: 2,
     },
-    '(max-width: 500px)': {
+    '(max-width: 700px)': {
       slidesToShow: 1,
     },
   })
