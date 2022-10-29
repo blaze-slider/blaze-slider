@@ -1,6 +1,7 @@
 {
+  "type": "module",
   "name": "react-blaze-slider",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "React Integration for Blaze Slider",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
