@@ -87,7 +87,7 @@ export function dragSupport(slider: BlazeSlider) {
   const event = isTouch() ? 'touchstart' : 'pointerdown'
 
   // @ts-expect-error
-  track.addEventListener(event, handlePointerDown)
+  track.addEventListener(event, handlePointerDown, { passive: true })
 }
 
 function updateEventListener(
