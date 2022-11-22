@@ -4,3 +4,5 @@ node_modules/
 *.d.ts
 *.cjs.js
 dist/*
+build
+.docusaurus
