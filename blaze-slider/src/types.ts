@@ -107,3 +107,9 @@ export type Track = HTMLElement & {
   startMouseClientX: number
   slider: BlazeSlider
 }
+
+export type SlideChangeCallback = (
+  page: number,
+  firstSlideIndex: number,
+  lastSlideIndex: number
+) => void

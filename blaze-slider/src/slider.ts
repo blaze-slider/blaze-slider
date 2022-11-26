@@ -1,6 +1,6 @@
 import { Automata, constructAutomata } from './automata/automata'
 import { DEV, END, START } from './constants'
-import { BlazeConfig, MediaConfig, Track } from './types'
+import { BlazeConfig, MediaConfig, SlideChangeCallback, Track } from './types'
 import { handleAutoplay } from './utils/autoplay'
 import { createConfig, defaultConfig } from './utils/config'
 import { dragSupport, handlePointerDown, isTouch } from './utils/drag'
@@ -30,6 +30,7 @@ export class BlazeSlider extends Automata {
   paginationButtons: HTMLButtonElement[] | undefined
   passedConfig?: BlazeConfig
   autoplayTimer?: any
+  onSlideCbs?: Set<SlideChangeCallback>
 
   constructor(blazeSliderEl: HTMLElement, blazeConfig?: BlazeConfig) {
     const track = blazeSliderEl.querySelector('.blaze-track') as Track
@@ -133,6 +134,16 @@ export class BlazeSlider extends Automata {
     this.destroy()
     construct(newConfig, this)
   }
+
+  /**
+   * Subscribe for slide change event
+   * Returns a function to unsubscribe from slide change event
+   */
+  onSlide(cb: SlideChangeCallback) {
+    if (!this.onSlideCbs) this.onSlideCbs = new Set()
+    this.onSlideCbs.add(cb)
+    return () => this.onSlideCbs!.delete(cb)
+  }
 }
 
 function handleStateChange(slider: BlazeSlider, prevStateIndex: number) {
@@ -204,6 +215,5 @@ function construct(config: MediaConfig, slider: BlazeSlider) {
   handlePagination(slider)
   handleAutoplay(slider)
   handleNavigation(slider)
-
   updateTransform(slider)
 }

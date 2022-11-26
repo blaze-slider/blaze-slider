@@ -31,6 +31,7 @@ export function scrollPrev(slider: BlazeSlider, slideCount: number) {
         rAf(() => {
           slider.offset = 0
           updateTransform(slider)
+          onSlideEnd(slider)
         })
       })
     }
@@ -64,6 +65,7 @@ export function scrollNext(slider: BlazeSlider, slideCount: number) {
     setTimeout(() => {
       // remove the elements from start that are no longer visible and put them at the end
       wrapNext(slider, slideCount)
+
       disableTransition(slider)
 
       // apply transform where the slider should go
@@ -73,8 +75,19 @@ export function scrollNext(slider: BlazeSlider, slideCount: number) {
       rAf(() => {
         rAf(() => {
           enableTransition(slider)
+          onSlideEnd(slider)
         })
       })
     }, slider.config.transitionDuration)
+  }
+}
+
+function onSlideEnd(slider: BlazeSlider) {
+  if (slider.onSlideCbs) {
+    const state = slider.states[slider.stateIndex]
+    const [firstSlideIndex, lastSlideIndex] = state.page
+    slider.onSlideCbs.forEach((cb) =>
+      cb(slider.stateIndex, firstSlideIndex, lastSlideIndex)
+    )
   }
 }

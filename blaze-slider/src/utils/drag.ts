@@ -2,7 +2,7 @@ import { BlazeSlider } from '../slider'
 import { Track } from '../types'
 import { disableTransition, enableTransition, updateTransform } from './methods'
 
-const swiperThreshold = 10
+const slideThreshold = 10
 
 export const isTouch = () => 'ontouchstart' in window
 
@@ -26,7 +26,6 @@ export function handlePointerDown(
     el.setPointerCapture(downEvent.pointerId)
   }
 
-  track.slider.isDragging = true
   disableTransition(slider)
   updateEventListener(track, 'addEventListener')
 }
@@ -37,9 +36,16 @@ function handlePointerMove(this: Track, moveEvent: PointerEvent | TouchEvent) {
     'touches' in moveEvent ? moveEvent.touches[0].clientX : moveEvent.clientX
 
   const dragged = (track.slider.dragged = x - track.startMouseClientX)
+  const draggedAbs = Math.abs(dragged)
+
+  // consider dragging only if the user has dragged more than 5px
+  if (draggedAbs > 5) {
+    // track.setAttribute('data-dragging', 'true')
+    track.slider.isDragging = true
+  }
 
   // prevent vertical scrolling if horizontal scrolling is happening
-  if (Math.abs(dragged) > 15) {
+  if (draggedAbs > 15) {
     moveEvent.preventDefault()
   }
 
@@ -47,7 +53,7 @@ function handlePointerMove(this: Track, moveEvent: PointerEvent | TouchEvent) {
   updateTransform(track.slider)
 
   if (!track.isScrolled && track.slider.config.loop) {
-    if (dragged > swiperThreshold) {
+    if (dragged > slideThreshold) {
       track.isScrolled = true
       track.slider.prev()
     }
@@ -68,13 +74,15 @@ function handlePointerUp(this: Track) {
   enableTransition(track.slider)
 
   if (!track.isScrolled) {
-    if (dragged < -1 * swiperThreshold) {
+    if (dragged < -1 * slideThreshold) {
       track.slider.next()
-    } else if (dragged > swiperThreshold) {
+    } else if (dragged > slideThreshold) {
       track.slider.prev()
     }
   }
 }
+
+const preventDefault = (event: Event) => event.preventDefault()
 
 /**
  * drag based navigation for slider
@@ -88,6 +96,16 @@ export function dragSupport(slider: BlazeSlider) {
 
   // @ts-expect-error
   track.addEventListener(event, handlePointerDown)
+
+  // prevent click default when slider is being dragged or transitioning
+  track.addEventListener('click', (event) => {
+    if (slider.isTransitioning || slider.isDragging) {
+      event.preventDefault()
+    }
+  })
+
+  // prevent dragging of elements inside the slider
+  track.addEventListener('dragstart', preventDefault)
 }
 
 function updateEventListener(
