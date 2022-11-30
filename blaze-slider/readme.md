@@ -2,6 +2,8 @@
 
 # Blaze Slider
 
+⚡️ [blaze-slider.dev](https://blaze-slider.dev/)
+
 Blaze slider is a high-performance JavaScript UI library for creating sliders.
 
 ## The Problem
@@ -25,8 +27,8 @@ Blaze Slider allows you to specify the layout configuration via CSS variables wh
 | 3    | Embla     | 7.5ms   | **5.3**x _slower_  | Yes - Manually\*      |
 | 4    | Glide     | 10.0ms  | **7.14**x _slower_ | Yes - Manually\*      |
 | 5    | Flickity  | 12.3ms  | **8.78**x _slower_ | Yes - Manually\*      |
-| 5    | Swiper    | 28.3ms  | **20.2**x _slower_ | Yes - Manually\*      |
-| 5    | Slick     | 49.29ms | **35.2**x _slower_ | Yes - Manually\*      |
+| 6    | Swiper    | 28.3ms  | **20.2**x _slower_ | Yes - Manually\*      |
+| 7    | Slick     | 49.29ms | **35.2**x _slower_ | Yes - Manually\*      |
 
 Manually\* means that the slider library itself does not provide an idiomatic way to fix the layout shift. You have to manually add CSS to fix the layout shifts
 
@@ -36,7 +38,7 @@ Manually\* means that the slider library itself does not provide an idiomatic wa
 
 <br/>
 
-Benchmark measures the time taken to create a slider with 10 slides by each slider. Benchmark is measured on Apple M1 Pro CPU with 6X slowdown on Google Chrome 103. Average of 20 runs is taken.
+Benchmark measures the time taken to create a slider with 10 slides by each slider. Benchmark is measured on Apple M1 Pro CPU with 6X slowdown on Google Chrome 103. The Average of 20 runs is taken.
 
 See [Benchmark Repo](https://github.com/blaze-slider/blaze-slider/tree/main/benchmark) to see how these libraries are tested
 
@@ -60,7 +62,7 @@ You can check out the documentation on the website [blaze-slider.dev](https://bl
 
 The documentation is divided into several sections:
 
-- [Getting Start](https://blaze-slider.dev/docs/intro)
+- [Getting Started](https://blaze-slider.dev/docs/intro)
 - [Installation](http://blaze-slider.dev/docs/installation)
 - [Tutorial](https://blaze-slider.dev/docs/category/tutorial)
 - [API Reference](https://blaze-slider.dev/docs/category/api)
