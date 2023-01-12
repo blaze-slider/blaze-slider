@@ -1,11 +1,8 @@
 import replace from '@rollup/plugin-replace'
-import banner from 'rollup-plugin-banner'
 import { terser } from 'rollup-plugin-terser'
 import typescript from 'rollup-plugin-ts'
 
-const bannerPlugin = banner(
-  'blaze-slider v<%= pkg.version %> by <%= pkg.author %>'
-)
+const banner = `/* blaze-slider v1.9.1 by Manan Tank */`
 
 // use this tsconfig to prevent declaration files from being emitted
 // don't emit declaration files for each build - emit just one time when building the ESM bundle
@@ -31,12 +28,14 @@ const devBuilds = {
       file: 'dist/blaze-slider.cjs.dev.js',
       format: 'cjs',
       exports: 'default',
+      banner,
     },
     // IIFE dev
     {
       file: 'dist/blaze-slider.dev.js',
       name: 'BlazeSlider',
       format: 'iife',
+      banner,
     },
   ],
   plugins: [
@@ -45,7 +44,6 @@ const devBuilds = {
       preventAssignment: true,
       'process.env.NODE_ENV': '"development"',
     }),
-    bannerPlugin,
   ],
 }
 
@@ -72,7 +70,6 @@ const prodBuilds = {
       'process.env.NODE_ENV': '"production"',
     }),
     terser({ compress: true }),
-    bannerPlugin,
   ],
 }
 
@@ -82,6 +79,7 @@ const esmBuild = {
   output: {
     file: 'dist/blaze-slider.esm.js',
     format: 'esm',
+    banner,
   },
 }
 
