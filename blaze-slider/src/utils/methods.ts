@@ -1,9 +1,11 @@
 import { BlazeSlider } from '../slider'
+import { onSlideEnd } from './scroll'
 
 // when loop is disabled, we must update the offset
 export function noLoopScroll(slider: BlazeSlider) {
   slider.offset = -1 * slider.states[slider.stateIndex].page[0]
   updateTransform(slider)
+  onSlideEnd(slider)
 }
 
 export function wrapPrev(slider: BlazeSlider, count: number) {

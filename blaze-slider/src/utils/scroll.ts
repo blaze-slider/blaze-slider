@@ -82,7 +82,7 @@ export function scrollNext(slider: BlazeSlider, slideCount: number) {
   }
 }
 
-function onSlideEnd(slider: BlazeSlider) {
+export function onSlideEnd(slider: BlazeSlider) {
   if (slider.onSlideCbs) {
     const state = slider.states[slider.stateIndex]
     const [firstSlideIndex, lastSlideIndex] = state.page
