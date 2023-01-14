@@ -7,7 +7,7 @@
 }
 
 .layout-shift-slider .buttons-container button {
-  background-color: var(--bg-lighter);
+  background-color: hsl(0deg 0% 10%);
   padding: 10px 20px;
   border: 1px solid var(--bg-lightest);
   border-radius: 6px;
@@ -22,8 +22,8 @@
 
 .layout-shift-slider.before-js button.before,
 .layout-shift-slider.after-js button.after {
-  background: var(--ifm-color-primary);
-  color: var(--bg-darker);
+  background: hsl(0deg 0% 100%);
+  color: black;
 }
 
 .cls-fix .blaze-slider {

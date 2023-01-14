@@ -23,38 +23,49 @@ export default function HomepageFeatures() {
   })
 
   return (
-    <section className="feature-section">
-      <div className="container">
-        <div className="blaze-slider" ref={sliderRef}>
-          <div className="blaze-container">
-            <div className="blaze-track-container">
-              <div className="blaze-track">
-                {FeatureList.map((props, idx) => (
-                  <Feature key={idx} {...props} />
-                ))}
+    <>
+      <div className="aurora"></div>
+
+      <section className="feature-section">
+        <div className="container">
+          <div className="blaze-slider" ref={sliderRef}>
+            <div className="blaze-container">
+              <div className="blaze-track-container">
+                <div className="blaze-track">
+                  {FeatureList.map((props, idx) => (
+                    <Feature key={idx} {...props} />
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-          <div className="bottom-nav" style={{ height: '40px' }}>
-            <button className="blaze-prev">
-              <ChevronSVG />
-            </button>
-            <div className="blaze-pagination"></div>
-            <button className="blaze-next" aria-label="next">
-              <ChevronSVG />
-            </button>
+            <div className="bottom-nav" style={{ height: '40px' }}>
+              <button className="blaze-prev">
+                <ChevronSVG />
+              </button>
+              <div className="blaze-pagination"></div>
+              <button className="blaze-next" aria-label="next">
+                <ChevronSVG />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
 
-function Feature({ title, description, color }) {
+function Feature({
+  title,
+  description,
+  onMouseEnter,
+  onMouseLeave,
+  color,
+  glow,
+}) {
   return (
     <div className="feature-container">
-      <div className={`feature`}>
-        <h3 style={{ color: color }}>{title}</h3>
+      <div className="feature">
+        <h3>{title}</h3>
         <p>{description}</p>
       </div>
     </div>

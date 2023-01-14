@@ -1,6 +1,7 @@
 {
   "name": "blaze-slider-js",
   "description": "blaze-slider Monorepo",
+  "private": true,
   "scripts": {
     "benchmark": "npm run dev -w benchmark",
     "build:website": "npm run build -w website",

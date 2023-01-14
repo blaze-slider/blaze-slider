@@ -2,17 +2,20 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 
 // const lightCodeTheme = require('prism-react-renderer/themes/github')
-const darkCodeTheme = require('prism-react-renderer/themes/dracula')
+const darkCodeTheme = require('prism-react-renderer/themes/duotoneDark')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Blaze Slider',
-  tagline: 'The fastest slider library for high performance websites',
+  tagline: 'The Fastest Slider Library',
   url: 'https://blaze-slider.dev',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: '/img/favicon.ico',
+  stylesheets: [
+    'https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap',
+  ],
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -62,10 +65,10 @@ const config = {
       },
       navbar: {
         title: 'Blaze Slider',
-        logo: {
-          alt: 'blaze slider',
-          src: 'svg/BlazeLogo.svg',
-        },
+        // logo: {
+        //   alt: 'blaze slider',
+        //   src: 'svg/BlazeLogo.svg',
+        // },
         items: [
           {
             type: 'doc',
@@ -146,7 +149,7 @@ const config = {
           //   ],
           // },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Manan Tank`,
+        // copyright: `Copyright © ${new Date().getFullYear()} Manan Tank`,
       },
       prism: {
         darkTheme: darkCodeTheme,

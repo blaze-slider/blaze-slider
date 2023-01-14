@@ -2,7 +2,6 @@ import React from 'react'
 
 export const FeatureList = [
   {
-    color: '#fc427b',
     title: 'High Performance',
     description: (
       <>
@@ -11,9 +10,11 @@ export const FeatureList = [
         <span className="wow"> 15x faster </span>than the Swiper slider.
       </>
     ),
+    auroraColor: 'hsl(340deg 100% 40% / 15%)',
+    color: 'hsl(340deg 100% 70% / 85%)',
+    glow: 'hsl(340deg 100% 70% / 25%)',
   },
   {
-    color: '#d6a2e8',
     title: 'Zero Layout Shifts',
     description: (
       <>
@@ -22,9 +23,11 @@ export const FeatureList = [
         devices
       </>
     ),
+    auroraColor: 'hsl(40deg 100% 30% / 15%)',
+    color: 'hsl(40deg 100% 70% / 85%)',
+    glow: 'hsl(40deg 100% 70% / 25%)',
   },
   {
-    color: '#c56cf0',
     title: 'Packed with Features',
     description: (
       <>
@@ -32,9 +35,11 @@ export const FeatureList = [
         loop and much more
       </>
     ),
+    auroraColor: 'hsl(120deg 100% 30% / 15%)',
+    color: 'hsl(120deg 100% 70% / 85%)',
+    glow: 'hsl(120deg 100% 70% / 25%)',
   },
   {
-    color: '#7d5fff',
     title: 'Super Customizable',
     description: (
       <>
@@ -42,19 +47,23 @@ export const FeatureList = [
         duration, easing etc
       </>
     ),
+    auroraColor: 'hsl(180deg 100% 30% / 15%)',
+    color: 'hsl(180deg 100% 70% / 85%)',
+    glow: 'hsl(180deg 100% 70% / 25%)',
   },
   {
-    color: '#70a1ff',
-    title: 'Powerful Responsive Config',
+    title: 'Responsive Config',
     description: (
       <>
         You can have unique configurations for each type of media with power css
         media query based configuration
       </>
     ),
+    auroraColor: 'hsl(240deg 80% 30% / 35%)',
+    color: 'hsl(240deg 100% 80% / 95%)',
+    glow: 'hsl(240deg 100% 70% / 25%)',
   },
   {
-    color: '#e7ce74',
     title: 'Just 2Kb of JavaScript',
     description: (
       <>
@@ -62,9 +71,11 @@ export const FeatureList = [
         than Slick, <span className="wow">19x smaller</span> than Swiper
       </>
     ),
+    auroraColor: 'hsl(270deg 80% 30% / 35%)',
+    color: 'hsl(270deg 100% 70% / 85%)',
+    glow: 'hsl(270deg 100% 70% / 25%)',
   },
   {
-    color: '#f8c291',
     title: 'Infinite Loop without cloning slides',
     description: (
       <>
@@ -72,5 +83,8 @@ export const FeatureList = [
         bugs that can be caused by slide cloning
       </>
     ),
+    auroraColor: 'hsl(300deg 80% 30% / 35%)',
+    color: 'hsl(300deg 100% 70% / 85%)',
+    glow: 'hsl(300deg 100% 70% / 25%)',
   },
 ]

@@ -13,7 +13,7 @@
   outline: none;
   border: none;
   padding: 0;
-  background: var(--bg-lighter);
+  background: hsl(0deg 0% 100% / 15%);
   cursor: pointer;
   transition: transform 200ms ease, background 300ms ease;
 }
@@ -22,13 +22,13 @@
 .blaze-pagination button.active {
   background-color: var(--ifm-color-primary);
   border-color: var(--ifm-color-primary);
-  transform: scale(1.5);
+  transform: scale(1.2);
 }
 
 /* button:hover */
 @media (hover: hover) {
   .blaze-pagination button:hover {
-    transform: scale(1.5);
+    transform: scale(1.2);
   }
 }
 
