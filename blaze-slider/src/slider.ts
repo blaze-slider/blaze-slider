@@ -89,20 +89,20 @@ export class BlazeSlider extends Automata {
   next(count?: number) {
     if (this.isTransitioning) return
     const transition = super.next(count)
+    isTransitioning(this)
     if (!transition) return
     const [prevStateIndex, slideCount] = transition
     handleStateChange(this, prevStateIndex)
-    isTransitioning(this)
     scrollNext(this, slideCount)
   }
 
   prev(count?: number) {
     if (this.isTransitioning) return
+    isTransitioning(this)
     const transition = super.prev(count)
     if (!transition) return
     const [prevStateIndex, slideCount] = transition
     handleStateChange(this, prevStateIndex)
-    isTransitioning(this)
     scrollPrev(this, slideCount)
   }
 
