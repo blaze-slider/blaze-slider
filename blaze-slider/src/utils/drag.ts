@@ -98,11 +98,19 @@ export function dragSupport(slider: BlazeSlider) {
   track.addEventListener(event, handlePointerDown)
 
   // prevent click default when slider is being dragged or transitioning
-  track.addEventListener('click', (event) => {
-    if (slider.isTransitioning || slider.isDragging) {
-      event.preventDefault()
+  track.addEventListener(
+    'click',
+    (event) => {
+      if (slider.isTransitioning || slider.isDragging) {
+        event.preventDefault()
+        event.stopImmediatePropagation()
+        event.stopPropagation()
+      }
+    },
+    {
+      capture: true,
     }
-  })
+  )
 
   // prevent dragging of elements inside the slider
   track.addEventListener('dragstart', preventDefault)
