@@ -2,7 +2,7 @@ import replace from '@rollup/plugin-replace'
 import { terser } from 'rollup-plugin-terser'
 import typescript from 'rollup-plugin-ts'
 
-const banner = `/* blaze-slider v1.9.2 by Manan Tank */`
+const banner = `/* blaze-slider v1.9.3 by Manan Tank */`
 
 // use this tsconfig to prevent declaration files from being emitted
 // don't emit declaration files for each build - emit just one time when building the ESM bundle
