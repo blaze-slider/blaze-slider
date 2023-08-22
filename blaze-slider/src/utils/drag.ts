@@ -2,7 +2,8 @@ import { BlazeSlider } from '../slider'
 import { Track } from '../types'
 import { disableTransition, enableTransition, updateTransform } from './methods'
 
-const slideThreshold = 10
+const nextSlideMovementThreshold = 50;
+const startDraggingThreshold = 25;
 
 export const isTouch = () => 'ontouchstart' in window
 
@@ -39,21 +40,16 @@ function handlePointerMove(this: Track, moveEvent: PointerEvent | TouchEvent) {
   const draggedAbs = Math.abs(dragged)
 
   // consider dragging only if the user has dragged more than 5px
-  if (draggedAbs > 5) {
+  if (draggedAbs > startDraggingThreshold) {
     // track.setAttribute('data-dragging', 'true')
-    track.slider.isDragging = true
+    track.slider.isDragging = true;
+    track.slider.dragged = dragged;
+    updateTransform(track.slider);
+    moveEvent.preventDefault(); // prevent vertical scrolling if horizontal dragging is happening
   }
-
-  // prevent vertical scrolling if horizontal scrolling is happening
-  if (draggedAbs > 15) {
-    moveEvent.preventDefault()
-  }
-
-  track.slider.dragged = dragged
-  updateTransform(track.slider)
 
   if (!track.isScrolled && track.slider.config.loop) {
-    if (dragged > slideThreshold) {
+    if (dragged > nextSlideMovementThreshold) {
       track.isScrolled = true
       track.slider.prev()
     }
@@ -74,9 +70,9 @@ function handlePointerUp(this: Track) {
   enableTransition(track.slider)
 
   if (!track.isScrolled) {
-    if (dragged < -1 * slideThreshold) {
+    if (dragged < -1 * nextSlideMovementThreshold) {
       track.slider.next()
-    } else if (dragged > slideThreshold) {
+    } else if (dragged > nextSlideMovementThreshold) {
       track.slider.prev()
     }
   }
