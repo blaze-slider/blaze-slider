@@ -1,0 +1,132 @@
+version: 2.1
+
+orbs:
+  aws-cli: circleci/aws-cli@3.1.4
+
+pipeline-feature: &pipeline-feature
+  filters:
+    branches:
+      ignore:
+        - main
+pipeline-test: &pipeline-test
+  context:
+    - aws-develop
+    - builtin-develop
+  filters:
+    branches:
+      only:
+        - main
+pipeline-staging: &pipeline-staging
+  context:
+    - aws-staging
+    - builtin-staging
+  filters:
+    branches:
+      only:
+        - main
+pipeline-prod: &pipeline-prod
+  context:
+    - aws-prod
+    - builtin-prod
+  filters:
+    branches:
+      only:
+        - main
+
+executors:
+  base:
+    docker:
+      - image: cimg/base:stable
+        user: root
+  node:
+    docker:
+      - image: node:lts-bullseye
+
+jobs:
+  transpile:
+    executor: node
+    steps:
+      - checkout
+      - run:
+          name: npm install
+          command: npm ci
+      - run:
+          name: build assets
+          command: npm run build
+  deploy-static-assets:
+    executor: node
+    steps:
+      - checkout
+      - aws-cli/setup:
+          profile-name: default
+      - run:
+          name: npm install
+          command: npm ci
+      - run:
+          name: build assets
+          command: npm run build
+      - run:
+          name: copy static assets to s3
+          command: bin/deploy-static-assets.sh
+          working_directory: ~/project/
+  invalidate-cloudfront-cache:
+    executor: base
+    parameters:
+      profile:
+        type: enum
+        enum: ["builtin-test", "builtin-staging", "builtin-prod"]
+    steps:
+      - checkout
+      - aws-cli/setup:
+          profile-name: <<parameters.profile>>
+      - run:
+          name: Invalidate CloudFront cache
+          # $CLOUDFRONT_DISTRIBUTION_ID_STATIC is the distribution ID of static(dev|stg).builtin.com
+          command: aws --profile <<parameters.profile>> cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID_STATIC --paths "/dist/*"
+
+workflows:
+  feature:
+    jobs:
+      - transpile:
+          <<: *pipeline-feature
+  deploy:
+    jobs:
+      - deploy-static-assets:
+          name: deploy-assets-develop
+          <<: *pipeline-test
+      - invalidate-cloudfront-cache:
+          name: clear-cloudfront-cache-develop
+          profile: builtin-test
+          <<: *pipeline-test
+          requires:
+            - deploy-assets-develop
+      - deploy-approval-staging:
+          type: approval
+          requires:
+            - deploy-assets-develop
+      - deploy-static-assets:
+          name: deploy-assets-staging
+          <<: *pipeline-staging
+          requires:
+            - deploy-approval-staging
+      - invalidate-cloudfront-cache:
+          name: clear-cloudfront-cache-staging
+          profile: builtin-staging
+          <<: *pipeline-staging
+          requires:
+            - deploy-assets-staging
+      - deploy-approval-prod:
+          type: approval
+          requires:
+            - deploy-assets-staging
+      - deploy-static-assets:
+          name: deploy-assets-prod
+          <<: *pipeline-prod
+          requires:
+            - deploy-approval-prod
+      - invalidate-cloudfront-cache:
+          name: clear-cloudfront-cache-prod
+          profile: builtin-prod
+          <<: *pipeline-prod
+          requires:
+            - deploy-assets-prod
