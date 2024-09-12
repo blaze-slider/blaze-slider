@@ -31,7 +31,7 @@ export function scrollPrev(slider: BlazeSlider, slideCount: number) {
         rAf(() => {
           slider.offset = 0
           updateTransform(slider)
-          onSlideEnd(slider)
+          triggerOnSlide(slider)
         })
       })
     }
@@ -75,19 +75,19 @@ export function scrollNext(slider: BlazeSlider, slideCount: number) {
       rAf(() => {
         rAf(() => {
           enableTransition(slider)
-          onSlideEnd(slider)
+          triggerOnSlide(slider)
         })
       })
     }, slider.config.transitionDuration)
   }
 }
 
-export function onSlideEnd(slider: BlazeSlider) {
+export function triggerOnSlide(slider: BlazeSlider) {
   if (slider.onSlideCbs) {
     const state = slider.states[slider.stateIndex]
     const [firstSlideIndex, lastSlideIndex] = state.page
     slider.onSlideCbs.forEach((cb) =>
-      cb(slider.stateIndex, firstSlideIndex, lastSlideIndex)
+      cb(slider.stateIndex, firstSlideIndex, lastSlideIndex),
     )
   }
 }
