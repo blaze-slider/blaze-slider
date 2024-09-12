@@ -61,6 +61,7 @@ export function scrollNext(slider: BlazeSlider, slideCount: number) {
     slider.offset = -1 * slideCount
     updateTransform(slider)
 
+    triggerOnSlide(slider)
     // once the transition is done
     setTimeout(() => {
       // remove the elements from start that are no longer visible and put them at the end
@@ -75,7 +76,6 @@ export function scrollNext(slider: BlazeSlider, slideCount: number) {
       rAf(() => {
         rAf(() => {
           enableTransition(slider)
-          triggerOnSlide(slider)
         })
       })
     }, slider.config.transitionDuration)
