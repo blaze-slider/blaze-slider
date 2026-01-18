@@ -1,0 +1,130 @@
+---
+title: BlazeConfig
+description: Configuration object for responsive slider behavior
+---
+
+`BlazeConfig` is a record where keys are media queries and values are configuration objects.
+
+```ts
+type BlazeConfig = Record<string, MediaConfig>;
+```
+
+## Default Config
+
+If no config is provided, these defaults are used:
+
+```js
+const defaultConfig = {
+  all: {
+    // Layout
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    slideGap: '20px',
+
+    // Loop
+    loop: true,
+
+    // Autoplay
+    enableAutoplay: false,
+    stopAutoplayOnInteraction: true,
+    autoplayInterval: 3000,
+    autoplayDirection: 'to left',
+
+    // Pagination
+    enablePagination: true,
+
+    // Transition
+    transitionDuration: 500,
+    transitionTimingFunction: 'ease',
+  },
+};
+```
+
+## Media Query Keys
+
+The `all` key targets all devices (like CSS media types). You can use any valid [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries) string:
+
+```js
+'all';
+'(max-width: 991px)';
+'(min-width: 500px)';
+'(max-width: 700px) and (min-width: 500px)';
+'(orientation: landscape)';
+'(hover: hover)';
+'(prefers-reduced-motion)';
+```
+
+## Cascading Config
+
+Configurations cascade like CSS. Later matching queries override earlier ones.
+
+### Desktop-First Example
+
+```js
+const config = {
+  all: {
+    loop: true,
+    slidesToShow: 3,
+  },
+  '(max-width: 900px)': {
+    slidesToShow: 2,
+  },
+  '(max-width: 500px)': {
+    loop: false,
+    slidesToShow: 1,
+  },
+};
+```
+
+- **Desktop**: 3 slides, loop enabled
+- **Tablet**: 2 slides, loop inherited (enabled)
+- **Mobile**: 1 slide, loop disabled
+
+### Mobile-First Example
+
+```js
+const config = {
+  all: {
+    loop: true,
+    slidesToShow: 1,
+  },
+  '(min-width: 500px)': {
+    loop: false,
+    slidesToShow: 2,
+  },
+  '(min-width: 900px)': {
+    slidesToShow: 3,
+  },
+};
+```
+
+### Explicit Targeting
+
+Target specific ranges without cascading:
+
+```js
+const config = {
+  '(min-width: 900px)': {
+    loop: true,
+    slidesToShow: 3,
+  },
+  '(min-width: 700px) and (max-width: 900px)': {
+    loop: false,
+    slidesToShow: 2,
+  },
+  '(max-width: 700px)': {
+    loop: false,
+    slidesToShow: 1,
+  },
+};
+```
+
+## Beyond Width-Based Config
+
+Target any media feature:
+
+- Orientation: `'(orientation: landscape)'`
+- Reduced motion: `'(prefers-reduced-motion)'`
+- Height: `'(min-height: 500px)'`
+- Hover capability: `'(hover: hover)'`
+- Pointer precision: `'(pointer: fine)'`

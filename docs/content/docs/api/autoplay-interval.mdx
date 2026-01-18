@@ -1,0 +1,70 @@
+---
+title: autoplayInterval
+description: Time between automatic slides
+---
+
+import { ExampleSlider } from '@/components/example-slider';
+
+Time in milliseconds between automatic slide transitions.
+
+```ts
+autoplayInterval: number; // default: 3000
+```
+
+## Example: 3 seconds (default)
+
+```js
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    autoplayInterval: 3000,
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider
+  config={{
+    all: {
+      enableAutoplay: true,
+      autoplayInterval: 3000,
+      slidesToShow: 3,
+    },
+  }}
+>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>
+
+## Example: 1 second
+
+```js
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    autoplayInterval: 1000,
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider
+  config={{
+    all: {
+      enableAutoplay: true,
+      autoplayInterval: 1000,
+      slidesToShow: 3,
+    },
+  }}
+>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>

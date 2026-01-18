@@ -1,0 +1,59 @@
+---
+title: slideGap
+description: Gap between slides
+---
+
+import { ExampleSlider } from '@/components/example-slider';
+
+Gap between slides using any CSS [length unit](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#lengths).
+
+```ts
+slideGap: string; // default: '20px'
+```
+
+Blaze Slider sets this value as the `--slide-gap` CSS variable on the slider element.
+
+<Callout>
+  Set `--slide-gap` in CSS to prevent layout shifts. See [Preventing Layout
+  Shifts](/docs/tutorial/layout-shift).
+</Callout>
+
+## Example: 50px gap
+
+```js
+new BlazeSlider(el, {
+  all: {
+    slideGap: '50px',
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider config={{ all: { slideGap: '50px', slidesToShow: 3 } }}>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>
+
+## Example: 1rem gap
+
+```js
+new BlazeSlider(el, {
+  all: {
+    slideGap: '1rem',
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider config={{ all: { slideGap: '1rem', slidesToShow: 3 } }}>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>

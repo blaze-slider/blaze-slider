@@ -1,0 +1,77 @@
+---
+title: Methods
+description: Instance methods for controlling the slider
+---
+
+Methods available on a `BlazeSlider` instance.
+
+## prev() / next()
+
+Navigate to previous or next slides.
+
+```js
+const slider = new BlazeSlider(el, config);
+
+slider.prev(); // Move 1 slide left
+slider.next(); // Move 1 slide right
+
+slider.prev(2); // Move 2 slides left
+slider.next(2); // Move 2 slides right
+```
+
+## onSlide()
+
+Subscribe to slide change events. Returns an unsubscribe function.
+
+```js
+const slider = new BlazeSlider(el, config);
+
+const unsubscribe = slider.onSlide(
+  (pageIndex, firstSlideIndex, lastSlideIndex) => {
+    console.log('Page:', pageIndex);
+    console.log('Visible slides:', firstSlideIndex, 'to', lastSlideIndex);
+  }
+);
+
+// Stop listening
+unsubscribe();
+```
+
+| Argument          | Description                     |
+| ----------------- | ------------------------------- |
+| `pageIndex`       | Current page (pagination) index |
+| `firstSlideIndex` | Index of first visible slide    |
+| `lastSlideIndex`  | Index of last visible slide     |
+
+## stopAutoplay()
+
+Stop automatic slide advancement.
+
+```js
+const slider = new BlazeSlider(el, config);
+
+slider.stopAutoplay();
+```
+
+## destroy()
+
+Destroy the slider instance. Removes event listeners, stops autoplay, and cleans up pagination.
+
+```js
+const slider = new BlazeSlider(el, config);
+
+slider.destroy();
+```
+
+## refresh()
+
+Recalculate dimensions and reposition slides. Useful after adding or removing slides dynamically.
+
+```js
+const slider = new BlazeSlider(el, config);
+
+// After modifying slides
+slider.refresh();
+```
+
+<Callout>`refresh()` is automatically called on window resize.</Callout>

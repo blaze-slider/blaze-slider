@@ -1,0 +1,104 @@
+---
+title: transitionTimingFunction
+description: Easing function for slide transitions
+---
+
+import { ExampleSlider } from '@/components/example-slider';
+
+CSS [transition-timing-function](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function) for slide animations.
+
+```ts
+transitionTimingFunction: string; // default: 'ease'
+```
+
+## Example: ease (default)
+
+```js
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    transitionTimingFunction: 'ease',
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider
+  addNav
+  config={{
+    all: {
+      enableAutoplay: true,
+      transitionTimingFunction: 'ease',
+      slidesToShow: 3,
+    },
+  }}
+>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>
+
+## Example: linear
+
+```js
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    transitionTimingFunction: 'linear',
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider
+  addNav
+  config={{
+    all: {
+      enableAutoplay: true,
+      transitionTimingFunction: 'linear',
+      slidesToShow: 3,
+    },
+  }}
+>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>
+
+## Example: Custom cubic-bezier
+
+```js
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    transitionTimingFunction: 'cubic-bezier(.18,.74,.2,1.27)',
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider
+  addNav
+  config={{
+    all: {
+      enableAutoplay: true,
+      transitionTimingFunction: 'cubic-bezier(.18,.74,.2,1.27)',
+      slidesToShow: 3,
+    },
+  }}
+>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>
+
+This curve creates a slight bounce effect at the end of each transition.

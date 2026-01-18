@@ -1,0 +1,80 @@
+---
+title: stopAutoplayOnInteraction
+description: Stop autoplay when user interacts
+---
+
+import { ExampleSlider } from '@/components/example-slider';
+
+Whether autoplay stops when the user interacts with the slider (drag, swipe, or click).
+
+```ts
+stopAutoplayOnInteraction: boolean; // default: true
+```
+
+## Example: Stop on interaction (default)
+
+Interact with the slider to stop autoplay:
+
+```js
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    stopAutoplayOnInteraction: true,
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider
+  addNav
+  config={{
+    all: {
+      slidesToShow: 3,
+      enableAutoplay: true,
+      stopAutoplayOnInteraction: true,
+    },
+  }}
+>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>
+
+## Example: Continue after interaction
+
+Autoplay continues even after user interaction:
+
+```js
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    stopAutoplayOnInteraction: false,
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider
+  addNav
+  config={{
+    all: {
+      slidesToShow: 3,
+      enableAutoplay: true,
+      stopAutoplayOnInteraction: false,
+    },
+  }}
+>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>
+
+<Callout type="warn">
+  Disabling this can be annoying for users. Use with caution.
+</Callout>

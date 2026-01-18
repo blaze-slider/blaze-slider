@@ -1,0 +1,54 @@
+---
+title: loop
+description: Enable infinite looping
+---
+
+import { ExampleSlider } from '@/components/example-slider';
+
+Whether the slider loops infinitely.
+
+```ts
+loop: boolean; // default: true
+```
+
+## Example: Loop enabled (default)
+
+```js
+new BlazeSlider(el, {
+  all: {
+    loop: true,
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider addNav config={{ all: { loop: true, slidesToShow: 3 } }}>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>
+
+## Example: Loop disabled
+
+Navigation stops at first and last slides:
+
+```js
+new BlazeSlider(el, {
+  all: {
+    loop: false,
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider addNav config={{ all: { loop: false, slidesToShow: 3 } }}>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>

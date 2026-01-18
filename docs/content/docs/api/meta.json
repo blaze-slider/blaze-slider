@@ -1,0 +1,22 @@
+{
+  "title": "API",
+  "link": {
+    "type": "generated-index"
+  },
+  "pages": [
+    "blaze-slider",
+    "config",
+    "slides-to-show",
+    "slides-to-scroll",
+    "slide-gap",
+    "loop",
+    "draggable",
+    "enable-autoplay",
+    "autoplay-interval",
+    "autoplay-direction",
+    "stop-autoplay-on-interaction",
+    "transition-duration",
+    "transition-timing-function",
+    "methods"
+  ]
+}
