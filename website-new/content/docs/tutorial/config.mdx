@@ -1,0 +1,68 @@
+---
+title: Configuration
+description: How to configure Blaze Slider
+---
+
+import { ExampleSlider } from '@/components/example-slider';
+
+See [BlazeConfig](/docs/api/config) for all available options and how configuration cascading works.
+
+## Example
+
+```js
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    autoplayInterval: 2000,
+    transitionDuration: 300,
+    slidesToShow: 3,
+  },
+  '(max-width: 900px)': {
+    slidesToShow: 2,
+  },
+  '(max-width: 500px)': {
+    slidesToShow: 1,
+  },
+})
+```
+
+<ExampleSlider
+  config={{
+    all: {
+      enableAutoplay: true,
+      autoplayInterval: 2000,
+      transitionDuration: 300,
+      slidesToShow: 3,
+    },
+    '(max-width: 900px)': {
+      slidesToShow: 2,
+    },
+    '(max-width: 500px)': {
+      slidesToShow: 1,
+    },
+  }}
+>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+  <div>7</div>
+  <div>8</div>
+</ExampleSlider>
+
+## How It Works
+
+The `all` key contains the base configuration. Media query keys override specific properties at different breakpoints.
+
+In the example above:
+- Desktop shows 3 slides with autoplay
+- Tablets (≤900px) show 2 slides
+- Mobile (≤500px) shows 1 slide
+
+All other options (autoplay, transition duration) remain the same across breakpoints.
+
+<Callout>
+Media queries use the same syntax as CSS. They're evaluated in order, so place larger breakpoints first.
+</Callout>

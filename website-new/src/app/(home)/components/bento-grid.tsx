@@ -6,6 +6,7 @@ import {
   Monitor,
   SlidersHorizontal,
   Globe,
+  StarsIcon,
 } from 'lucide-react';
 import type { ReactNode } from 'react';
 
@@ -25,9 +26,9 @@ function BentoItem({
 }: BentoItemProps) {
   return (
     <div
-      className={`bg-fd-card border-fd-border rounded-2xl border p-6 ${className}`}
+      className={`bg-fd-card border-fd-border rounded-xl border p-6 ${className}`}
     >
-      <div className="text-fd-muted-foreground mb-4">{icon}</div>
+      <div className="text-fd-muted-foreground mb-5">{icon}</div>
       <h3 className="text-fd-card-foreground mb-1 text-lg font-medium">
         {title}
       </h3>
@@ -42,13 +43,13 @@ export function BentoGrid() {
   return (
     <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       {/* Large card - Performance */}
-      <div className="bg-fd-card border-fd-border rounded-2xl border p-8 md:col-span-2 lg:col-span-2">
+      <div className="bg-fd-card border-fd-border rounded-xl border p-6 md:col-span-2 lg:col-span-2">
         <div className="flex items-start justify-between">
           <div>
-            <div className="text-fd-muted-foreground mb-4">
+            <div className="text-fd-muted-foreground mb-5">
               <Zap className="h-6 w-6" />
             </div>
-            <h3 className="text-fd-card-foreground mb-1 text-xl font-medium">
+            <h3 className="text-fd-card-foreground mb-1 text-lg font-medium">
               Blazing Fast Performance
             </h3>
             <p className="text-fd-muted-foreground max-w-md leading-relaxed">
@@ -78,7 +79,7 @@ export function BentoGrid() {
       />
 
       <BentoItem
-        icon={<Settings2 className="h-5 w-5" />}
+        icon={<StarsIcon className="h-5 w-5" />}
         title="Feature Rich"
         description="Touch, drag, autoplay, pagination, navigation, and infinite loop supported"
       />

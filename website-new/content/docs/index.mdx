@@ -1,13 +1,46 @@
 ---
-title: Hello World
-description: Your first document
+title: Get Started
+description: Getting Started with Blaze Slider
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+## Why Blaze Slider?
 
-## What is Next?
+Most slider libraries weren't built with performance in mind. They block the main thread during initialization, hurting your [FID](https://web.dev/fid/) scores and user experience.
 
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.dev" />
-</Cards>
+They also cause layout shifts - elements jump around as JavaScript loads, damaging your [CLS](https://web.dev/cls/) metrics. And they don't offer clean ways to prevent this.
+
+## How Blaze Slider is Different
+
+Blaze Slider was designed from the ground up for speed and stability.
+
+- **30x faster** initialization than Slick
+- **15x faster** than Swiper
+- **Zero layout shifts** - CSS variables define the layout before JavaScript runs
+
+Your slider looks identical before and after hydration. No flicker, no jumps.
+
+## Highlights
+
+- The most performant slider library
+- Zero layout shifts via CSS configuration
+- Rich feature set: touch, drag, autoplay, pagination, navigation, infinite loop
+- Responsive configuration using CSS media queries
+- No slide cloning (eliminates a whole class of bugs)
+- Full TypeScript support
+- Tiny bundle size (~2KB gzipped)
+
+## Performance Comparison
+
+| Rank   | Library    | Init Time | Comparison          |
+| ------ | ---------- | --------- | ------------------- |
+| **1**  | **Blaze**  | **2.1ms** | -                  |
+| 2      | Glide      | 12.2ms    | 5.8x slower         |
+| 3      | Flickity   | 13.3ms    | 6.3x slower         |
+| 4      | Swiper     | 29.8ms    | 14.2x slower        |
+| 5      | Slick      | 60.0ms    | 28.5x slower        |
+
+<Callout>
+Benchmark: 10-slide slider initialization on Apple M1 Pro with 6x CPU throttling in Chrome 103. All libraries use identical configuration and content.
+</Callout>
+
+See the [benchmark source](https://github.com/blaze-slider/blaze-slider/tree/main/benchmark) for methodology.

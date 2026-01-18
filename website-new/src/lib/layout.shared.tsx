@@ -7,10 +7,6 @@ export function baseOptions(): BaseLayoutProps {
     },
     links: [
       {
-        text: 'Get Started',
-        url: '/docs',
-      },
-      {
         text: 'Playground',
         url: 'https://codesandbox.io/s/blaze-slider-playground-ps0b9u',
         external: true,

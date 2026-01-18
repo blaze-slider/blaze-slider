@@ -5,7 +5,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       <HeroSection />
-      <section className="px-6 pb-24">
+      <section className="px-4 pb-24">
         <BentoGrid />
       </section>
     </div>
