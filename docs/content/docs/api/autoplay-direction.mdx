@@ -1,0 +1,70 @@
+---
+title: autoplayDirection
+description: Direction of automatic slide advancement
+---
+
+import { ExampleSlider } from '@/components/example-slider';
+
+Direction the slider moves during autoplay.
+
+```ts
+autoplayDirection: 'to left' | 'to right'; // default: 'to left'
+```
+
+## Example: To left (default)
+
+```js
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    autoplayDirection: 'to left',
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider
+  config={{
+    all: {
+      enableAutoplay: true,
+      autoplayDirection: 'to left',
+      slidesToShow: 3,
+    },
+  }}
+>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>
+
+## Example: To right
+
+```js
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    autoplayDirection: 'to right',
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider
+  config={{
+    all: {
+      enableAutoplay: true,
+      autoplayDirection: 'to right',
+      slidesToShow: 3,
+    },
+  }}
+>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>

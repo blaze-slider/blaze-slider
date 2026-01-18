@@ -1,0 +1,53 @@
+---
+title: slidesToShow
+description: Number of slides visible at once
+---
+
+import { ExampleSlider } from '@/components/example-slider';
+
+Number of slides visible in the slider at a time.
+
+```ts
+slidesToShow: number; // default: 1
+```
+
+Blaze Slider sets this value as the `--slides-to-show` CSS variable on the slider element.
+
+<Callout>
+  Set `--slides-to-show` in CSS to prevent layout shifts. See [Preventing Layout
+  Shifts](/docs/tutorial/layout-shift).
+</Callout>
+
+## Example: 1 slide (default)
+
+```js
+new BlazeSlider(el, {
+  all: { slidesToShow: 1 },
+});
+```
+
+<ExampleSlider addNav config={{ all: { slidesToShow: 1 } }}>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>
+
+## Example: 3 slides
+
+```js
+new BlazeSlider(el, {
+  all: { slidesToShow: 3 },
+});
+```
+
+<ExampleSlider addNav config={{ all: { slidesToShow: 3 } }}>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>

@@ -1,0 +1,58 @@
+---
+title: draggable
+description: Enable drag/swipe navigation
+---
+
+import { ExampleSlider } from '@/components/example-slider';
+
+Whether the slider can be dragged or swiped.
+
+```ts
+draggable: boolean; // default: true
+```
+
+## Example: Draggable (default)
+
+```js
+new BlazeSlider(el, {
+  all: {
+    draggable: true,
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider config={{ all: { draggable: true, slidesToShow: 3 } }}>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>
+
+## Example: Not draggable
+
+Try dragging - it won't work. Pagination and Navigation buttons are added in this example to allow changing slides since the dragging is disabled.
+
+```js
+new BlazeSlider(el, {
+  all: {
+    draggable: false,
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider
+  showNav
+  showPagination
+  config={{ all: { draggable: false, slidesToShow: 3 } }}
+>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>

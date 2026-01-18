@@ -1,0 +1,103 @@
+---
+title: Initialize Slider
+description: How to initialize Blaze Slider on your elements
+---
+
+import { ExampleSlider } from '@/components/example-slider';
+
+## Basic Usage
+
+Create a new `BlazeSlider` instance with the slider element:
+
+```js
+new BlazeSlider(element, config?)
+```
+
+The second argument (config) is optional. Without it, Blaze Slider uses the [default configuration](/docs/api/config).
+
+### Example
+
+```html
+<div class="blaze-slider">
+  <div class="blaze-container">
+    <div class="blaze-track-container">
+      <div class="blaze-track">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+```js
+const el = document.querySelector('.blaze-slider');
+new BlazeSlider(el);
+```
+
+<ExampleSlider>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+</ExampleSlider>
+
+<Callout>
+  The `blaze.css` file provides only functional styles - no visual theme. Style
+  your slides however you like without fighting default styles.
+</Callout>
+
+## With Navigation and Pagination
+
+Add navigation buttons and pagination anywhere inside `.blaze-slider` (except `.blaze-track`):
+
+```html
+<div class="blaze-slider">
+  <div class="blaze-container">
+    <div class="blaze-track-container">
+      <div class="blaze-track">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="blaze-prev" aria-label="Previous slide"></button>
+      <div class="blaze-pagination"></div>
+      <button class="blaze-next" aria-label="Next slide"></button>
+    </div>
+  </div>
+</div>
+```
+
+```js
+const el = document.querySelector('.blaze-slider');
+new BlazeSlider(el);
+```
+
+<ExampleSlider showNav showPagination>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+</ExampleSlider>
+
+## Multiple Sliders
+
+Initialize all sliders on a page:
+
+```js
+document.querySelectorAll('.blaze-slider').forEach((el) => {
+  new BlazeSlider(el, config);
+});
+```
+
+<Callout>
+  Lazy initialization with IntersectionObserver is possible but rarely
+  necessary. Blaze Slider initializes so fast that eagerly initializing all
+  sliders on page load is typically fine.
+</Callout>

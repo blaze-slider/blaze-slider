@@ -1,0 +1,46 @@
+---
+title: BlazeSlider
+description: Constructor for initializing the slider
+---
+
+`BlazeSlider` is a constructor function that initializes the slider on a `.blaze-slider` element.
+
+```ts
+new BlazeSlider(el: HTMLElement, config?: BlazeConfig)
+```
+
+| Parameter | Type          | Description                                       |
+| --------- | ------------- | ------------------------------------------------- |
+| `el`      | `HTMLElement` | The `.blaze-slider` element to initialize         |
+| `config`  | `BlazeConfig` | Optional [configuration object](/docs/api/config) |
+
+## Examples
+
+### No Configuration
+
+If no configuration is provided, the defaults are used
+
+```js
+const el = document.querySelector('.blaze-slider');
+const slider = new BlazeSlider(el);
+```
+
+### With Configuration
+
+```js
+const el = document.querySelector('.blaze-slider');
+
+const slider = new BlazeSlider(el, {
+  all: {
+    slidesToShow: 1,
+    loop: true,
+  },
+  '(min-width: 700px)': {
+    slidesToShow: 2,
+  },
+  '(min-width: 1000px)': {
+    slidesToShow: 3,
+    loop: false,
+  },
+});
+```

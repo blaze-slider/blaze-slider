@@ -1,0 +1,111 @@
+---
+title: slidesToScroll
+description: Number of slides to scroll per navigation
+---
+
+import { ExampleSlider } from '@/components/example-slider';
+
+Number of slides to scroll when navigating via swipe, drag, or navigation buttons.
+
+```ts
+slidesToScroll: number; // default: 1
+```
+
+## Example: Scroll 1 slide (default)
+
+```js
+new BlazeSlider(el, {
+  all: {
+    slidesToShow: 3,
+    slidesToScroll: 1,
+  },
+});
+```
+
+<ExampleSlider addNav config={{ all: { slidesToShow: 3, slidesToScroll: 1 } }}>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>
+
+## Example: Scroll 3 slides
+
+```js
+new BlazeSlider(el, {
+  all: {
+    slidesToShow: 3,
+    slidesToScroll: 3,
+  },
+});
+```
+
+<ExampleSlider addNav config={{ all: { slidesToShow: 3, slidesToScroll: 3 } }}>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>
+
+<Callout>
+  Notice fewer pagination dots - the slider has fewer pages when scrolling
+  multiple slides at once.
+</Callout>
+
+## Edge Cases
+
+Blaze Slider automatically reduces `slidesToScroll` when there aren't enough slides remaining.
+
+### With Loop Enabled
+
+7 slides, showing 3, scrolling 3. Going from the last page to first scrolls only 1 slide:
+
+```js
+new BlazeSlider(el, {
+  all: {
+    slidesToShow: 3,
+    slidesToScroll: 3,
+  },
+});
+```
+
+<ExampleSlider addNav config={{ all: { slidesToShow: 3, slidesToScroll: 3 } }}>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+  <div>7</div>
+</ExampleSlider>
+
+### With Loop Disabled
+
+Same setup, but scrolling from page 2 to page 3 scrolls only 1 slide:
+
+```js
+new BlazeSlider(el, {
+  all: {
+    loop: false,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+  },
+});
+```
+
+<ExampleSlider
+  addNav
+  config={{ all: { loop: false, slidesToShow: 3, slidesToScroll: 3 } }}
+>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+  <div>7</div>
+</ExampleSlider>

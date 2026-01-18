@@ -1,0 +1,105 @@
+---
+title: transitionDuration
+description: Animation duration for slide transitions
+---
+
+import { ExampleSlider } from '@/components/example-slider';
+
+Duration in milliseconds for the slide transition animation.
+
+```ts
+transitionDuration: number; // default: 500
+```
+
+## Example: 300ms
+
+```js
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    transitionDuration: 300,
+    autoplayInterval: 2000,
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider
+  config={{
+    all: {
+      enableAutoplay: true,
+      transitionDuration: 300,
+      slidesToShow: 3,
+      autoplayInterval: 2000,
+    },
+  }}
+>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>
+
+## Example: 800ms (slower)
+
+```js
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    transitionDuration: 800,
+    autoplayInterval: 2000,
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider
+  config={{
+    all: {
+      enableAutoplay: true,
+      transitionDuration: 800,
+      slidesToShow: 3,
+      autoplayInterval: 2000,
+    },
+  }}
+>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>
+
+## Example: 200ms (faster)
+
+```js
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    transitionDuration: 200,
+    autoplayInterval: 2000,
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider
+  config={{
+    all: {
+      enableAutoplay: true,
+      transitionDuration: 200,
+      slidesToShow: 3,
+      autoplayInterval: 2000,
+    },
+  }}
+>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>

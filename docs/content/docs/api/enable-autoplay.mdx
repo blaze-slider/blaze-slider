@@ -1,0 +1,72 @@
+---
+title: enableAutoplay
+description: Enable automatic slide advancement
+---
+
+import { ExampleSlider } from '@/components/example-slider';
+
+Whether the slider automatically advances slides.
+
+```ts
+enableAutoplay: boolean; // default: false
+```
+
+## Example: Autoplay enabled
+
+```js
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: true,
+    stopAutoplayOnInteraction: false,
+    autoplayInterval: 1500,
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider
+  addNav
+  config={{
+    all: {
+      slidesToShow: 3,
+      enableAutoplay: true,
+      stopAutoplayOnInteraction: false,
+      autoplayInterval: 1500,
+    },
+  }}
+>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>
+
+<Callout>
+  `stopAutoplayOnInteraction` is disabled in this example to keep autoplay
+  running after interaction.
+</Callout>
+
+## Example: Autoplay disabled (default)
+
+```js
+new BlazeSlider(el, {
+  all: {
+    enableAutoplay: false,
+    slidesToShow: 3,
+  },
+});
+```
+
+<ExampleSlider
+  addNav
+  config={{ all: { slidesToShow: 3, enableAutoplay: false } }}
+>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</ExampleSlider>
