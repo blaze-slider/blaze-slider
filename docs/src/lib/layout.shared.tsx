@@ -4,6 +4,7 @@ export function baseOptionsDocs(): BaseLayoutProps {
   return {
     nav: {
       title: 'Blaze Slider',
+      transparentMode: 'top',
     },
     links: [
       {
@@ -20,10 +21,11 @@ export function baseOptionsLanding(): BaseLayoutProps {
   return {
     nav: {
       title: 'Blaze Slider',
+      transparentMode: 'top',
     },
     links: [
       {
-        text: 'Documentation',
+        text: 'Docs',
         url: '/docs',
       },
       {

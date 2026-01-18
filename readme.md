@@ -1,4 +1,4 @@
-# Blaze Slider ⚡
+# Blaze Slider
 
 [![npm version](https://img.shields.io/npm/v/blaze-slider.svg)](https://www.npmjs.com/package/blaze-slider)
 [![license](https://img.shields.io/npm/l/blaze-slider.svg)](https://github.com/blaze-slider/blaze-slider/blob/main/LICENSE)

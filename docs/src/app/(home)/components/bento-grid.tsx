@@ -52,7 +52,7 @@ export function BentoGrid() {
             <h3 className="text-fd-card-foreground mb-1 text-lg font-medium">
               Blazing Fast Performance
             </h3>
-            <p className="text-fd-muted-foreground max-w-md leading-relaxed">
+            <p className="text-fd-muted-foreground max-w-md leading-relaxed text-sm">
               Lightning fast initialization. 30x faster than Slick slider, 15x
               faster than Swiper slider.
             </p>
