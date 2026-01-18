@@ -3,7 +3,7 @@ import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 export function baseOptionsDocs(): BaseLayoutProps {
   return {
     nav: {
-      title: 'Blaze Slider',
+      title: <span className="font-serif text-2xl">Blaze Slider</span>,
       transparentMode: 'top',
     },
     links: [
@@ -20,7 +20,7 @@ export function baseOptionsDocs(): BaseLayoutProps {
 export function baseOptionsLanding(): BaseLayoutProps {
   return {
     nav: {
-      title: 'Blaze Slider',
+      title: <span className="font-serif text-2xl">Blaze Slider</span>,
       transparentMode: 'top',
     },
     links: [
