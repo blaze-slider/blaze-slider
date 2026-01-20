@@ -10,12 +10,12 @@ export function HeroSection() {
           <span className="text-fd-foreground">with Zero layout shifts</span>
         </h1>
 
-        <p className="text-fd-muted-foreground mx-auto mb-5 max-w-xl text-base leading-relaxed md:mb-8 md:text-lg text-balance md:text-pretty">
+        <p className="text-fd-muted-foreground mx-auto mb-5 max-w-xl text-base leading-relaxed text-balance md:mb-8 md:text-lg md:text-pretty">
           A high-performance, lightweight carousel library built for speed with
           Zero layout shifts and minimal bundle size
         </p>
 
-        <div className="flex justify-center gap-3 max-w-md mx-auto">
+        <div className="mx-auto flex max-w-md justify-center gap-3">
           <Link
             href="/docs"
             className="bg-fd-primary text-fd-primary-foreground hover:bg-fd-primary/90 inline-flex h-10 items-center justify-center rounded-lg px-5 text-sm font-medium transition-colors"
@@ -25,7 +25,7 @@ export function HeroSection() {
           <Link
             target="_blank"
             href="https://github.com/blaze-slider/blaze-slider"
-            className="border-fd-border bg-fd-muted text-fd-foreground hover:bg-fd-accent inline-flex h-10 items-center justify-center rounded-lg border px-5 text-sm font-medium transition-colors"
+            className="bg-fd-secondary text-fd-foreground hover:bg-fd-secondary/90 inline-flex h-10 items-center justify-center rounded-lg px-5 text-sm font-medium transition-colors"
           >
             View on GitHub
           </Link>

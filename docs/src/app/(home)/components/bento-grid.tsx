@@ -1,12 +1,11 @@
 import {
   Zap,
-  Gauge,
-  Feather,
-  Settings2,
-  Monitor,
-  SlidersHorizontal,
-  Globe,
-  StarsIcon,
+  LayoutDashboard,
+  Package,
+  Sparkles,
+  Smartphone,
+  Settings,
+  Blocks,
 } from 'lucide-react';
 import type { ReactNode } from 'react';
 
@@ -25,14 +24,16 @@ function BentoItem({
   className = '',
 }: BentoItemProps) {
   return (
-    <div
-      className={`bg-fd-card border-fd-border rounded-xl border p-6 ${className}`}
-    >
-      <div className="text-fd-muted-foreground mb-5">{icon}</div>
+    <div className={`bg-fd-foreground/5 rounded-2xl px-6 py-10 ${className}`}>
+      <div className="text-fd-muted-foreground mb-6">
+        <div className="bg-fd-foreground/10 inline-flex rounded-full p-2.5">
+          {icon}
+        </div>
+      </div>
       <h3 className="text-fd-card-foreground mb-1 text-lg font-medium">
         {title}
       </h3>
-      <p className="text-fd-muted-foreground text-sm leading-relaxed">
+      <p className="text-fd-muted-foreground max-w-sm text-sm leading-relaxed text-pretty">
         {description}
       </p>
     </div>
@@ -41,67 +42,54 @@ function BentoItem({
 
 export function BentoGrid() {
   return (
-    <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {/* Large card - Performance */}
-      <div className="bg-fd-card border-fd-border rounded-xl border p-6 md:col-span-2 lg:col-span-2">
-        <div className="flex items-start justify-between">
-          <div>
-            <div className="text-fd-muted-foreground mb-5">
-              <Zap className="h-6 w-6" />
-            </div>
-            <h3 className="text-fd-card-foreground mb-1 text-lg font-medium">
-              Blazing Fast Performance
-            </h3>
-            <p className="text-fd-muted-foreground max-w-md leading-relaxed text-sm">
-              Lightning fast initialization. 30x faster than Slick slider, 15x
-              faster than Swiper slider.
-            </p>
-          </div>
-          <div className="text-fd-muted-foreground hidden items-center gap-3 md:flex">
-            <div className="text-right">
-              <div className="text-fd-foreground font-mono text-2xl">2kb</div>
-              <div className="text-xs tracking-wider uppercase">gzipped</div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="mx-auto grid max-w-5xl grid-cols-1 gap-2.5 md:grid-cols-6">
+      <BentoItem
+        icon={<Zap className="size-4" />}
+        title="Blazing fast initialization"
+        className="md:col-span-3"
+        description="Minimal JS execution time. 30x faster than Slick slider, 15x faster than Swiper slider"
+      />
 
       <BentoItem
-        icon={<Gauge className="h-5 w-5" />}
+        icon={<LayoutDashboard className="size-4" />}
         title="Zero Layout Shifts"
-        description="CSS variable-based layout prevents layout shifts across all viewport sizes"
+        className="md:col-span-3"
+        description="CSS variables define the layout, so the layout remains the same before and after JavaScript execution"
       />
 
       <BentoItem
-        icon={<Feather className="h-5 w-5" />}
-        title="Ultra Lightweight"
-        description="5x smaller than Slick slider, 19x smaller than Swiper slider."
+        icon={<Package className="size-4" />}
+        title="Tiny Bundle"
+        className="md:col-span-2"
+        description="Just ~2KB gzipped. 19x smaller than Swiper, 5x smaller than Slick."
       />
 
       <BentoItem
-        icon={<StarsIcon className="h-5 w-5" />}
-        title="Feature Rich"
-        description="Touch, drag, autoplay, pagination, navigation, and infinite loop supported"
+        icon={<Sparkles className="size-4" />}
+        title="Full Featured"
+        className="md:col-span-2"
+        description="Touch, drag, autoplay, pagination, navigation, and infinite loop. All built-in."
       />
 
       <BentoItem
-        icon={<Monitor className="h-5 w-5" />}
-        title="Responsive Config"
-        description="Media query based configuration for each breakpoint."
+        icon={<Smartphone className="size-4" />}
+        title="Responsive Configuration"
+        className="md:col-span-2"
+        description="Use media queries to define the slider configuration for different viewport sizes"
       />
 
       <BentoItem
-        icon={<SlidersHorizontal className="h-5 w-5" />}
-        title="Super Customizable"
-        description="Customize everything from slides to show, scroll behavior, transition duration, easing, and more."
-        className="md:col-span-2 lg:col-span-2"
+        icon={<Settings className="size-4" />}
+        title="Everything you need"
+        className="md:col-span-3"
+        description="number of slides to show, slides to scroll, speed, easing, infinite loop, pagination, navigation, and more"
       />
 
-      {/* Use Everywhere */}
       <BentoItem
-        icon={<Globe className="h-5 w-5" />}
-        title="Use Everywhere"
-        description="Works with any framework or drop a script tag in your HTML."
+        icon={<Blocks className="size-4" />}
+        title="Framework Agnostic"
+        className="md:col-span-3"
+        description="Works with any framework or just drop a script in your HTML - no build step required"
       />
     </div>
   );
