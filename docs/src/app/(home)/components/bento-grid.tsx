@@ -80,7 +80,7 @@ export function BentoGrid() {
 
       <BentoItem
         icon={<Settings className="size-4" />}
-        title="Everything you need"
+        title="Customize Everything"
         className="md:col-span-3"
         description="number of slides to show, slides to scroll, speed, easing, infinite loop, pagination, navigation, and more"
       />
