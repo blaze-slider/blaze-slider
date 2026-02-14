@@ -61,17 +61,22 @@ function handlePointerMove(this: Track, moveEvent: PointerEvent | TouchEvent) {
 }
 
 function handlePointerUp(this: Track) {
-  const track = this
-  const dragged = track.slider.dragged
-  track.slider.isDragging = false
+    const track = this;
+    const slider = track.slider;
+    const dragged = slider.dragged;
 
-  updateEventListener(track, 'removeEventListener')
+    slider.isDragging = false;
+    updateEventListener(track, 'removeEventListener');
 
-  // reset drag
-  track.slider.dragged = 0
-  updateTransform(track.slider)
+    if (track.isScrolled && slider.config.loop) {
+        track.slider.dragged = 0;
+        return;
+    }
 
-  enableTransition(track.slider)
+    enableTransition(slider);
+
+    slider.dragged = 0;
+    updateTransform(slider);
 
   if (!track.isScrolled) {
     if (dragged < -1 * slideThreshold) {
